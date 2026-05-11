@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台達電 (2308.TW) 企業分析 | 1142 國際策略管理</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700;900&family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* 基礎重置與變數設定 (包含明暗模式) */
+        :root {
+            /* 預設亮色模式 (Light Mode) */
+            --primary: #4A6FA5;
+            --secondary: #A9D6E5;
+            --background: #FAFAF7;
+            --surface: #FFFFFF;
+            --accent: #89C2D9;
+            --text-main: #2B2D42;
+            --text-muted: #6B7280;
+            --border-color: rgba(169, 214, 229, 0.3);
+            --gradient-01: linear-gradient(135deg, #4A6FA5, #A9D6E5);
+            --gradient-02: linear-gradient(180deg, #FAFAF7, #A9D6E5);
+            --gradient-03: linear-gradient(135deg, #89C2D9, #4A6FA5);
+            --card-shadow: 0 12px 32px rgba(43, 45, 66, 0.05);
+            --nav-bg: rgba(250, 250, 247, 0.85);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body.dark-mode {
+            /* 暗色模式 (Dark Mode) */
+            --primary: #A9D6E5;
+            --secondary: #4A6FA5;
+            --background: #121418;
+            --surface: #1E2128;
+            --accent: #89C2D9;
+            --text-main: #FAFAF7;
+            --text-muted: #A0AAB5;
+            --border-color: rgba(169, 214, 229, 0.1);
+            --gradient-01: linear-gradient(135deg, #1E2128, #2B2D42);
+            --gradient-02: linear-gradient(180deg, #1E2128, #4A6FA5);
+            --gradient-03: linear-gradient(135deg, #4A6FA5, #1E2128);
+            --card-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+            --nav-bg: rgba(18, 20, 24, 0.85);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.7;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            scroll-behavior: smooth;
+            padding-top: 80px; /* 預留給 fixed navbar */
+        }
+
+        /* 雙語切換設定 */
+        body.en .lang-zh { display: none !important; }
+        body.zh .lang-en { display: none !important; }
+
+        /* 導覽列 (Navbar) */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 80px;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-right: 24px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .controls { display: flex; gap: 12px; }
+        .btn-toggle {
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .btn-toggle:hover { background: var(--secondary); color: var(--background); }
+
+        /* 標頭 (Hero Section) */
+        header {
+            background: var(--gradient-01);
+            color: var(--background);
+            padding: 100px 20px 140px;
+            text-align: center;
+            border-radius: 0 0 40px 40px;
+        }
+        body.dark-mode header { color: var(--text-main); }
+        .header-title { font-size: 3rem; font-weight: 900; margin-bottom: 16px; }
+        .header-subtitle { font-size: 1.2rem; opacity: 0.95; margin-bottom: 30px; }
+        .stock-badge {
+            display: inline-block;
+            background-color: rgba(250, 250, 247, 0.15); 
+            backdrop-filter: blur(8px);
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            border: 1px solid rgba(250, 250, 247, 0.3);
+        }
+
+        /* 內容容器 */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 80px 0; border-bottom: 1px solid var(--border-color); }
+        section:last-child { border-bottom: none; }
+
+        /* 區塊標題 & 語音按鈕 */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary);
+            font-weight: 700;
+            position: relative;
+        }
+        .section-title::after {
+            content: ''; display: block; width: 40px; height: 4px;
+            background-color: var(--accent); margin: 12px auto 0; border-radius: 4px;
+        }
+        .btn-voice {
+            background: var(--secondary);
+            border: none; border-radius: 50%;
+            width: 40px; height: 40px;
+            cursor: pointer; font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+        }
+        .btn-voice:hover { transform: scale(1.1); background: var(--primary); color: var(--white); }
+
+        /* 翻轉字卡 (Flip Cards) */
+        .flip-card-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;
+        }
+        .flip-card {
+            background-color: transparent; height: 280px; perspective: 1000px; cursor: pointer;
+        }
+        .flip-card-inner {
+            position: relative; width: 100%; height: 100%; text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden; border-radius: 24px;
+            padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            box-shadow: var(--card-shadow); border: 1px solid var(--border-color);
+        }
+        .flip-card-front { background: var(--surface); color: var(--text-main); }
+        .flip-card-back { background: var(--gradient-01); color: #FAFAF7; transform: rotateY(180deg); }
+        .card-icon { width: 64px; height: 64px; background: var(--gradient-02); border-radius: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.8rem; }
+
+        /* 一般卡片樣式 */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card {
+            background: var(--surface); border-radius: 24px; padding: 40px 30px;
+            box-shadow: var(--card-shadow); transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+        .card:hover { transform: translateY(-8px); border-color: var(--secondary); }
+        .card h3 { color: var(--primary); margin-bottom: 16px; font-size: 1.4rem; }
+        
+        /* 互動測驗區塊 */
+        .quiz-container {
+            background: var(--surface); padding: 40px; border-radius: 24px;
+            box-shadow: var(--card-shadow); border: 1px solid var(--border-color);
+        }
+        .quiz-question { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--primary); }
+        .quiz-options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+        .quiz-option {
+            padding: 12px 20px; border: 1px solid var(--border-color); border-radius: 12px;
+            cursor: pointer; transition: var(--transition); background: var(--background);
+        }
+        .quiz-option:hover { border-color: var(--primary); background: var(--secondary); color: #2B2D42; }
+        .quiz-btn {
+            background: var(--primary); color: #FAFAF7; border: none; padding: 12px 24px;
+            border-radius: 12px; font-weight: 600; cursor: pointer; transition: var(--transition);
+        }
+        .quiz-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        #quiz-result { margin-top: 16px; font-weight: 600; }
+
+        /* 頁尾 */
+        footer {
+            text-align: center; padding: 50px 20px; background-color: var(--surface);
+            color: var(--text-muted); border-top: 1px solid var(--border-color); font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; flex-direction: column; height: auto; padding: 16px; gap: 12px; }
+            body { padding-top: 120px; }
+            .header-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body class="zh">
+
+    <nav>
+        <div class="nav-links">
+            <a href="#home" class="lang-zh">首頁</a>
+            <a href="#home" class="lang-en">Home</a>
+            <a href="#intro" class="lang-zh">公司介紹</a>
+            <a href="#intro" class="lang-en">Intro</a>
+            <a href="#analysis" class="lang-zh">市場與策略</a>
+            <a href="#analysis" class="lang-en">Strategy</a>
+            <a href="#jobs" class="lang-zh">職缺資訊</a>
+            <a href="#jobs" class="lang-en">Careers</a>
+            <a href="#quiz" class="lang-zh">互動測驗</a>
+            <a href="#quiz" class="lang-en">Quiz</a>
+            <a href="#team" class="lang-zh">團隊與反思</a>
+            <a href="#team" class="lang-en">Team</a>
+        </div>
+        <div class="controls">
+            <button class="btn-toggle" onclick="toggleTheme()">🌓 <span class="lang-zh">明暗模式</span><span class="lang-en">Theme</span></button>
+            <button class="btn-toggle" onclick="toggleLanguage()">🌐 <span class="lang-zh">EN</span><span class="lang-en">中</span></button>
+        </div>
+    </nav>
+
+    <header id="home">
+        <div class="container" id="text-home">
+            <h1 class="header-title lang-zh">台達電子 企業策略分析</h1>
+            <h1 class="header-title lang-en">Delta Electronics Strategy Analysis</h1>
+            
+            <p class="header-subtitle lang-zh">環保 節能 愛地球｜全球電源管理與散熱解決方案領導者</p>
+            <p class="header-subtitle lang-en">To provide innovative, clean and energy-efficient solutions for a better tomorrow.</p>
+            
+            <div class="stock-badge">2308.TW</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="intro">
+            <div class="section-header">
+                <h2 class="section-title lang-zh">公司介紹與財務亮點</h2>
+                <h2 class="section-title lang-en">Company Intro & Financials</h2>
+                <button class="btn-voice" onclick="readAloud('text-intro')" title="語音導覽">🔊</button>
+            </div>
+            
+            <div class="flip-card-grid" id="text-intro">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-icon">🏢</div>
+                            <h3 class="lang-zh">組織架構與歷史</h3>
+                            <h3 class="lang-en">History & Org</h3>
+                            <p class="lang-zh text-muted">Hover 翻轉查看</p>
+                            <p class="lang-en text-muted">Hover to flip</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h4 class="lang-zh">創立於1971年</h4>
+                            <h4 class="lang-en">Founded in 1971</h4>
+                            <p class="lang-zh">涵蓋電源及零組件、自動化、基礎設施三大業務範疇，事業群遍佈全球。</p>
+                            <p class="lang-en">Three main business categories: Power Electronics, Automation, and Infrastructure.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-icon">📈</div>
+                            <h3 class="lang-zh">2025 營運規模</h3>
+                            <h3 class="lang-en">2025 Revenue</h3>
+                            <p class="lang-zh text-muted">Hover 翻轉查看</p>
+                            <p class="lang-en text-muted">Hover to flip</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h4 class="lang-zh">創新高</h4>
+                            <h4 class="lang-en">Record High</h4>
+                            <p class="lang-zh">受惠 AI 伺服器電源與液冷散熱需求，帶動營收與 EPS 雙位數成長。</p>
+                            <p class="lang-en">Driven by AI server power and liquid cooling demand, achieving double-digit growth in Revenue & EPS.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-icon">🎯</div>
+                            <h3 class="lang-zh">企業願景與使命</h3>
+                            <h3 class="lang-en">Vision & Mission</h3>
+                            <p class="lang-zh text-muted">Hover 翻轉查看</p>
+                            <p class="lang-en text-muted">Hover to flip</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h4 class="lang-zh">永續發展</h4>
+                            <h4 class="lang-en">Sustainability</h4>
+                            <p class="lang-zh">致力於提供創新、潔淨與節能的解決方案，減緩氣候暖化。</p>
+                            <p class="lang-en">Committed to innovative, clean, and energy-efficient solutions to address global warming.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="analysis">
+            <div class="section-header">
+                <h2 class="section-title lang-zh">市場分析、資源評價與成長策略</h2>
+                <h2 class="section-title lang-en">Market Analysis & Growth Strategy</h2>
+                <button class="btn-voice" onclick="readAloud('text-analysis')" title="語音導覽">🔊</button>
+            </div>
+
+            <div class="card-grid" id="text-analysis">
+                <div class="card">
+                    <h3 class="lang-zh">1. 市場分析 (Market Analysis)</h3>
+                    <h3 class="lang-en">1. Market Analysis</h3>
+                    <p class="lang-zh">運用 PESTEL 與波特五力分析：AI 伺服器與電動車 (EV) 市場處於爆發期。儘管地緣政治風險上升，但全球綠能減碳政策為公司帶來龐大商機。</p>
+                    <p class="lang-en">Using PESTEL & Porter's Five Forces: AI servers and EV markets are booming. Despite geopolitical risks, global ESG policies bring massive opportunities.</p>
+                </div>
+                <div class="card">
+                    <h3 class="lang-zh">2. 資源評價 (Resource Evaluation)</h3>
+                    <h3 class="lang-en">2. Resource Evaluation</h3>
+                    <p class="lang-zh">依據 VRIO 架構：台達電在「高階電力電子技術」與「液冷散熱專利」具備高度價值、稀缺性與難以模仿性，形成強大競爭優勢。</p>
+                    <p class="lang-en">Based on VRIO: Delta's core tech in power electronics and liquid cooling patents possess high value, rarity, and inimitability.</p>
+                </div>
+                <div class="card">
+                    <h3 class="lang-zh">3. 成長策略 (Growth Strategy)</h3>
+                    <h3 class="lang-en">3. Growth Strategy</h3>
+                    <p class="lang-zh">泰國等東南亞新廠全面量產 (China+1)，強化供應鏈韌性。並透過併購與研發，加速從零組件供應商轉型為系統整合解決方案提供者。</p>
+                    <p class="lang-en">Expanding Thailand plants (China+1) for resilience. Transforming from a component supplier to a system solution provider via M&A and R&D.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="jobs">
+            <div class="section-header">
+                <h2 class="section-title lang-zh">人才招募 (104人力銀行資料)</h2>
+                <h2 class="section-title lang-en">Careers (104 Job Bank)</h2>
+                <button class="btn-voice" onclick="readAloud('text-jobs')" title="語音導覽">🔊</button>
+            </div>
+            
+            <div class="card-grid" id="text-jobs">
+                <div class="card">
+                    <h3 class="lang-zh">AI 散熱研發工程師</h3>
+                    <h3 class="lang-en">AI Thermal R&D Engineer</h3>
+                    <p class="lang-zh"><strong>所需技能：</strong>熱傳學、流體力學、Flotherm / Icepak 模擬軟體。<br><strong>薪資福利：</strong>月薪 60,000 - 100,000 元，享優渥分紅與全球輪調機會。</p>
+                    <p class="lang-en"><strong>Skills:</strong> Heat transfer, fluid mechanics, Flotherm/Icepak.<br><strong>Salary:</strong> NT$60k - 100k/month, with competitive bonuses.</p>
+                </div>
+                <div class="card">
+                    <h3 class="lang-zh">全球策略採購管理師</h3>
+                    <h3 class="lang-en">Global Strategic Sourcing Spec.</h3>
+                    <p class="lang-zh"><strong>所需技能：</strong>供應鏈管理、跨國議價談判、流利外語能力。<br><strong>薪資福利：</strong>月薪 50,000 - 85,000 元，彈性工時與完善培訓。</p>
+                    <p class="lang-en"><strong>Skills:</strong> SCM, negotiation, fluent foreign languages.<br><strong>Salary:</strong> NT$50k - 85k/month, flexible hours.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz">
+            <div class="section-header">
+                <h2 class="section-title lang-zh">互動問答 (知識小測驗)</h2>
+                <h2 class="section-title lang-en">Interactive Quiz</h2>
+                <button class="btn-voice" onclick="readAloud('text-quiz')" title="語音導覽">🔊</button>
+            </div>
+
+            <div class="quiz-container" id="text-quiz">
+                <div class="lang-zh">
+                    <div class="quiz-question">Q: 下列何者是台達電近年推升營收成長的「雙引擎」關鍵技術？</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q1_zh" value="A"> A) 傳統筆記型電腦電源與滑鼠</label>
+                        <label class="quiz-option"><input type="radio" name="q1_zh" value="B"> B) AI 伺服器電源與液冷散熱解決方案</label>
+                        <label class="quiz-option"><input type="radio" name="q1_zh" value="C"> C) 智慧型手機面板製造</label>
+                    </div>
+                    <button class="quiz-btn" onclick="checkAnswer('zh')">提交答案</button>
+                    <div id="quiz-result-zh" style="margin-top: 15px; font-weight: bold;"></div>
+                </div>
+
+                <div class="lang-en">
+                    <div class="quiz-question">Q: What is the key "dual-engine" technology driving Delta's recent revenue growth?</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q1_en" value="A"> A) Traditional PC power supplies</label>
+                        <label class="quiz-option"><input type="radio" name="q1_en" value="B"> B) AI server power and liquid cooling solutions</label>
+                        <label class="quiz-option"><input type="radio" name="q1_en" value="C"> C) Smartphone panel manufacturing</label>
+                    </div>
+                    <button class="quiz-btn" onclick="checkAnswer('en')">Submit</button>
+                    <div id="quiz-result-en" style="margin-top: 15px; font-weight: bold;"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team">
+            <div class="section-header">
+                <h2 class="section-title lang-zh">團隊合作與 AI 運用反思</h2>
+                <h2 class="section-title lang-en">Team & AI Reflection</h2>
+                <button class="btn-voice" onclick="readAloud('text-team')" title="語音導覽">🔊</button>
+            </div>
+
+            <div class="card-grid" id="text-team">
+                <div class="card">
+                    <h3 class="lang-zh">小組成員與協作歷程</h3>
+                    <h3 class="lang-en">Team Members & Collaboration</h3>
+                    <p class="lang-zh"><strong>成員：</strong>邱佳慧、李東翰、黃品筑、簡楷倫、劉家槥、馮焱玲、羅芊柔<br>
+                    <strong>協作說明：</strong>我們並未採用傳統切割任務的方式。全組透過雲端共編，共同討論台達電的策略框架與財務指標。在網頁開發階段，我們採用結對編程（Pair Programming），確保所有成員皆參與企劃、設計與邏輯檢驗，共同對專案品質負責。</p>
+                    <p class="lang-en"><strong>Members:</strong> Chia-Hui, Tung-Han, Pin-Chu, Kai-Lun, Chia-Hui (Liu), Yen-Ling, Chien-Jou<br>
+                    <strong>Collaboration:</strong> Instead of splitting tasks, we collaborated holistically. We discussed strategy frameworks together and used Pair Programming for web dev, ensuring everyone contributed to planning, design, and quality assurance.</p>
+                </div>
+                <div class="card">
+                    <h3 class="lang-zh">AI 工具運用與版權聲明</h3>
+                    <h3 class="lang-en">AI Usage & Copyright</h3>
+                    <p class="lang-zh"><strong>AI 工具使用：</strong>本專案使用 Google Gemini 協助潤飾英文化文本，並輔助生成 HTML/CSS 基礎語法與響應式框架。內容策略與分析邏輯由團隊全體原創產出。<br>
+                    <strong>學術誠信：</strong>符合教育合理使用原則，所有財務數據與新聞分析皆基於台達電公開財報與市場資訊進行歸納。</p>
+                    <p class="lang-en"><strong>AI Tools:</strong> Google Gemini was used to polish English translations and assist with HTML/CSS frameworks. Strategic analysis is entirely original.<br>
+                    <strong>Integrity:</strong> All data complies with fair use policies, based on Delta's public financial reports.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="lang-zh">1142 國際策略管理 | 授課教師：梅筱珍 | 製作團隊：G7台達電</p>
+        <p class="lang-en">1142 Int'l Strategic Management | Instructor: Hsiao-Chen Mei | Team: G7 Delta</p>
+        <p style="margin-top: 8px; font-size: 0.85rem; opacity: 0.7;">&copy; 2026 Interactive Learning Webpage Competition Project.</p>
+    </footer>
+
+    <script>
+        // --- 主題切換 (Dark/Light Mode) ---
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // --- 語言切換 (ZH/EN) ---
+        function toggleLanguage() {
+            if (document.body.classList.contains('zh')) {
+                document.body.classList.remove('zh');
+                document.body.classList.add('en');
+            } else {
+                document.body.classList.remove('en');
+                document.body.classList.add('zh');
+            }
+            window.speechSynthesis.cancel(); // 切換語言時中斷當前語音
+        }
+
+        // --- 互動測驗邏輯 ---
+        function checkAnswer(lang) {
+            const selected = document.querySelector(`input[name="q1_${lang}"]:checked`);
+            const resultDiv = document.getElementById(`quiz-result-${lang}`);
+            
+            if (!selected) {
+                resultDiv.style.color = "orange";
+                resultDiv.innerText = lang === 'zh' ? "請先選擇一個答案！" : "Please select an answer first!";
+                return;
+            }
+
+            if (selected.value === "B") {
+                resultDiv.style.color = "green";
+                resultDiv.innerText = lang === 'zh' ? "✅ 答對了！AI 伺服器電源與液冷散熱正是台達電目前的雙引擎。" : "✅ Correct! AI server power and liquid cooling are the dual engines.";
+            } else {
+                resultDiv.style.color = "red";
+                resultDiv.innerText = lang === 'zh' ? "❌ 答錯了，請再試一次！(提示：與 AI 及散熱有關)" : "❌ Incorrect, please try again! (Hint: relates to AI & cooling)";
+            }
+        }
+
+        // --- 語音導覽 (Web Speech API) 依規定設定 EN=British-Male, 繁=Taiwan-Yating ---
+        let voices = [];
+        window.speechSynthesis.onvoiceschanged = () => {
+            voices = window.speechSynthesis.getVoices();
+        };
+
+        function readAloud(sectionId) {
+            window.speechSynthesis.cancel(); // 停止先前的語音
+
+            const section = document.getElementById(sectionId);
+            const currentLang = document.body.classList.contains('zh') ? 'zh' : 'en';
+            
+            // 抓取該區塊內當前語言的可見文字
+            const elements = section.querySelectorAll(`.lang-${currentLang}`);
+            let textToRead = "";
+            elements.forEach(el => {
+                // 排除隱藏元素與按鈕文字
+                if (window.getComputedStyle(el).display !== 'none' && el.tagName !== 'BUTTON') {
+                    textToRead += el.innerText + "。 ";
+                }
+            });
+
+            if (!textToRead.trim()) return;
+
+            const utterance = new SpeechSynthesisUtterance(textToRead);
+            voices = window.speechSynthesis.getVoices();
+
+            if (currentLang === 'en') {
+                // 尋找 British-Male
+                const enVoice = voices.find(v => v.lang.includes('en-GB') && v.name.includes('Male')) 
+                             || voices.find(v => v.lang.includes('en-GB'))
+                             || voices.find(v => v.lang.includes('en'));
+                if (enVoice) utterance.voice = enVoice;
+                utterance.lang = 'en-GB';
+            } else {
+                // 尋找 Taiwan-Yating (若無則使用預設繁體中文)
+                const zhVoice = voices.find(v => v.lang.includes('zh-TW') && v.name.includes('Yating')) 
+                             || voices.find(v => v.lang.includes('zh-TW'))
+                             || voices.find(v => v.lang.includes('zh'));
+                if (zhVoice) utterance.voice = zhVoice;
+                utterance.lang = 'zh-TW';
+            }
+
+            // 調整語速與音調讓語音更自然
+            utterance.rate = 1.0;
+            utterance.pitch = 1.0;
+
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
