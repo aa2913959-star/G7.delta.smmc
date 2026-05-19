@@ -4,68 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>台達電 (2308.TW) 企業分析 | 1142 國際策略管理</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700;900&family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* 基礎重置與變數設定 (包含明暗模式) */
+        /* 基礎重置與變數設定：日系清透科技風 (Japanese Clean Tech) */
         :root {
-            /* 預設亮色模式 (Light Mode) */
+            /* 亮面 Light Mode (回復初始柔霧藍設定) */
+            --bg-main: #FAFAF7;
+            --bg-secondary: #FAFAF7;
+            --bg-card: #FFFFFF;
             --primary: #4A6FA5;
             --secondary: #A9D6E5;
-            --background: #FAFAF7;
-            --surface: #FFFFFF;
             --accent: #89C2D9;
             --text-main: #2B2D42;
             --text-muted: #6B7280;
-            --border-color: rgba(169, 214, 229, 0.3);
+            --border-color: rgba(169, 214, 229, 0.4);
+            
+            /* 亮面專屬：漸層與 Header 設定 */
             --gradient-01: linear-gradient(135deg, #4A6FA5, #A9D6E5);
             --gradient-02: linear-gradient(180deg, #FAFAF7, #A9D6E5);
-            --gradient-03: linear-gradient(135deg, #89C2D9, #4A6FA5);
-            --card-shadow: 0 12px 32px rgba(43, 45, 66, 0.05);
+            --header-bg: var(--gradient-01);
+            --header-title-color: #FAFAF7;
+            --header-sub-color: rgba(250, 250, 247, 0.9);
+            --header-glow: transparent;
+            --badge-bg: rgba(250, 250, 247, 0.15);
+            --badge-border: rgba(250, 250, 247, 0.3);
+            --icon-bg: var(--gradient-02);
+            --icon-radius: 18px;
+            --icon-border: none;
+            
+            /* UI 視覺細節 */
             --nav-bg: rgba(250, 250, 247, 0.85);
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --card-shadow: 0 12px 32px rgba(43, 45, 66, 0.05);
+            --card-shadow-hover: 0 20px 40px rgba(43, 45, 66, 0.08);
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 32px;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         body.dark-mode {
-            /* 暗色模式 (Dark Mode) */
-            --primary: #A9D6E5;
-            --secondary: #4A6FA5;
-            --background: #121418;
-            --surface: #1E2128;
+            /* 暗面 Dark Mode (維持新版科技風) */
+            --bg-main: #0F172A;
+            --bg-secondary: #1E293B;
+            --bg-card: #243447;
+            --primary: #7BAFD4;
+            --secondary: #A9D6E5;
             --accent: #89C2D9;
-            --text-main: #FAFAF7;
-            --text-muted: #A0AAB5;
-            --border-color: rgba(169, 214, 229, 0.1);
-            --gradient-01: linear-gradient(135deg, #1E2128, #2B2D42);
-            --gradient-02: linear-gradient(180deg, #1E2128, #4A6FA5);
-            --gradient-03: linear-gradient(135deg, #4A6FA5, #1E2128);
-            --card-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
-            --nav-bg: rgba(18, 20, 24, 0.85);
+            --text-main: #F8FAFC;
+            --text-muted: #CBD5E1;
+            --border-color: #334155;
+            
+            /* 暗面專屬：Header 與 Icon 設定 */
+            --header-bg: var(--bg-secondary);
+            --header-title-color: var(--primary);
+            --header-sub-color: var(--text-muted);
+            --header-glow: rgba(123, 175, 212, 0.1);
+            --badge-bg: transparent;
+            --badge-border: var(--primary);
+            --icon-bg: var(--bg-main);
+            --icon-radius: 50%;
+            --icon-border: 1px solid var(--border-color);
+            
+            /* UI 視覺細節 (暗色) */
+            --nav-bg: rgba(15, 23, 42, 0.75);
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', 'Inter', 'Noto Sans TC', sans-serif;
-            background-color: var(--background);
+            background-color: var(--bg-main);
             color: var(--text-main);
-            line-height: 1.7;
-            letter-spacing: 0.5px;
-            transition: var(--transition);
+            line-height: 1.8;
+            letter-spacing: 0.03em;
+            transition: background-color 0.4s ease, color 0.4s ease;
             scroll-behavior: smooth;
-            padding-top: 80px; /* 預留給 fixed navbar */
+            padding-top: 80px; 
+            font-weight: 400;
         }
 
         /* 雙語切換設定 */
         body.en .lang-zh { display: none !important; }
         body.zh .lang-en { display: none !important; }
 
-        /* 導覽列 (Navbar) */
+        /* 導覽列 (Navbar) - 清透毛玻璃 */
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
             height: 80px;
             background-color: var(--nav-bg);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -75,52 +106,91 @@
             transition: var(--transition);
         }
         .nav-links a {
-            color: var(--text-main);
+            color: var(--text-muted);
             text-decoration: none;
-            margin-right: 24px;
+            margin-right: 32px;
             font-weight: 500;
             font-size: 0.95rem;
             transition: var(--transition);
         }
         .nav-links a:hover { color: var(--primary); }
-        .controls { display: flex; gap: 12px; }
+        .controls { display: flex; gap: 16px; }
         .btn-toggle {
-            background: var(--surface);
+            background: transparent;
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 8px 20px;
+            border-radius: 40px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.9rem;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        .btn-toggle:hover { background: var(--secondary); color: var(--background); }
+        .btn-toggle:hover { 
+            background: var(--bg-card); 
+            border-color: var(--primary);
+            color: var(--primary); 
+            box-shadow: var(--card-shadow);
+        }
 
-        /* 標頭 (Hero Section) */
+        /* 標頭 (Hero Section) - 企業科技感 */
         header {
-            background: var(--gradient-01);
-            color: var(--background);
-            padding: 100px 20px 140px;
+            background: var(--header-bg);
+            color: var(--text-main);
+            padding: 140px 20px 140px;
             text-align: center;
-            border-radius: 0 0 40px 40px;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
         }
-        body.dark-mode header { color: var(--text-main); }
-        .header-title { font-size: 3rem; font-weight: 900; margin-bottom: 16px; }
-        .header-subtitle { font-size: 1.2rem; opacity: 0.95; margin-bottom: 30px; }
+        /* 增加極簡科技感的背景裝飾 */
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: 50%;
+            width: 1000px; height: 1000px;
+            background: radial-gradient(circle, var(--header-glow) 0%, transparent 70%);
+            transform: translateX(-50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        #text-home { position: relative; z-index: 1; }
+        
+        .header-title { 
+            font-size: 3.5rem; 
+            font-weight: 700; 
+            margin-bottom: 24px; 
+            color: var(--header-title-color);
+            letter-spacing: -0.02em;
+        }
+        .header-subtitle { 
+            font-size: 1.25rem; 
+            color: var(--header-sub-color); 
+            margin-bottom: 40px; 
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
         .stock-badge {
             display: inline-block;
-            background-color: rgba(250, 250, 247, 0.15); 
-            backdrop-filter: blur(8px);
+            background-color: var(--badge-bg); 
+            color: var(--header-title-color);
             padding: 8px 24px;
             border-radius: 40px;
-            font-weight: 600;
-            border: 1px solid rgba(250, 250, 247, 0.3);
+            font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid var(--badge-border);
+            letter-spacing: 0.05em;
         }
 
-        /* 內容容器 */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        section { padding: 80px 0; border-bottom: 1px solid var(--border-color); }
+        /* 內容容器與區塊 */
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 120px 0; border-bottom: 1px solid var(--border-color); }
         section:last-child { border-bottom: none; }
 
         /* 區塊標題 & 語音按鈕 */
@@ -129,90 +199,165 @@
             align-items: center;
             justify-content: center;
             gap: 16px;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
         .section-title {
-            font-size: 2.2rem;
-            color: var(--primary);
-            font-weight: 700;
+            font-size: 2rem;
+            color: var(--text-main);
+            font-weight: 600;
             position: relative;
         }
         .section-title::after {
-            content: ''; display: block; width: 40px; height: 4px;
-            background-color: var(--accent); margin: 12px auto 0; border-radius: 4px;
+            content: ''; display: block; width: 32px; height: 3px;
+            background-color: var(--primary); margin: 16px auto 0; border-radius: 4px;
+            opacity: 0.7;
         }
         .btn-voice {
-            background: var(--secondary);
-            border: none; border-radius: 50%;
-            width: 40px; height: 40px;
+            background: transparent;
+            border: 1px solid var(--border-color); 
+            border-radius: 50%;
+            width: 44px; height: 44px;
             cursor: pointer; font-size: 1.2rem;
             display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted);
             transition: var(--transition);
         }
-        .btn-voice:hover { transform: scale(1.1); background: var(--primary); color: var(--white); }
+        .btn-voice:hover { 
+            background: var(--bg-card); 
+            border-color: var(--primary); 
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--card-shadow);
+        }
+
+        /* 一般卡片網格與樣式 (乾淨、大圓角、極細邊框) */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
+        .card {
+            background: var(--bg-card); 
+            border-radius: var(--radius-md); 
+            padding: 48px 40px;
+            box-shadow: var(--card-shadow); 
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+        .card:hover { 
+            transform: translateY(-6px); 
+            box-shadow: var(--card-shadow-hover);
+            border-color: var(--accent); 
+        }
+        .card h3 { 
+            color: var(--primary); 
+            margin-bottom: 20px; 
+            font-size: 1.35rem; 
+            font-weight: 600; 
+        }
 
         /* 翻轉字卡 (Flip Cards) */
         .flip-card-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;
         }
         .flip-card {
-            background-color: transparent; height: 280px; perspective: 1000px; cursor: pointer;
+            background-color: transparent; height: 320px; perspective: 1000px; cursor: pointer;
         }
         .flip-card-inner {
             position: relative; width: 100%; height: 100%; text-align: center;
-            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
             transform-style: preserve-3d;
         }
-        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
         .flip-card-front, .flip-card-back {
             position: absolute; width: 100%; height: 100%;
-            backface-visibility: hidden; border-radius: 24px;
-            padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            box-shadow: var(--card-shadow); border: 1px solid var(--border-color);
-        }
-        .flip-card-front { background: var(--surface); color: var(--text-main); }
-        .flip-card-back { background: var(--gradient-01); color: #FAFAF7; transform: rotateY(180deg); }
-        .card-icon { width: 64px; height: 64px; background: var(--gradient-02); border-radius: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.8rem; }
-
-        /* 一般卡片樣式 */
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .card {
-            background: var(--surface); border-radius: 24px; padding: 40px 30px;
-            box-shadow: var(--card-shadow); transition: var(--transition);
+            backface-visibility: hidden; 
+            border-radius: var(--radius-md);
+            padding: 40px; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            box-shadow: var(--card-shadow); 
             border: 1px solid var(--border-color);
         }
-        .card:hover { transform: translateY(-8px); border-color: var(--secondary); }
-        .card h3 { color: var(--primary); margin-bottom: 16px; font-size: 1.4rem; }
+        .flip-card-front { 
+            background: var(--bg-card); 
+            color: var(--text-main); 
+        }
+        .flip-card-back { 
+            background: var(--primary); 
+            border-color: var(--primary);
+            color: #FFFFFF; 
+            transform: rotateY(180deg); 
+        }
+        /* 暗色模式下翻轉背面的文字顏色適配 */
+        body.dark-mode .flip-card-back { color: #0F172A; }
         
+        .card-icon { 
+            width: 72px; height: 72px; 
+            background: var(--icon-bg); 
+            border: var(--icon-border);
+            border-radius: var(--icon-radius); 
+            display: flex; align-items: center; justify-content: center; 
+            margin-bottom: 24px; font-size: 1.8rem; 
+            color: var(--primary);
+        }
+        .flip-card-back h4 { font-size: 1.5rem; font-weight: 600; margin-bottom: 16px; }
+        .flip-card-back p { font-weight: 300; opacity: 0.9; }
+
         /* 互動測驗區塊 */
         .quiz-container {
-            background: var(--surface); padding: 40px; border-radius: 24px;
-            box-shadow: var(--card-shadow); border: 1px solid var(--border-color);
+            background: var(--bg-card); 
+            padding: 56px 48px; 
+            border-radius: var(--radius-md);
+            box-shadow: var(--card-shadow); 
+            border: 1px solid var(--border-color);
+            max-width: 800px;
+            margin: 0 auto;
         }
-        .quiz-question { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--primary); }
-        .quiz-options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+        .quiz-question { 
+            font-size: 1.25rem; font-weight: 500; margin-bottom: 32px; color: var(--text-main); 
+        }
+        .quiz-options { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
         .quiz-option {
-            padding: 12px 20px; border: 1px solid var(--border-color); border-radius: 12px;
-            cursor: pointer; transition: var(--transition); background: var(--background);
+            padding: 16px 24px; 
+            border: 1px solid var(--border-color); 
+            border-radius: var(--radius-sm);
+            cursor: pointer; transition: var(--transition); 
+            background: var(--bg-main);
+            color: var(--text-muted);
+            font-weight: 400;
         }
-        .quiz-option:hover { border-color: var(--primary); background: var(--secondary); color: #2B2D42; }
+        .quiz-option:hover { 
+            border-color: var(--primary); 
+            background: transparent; 
+            color: var(--primary); 
+        }
         .quiz-btn {
-            background: var(--primary); color: #FAFAF7; border: none; padding: 12px 24px;
-            border-radius: 12px; font-weight: 600; cursor: pointer; transition: var(--transition);
+            background: var(--primary); 
+            color: #FFFFFF; 
+            border: none; 
+            padding: 14px 32px;
+            border-radius: var(--radius-sm); 
+            font-weight: 500; cursor: pointer; transition: var(--transition);
+            letter-spacing: 0.05em;
         }
-        .quiz-btn:hover { opacity: 0.9; transform: translateY(-2px); }
-        #quiz-result { margin-top: 16px; font-weight: 600; }
+        body.dark-mode .quiz-btn { color: #0F172A; }
+        .quiz-btn:hover { opacity: 0.85; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(123, 175, 212, 0.3); }
+        #quiz-result { margin-top: 24px; font-weight: 500; }
 
         /* 頁尾 */
         footer {
-            text-align: center; padding: 50px 20px; background-color: var(--surface);
-            color: var(--text-muted); border-top: 1px solid var(--border-color); font-size: 0.95rem;
+            text-align: center; padding: 60px 20px; 
+            background-color: var(--bg-secondary);
+            color: var(--text-muted); 
+            border-top: 1px solid var(--border-color); 
+            font-size: 0.9rem;
+            font-weight: 300;
         }
 
         @media (max-width: 768px) {
-            nav { padding: 0 20px; flex-direction: column; height: auto; padding: 16px; gap: 12px; }
-            body { padding-top: 120px; }
-            .header-title { font-size: 2.2rem; }
+            nav { padding: 0 24px; flex-direction: column; height: auto; padding: 20px; gap: 16px; }
+            .nav-links a { margin: 0 12px; }
+            body { padding-top: 130px; }
+            .header-title { font-size: 2.5rem; }
+            section { padding: 80px 0; }
+            .card { padding: 32px 24px; }
+            .quiz-container { padding: 32px 24px; }
         }
     </style>
 </head>
@@ -234,7 +379,7 @@
             <a href="#team" class="lang-en">Team</a>
         </div>
         <div class="controls">
-            <button class="btn-toggle" onclick="toggleTheme()">🌓 <span class="lang-zh">明暗模式</span><span class="lang-en">Theme</span></button>
+            <button id="theme-toggle-btn" class="btn-toggle" style="padding: 8px 16px;" onclick="toggleTheme()" title="切換明暗模式 / Toggle Theme" aria-label="Toggle Theme">☀️</button>
             <button class="btn-toggle" onclick="toggleLanguage()">🌐 <span class="lang-zh">EN</span><span class="lang-en">中</span></button>
         </div>
     </nav>
@@ -260,14 +405,14 @@
             </div>
             
             <div class="flip-card-grid" id="text-intro">
-                <div class="flip-card">
+                <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="card-icon">🏢</div>
                             <h3 class="lang-zh">組織架構與歷史</h3>
                             <h3 class="lang-en">History & Org</h3>
-                            <p class="lang-zh text-muted">Hover 翻轉查看</p>
-                            <p class="lang-en text-muted">Hover to flip</p>
+                            <p class="lang-zh text-muted">點擊翻轉查看</p>
+                            <p class="lang-en text-muted">Click to flip</p>
                         </div>
                         <div class="flip-card-back">
                             <h4 class="lang-zh">創立於1971年</h4>
@@ -277,14 +422,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="flip-card">
+                <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="card-icon">📈</div>
                             <h3 class="lang-zh">2025 營運規模</h3>
                             <h3 class="lang-en">2025 Revenue</h3>
-                            <p class="lang-zh text-muted">Hover 翻轉查看</p>
-                            <p class="lang-en text-muted">Hover to flip</p>
+                            <p class="lang-zh text-muted">點擊翻轉查看</p>
+                            <p class="lang-en text-muted">Click to flip</p>
                         </div>
                         <div class="flip-card-back">
                             <h4 class="lang-zh">創新高</h4>
@@ -294,14 +439,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="flip-card">
+                <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="card-icon">🎯</div>
                             <h3 class="lang-zh">企業願景與使命</h3>
                             <h3 class="lang-en">Vision & Mission</h3>
-                            <p class="lang-zh text-muted">Hover 翻轉查看</p>
-                            <p class="lang-en text-muted">Hover to flip</p>
+                            <p class="lang-zh text-muted">點擊翻轉查看</p>
+                            <p class="lang-en text-muted">Click to flip</p>
                         </div>
                         <div class="flip-card-back">
                             <h4 class="lang-zh">永續發展</h4>
@@ -436,6 +581,12 @@
         // --- 主題切換 (Dark/Light Mode) ---
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
+            const themeBtn = document.getElementById('theme-toggle-btn');
+            if (document.body.classList.contains('dark-mode')) {
+                themeBtn.innerText = '🌙';
+            } else {
+                themeBtn.innerText = '☀️';
+            }
         }
 
         // --- 語言切換 (ZH/EN) ---
