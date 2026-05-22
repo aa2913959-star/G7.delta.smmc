@@ -100,20 +100,29 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 40px;
+            padding: 0 32px;
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
             transition: var(--transition);
         }
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin-right: 32px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
+        
+        /* 導覽列左側與漢堡選單 */
+        .nav-left { display: flex; align-items: center; gap: 16px; }
+        
+        .hamburger-btn {
+            background: transparent; border: none; color: var(--text-main);
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: var(--transition); padding: 8px; border-radius: 8px;
         }
-        .nav-links a:hover { color: var(--primary); }
+        .hamburger-btn:hover { background: var(--bg-card); color: var(--primary); }
+        
+        .nav-home-link {
+            display: flex; align-items: center; gap: 8px; color: var(--text-main);
+            text-decoration: none; font-weight: 500; font-size: 0.95rem;
+            transition: var(--transition); padding: 6px 12px; border-radius: 8px;
+        }
+        .nav-home-link:hover { color: var(--primary); background: var(--bg-card); }
+        
         .controls { display: flex; gap: 16px; }
         .btn-toggle {
             background: transparent;
@@ -136,6 +145,45 @@
             box-shadow: var(--card-shadow);
         }
 
+        /* 側邊抽屜選單 (Sidebar) */
+        .sidebar-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(15, 23, 42, 0.3); backdrop-filter: blur(4px);
+            z-index: 1001; opacity: 0; visibility: hidden; transition: var(--transition);
+        }
+        .sidebar-overlay.open { opacity: 1; visibility: visible; }
+
+        .sidebar {
+            position: fixed; top: 0; left: 0; width: 320px; max-width: 85vw; height: 100vh;
+            background: var(--bg-card); box-shadow: var(--card-shadow); z-index: 1002;
+            padding: 40px 32px; overflow-y: auto; transform: translateX(-100%);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border-right: 1px solid var(--border-color);
+        }
+        .sidebar.open { transform: translateX(0); }
+
+        .sidebar-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color);
+        }
+        .sidebar-title { font-size: 1.25rem; font-weight: 600; color: var(--primary); letter-spacing: 0.05em; }
+        .close-btn {
+            background: transparent; border: none; font-size: 2rem; line-height: 1;
+            color: var(--text-muted); cursor: pointer; transition: var(--transition);
+        }
+        .close-btn:hover { color: var(--text-main); transform: scale(1.1); }
+
+        .sidebar-nav { display: flex; flex-direction: column; gap: 8px; }
+        .sidebar-nav a {
+            text-decoration: none; color: var(--text-muted);
+            font-weight: 500; font-size: 1.05rem; padding: 14px 16px;
+            border-radius: var(--radius-sm); transition: var(--transition);
+            display: flex; align-items: center; gap: 12px;
+        }
+        .sidebar-nav a:hover {
+            background: var(--bg-main); color: var(--primary); padding-left: 24px;
+        }
+
         /* 標頭 (Hero Section) - 企業科技感 */
         header {
             background: var(--header-bg);
@@ -146,7 +194,6 @@
             position: relative;
             overflow: hidden;
         }
-        /* 增加極簡科技感的背景裝飾 */
         header::before {
             content: '';
             position: absolute;
@@ -161,180 +208,96 @@
         #text-home { position: relative; z-index: 1; }
         
         .header-title { 
-            font-size: 3.5rem; 
-            font-weight: 700; 
-            margin-bottom: 24px; 
-            color: var(--header-title-color);
-            letter-spacing: -0.02em;
+            font-size: 3.5rem; font-weight: 700; margin-bottom: 24px; 
+            color: var(--header-title-color); letter-spacing: -0.02em;
         }
         .header-subtitle { 
-            font-size: 1.25rem; 
-            color: var(--header-sub-color); 
-            margin-bottom: 40px; 
-            font-weight: 300;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.25rem; color: var(--header-sub-color); margin-bottom: 40px; 
+            font-weight: 300; max-width: 700px; margin-left: auto; margin-right: auto;
         }
         .stock-badge {
-            display: inline-block;
-            background-color: var(--badge-bg); 
-            color: var(--header-title-color);
-            padding: 8px 24px;
-            border-radius: 40px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            border: 1px solid var(--badge-border);
-            letter-spacing: 0.05em;
+            display: inline-block; background-color: var(--badge-bg); color: var(--header-title-color);
+            padding: 8px 24px; border-radius: 40px; font-weight: 500; font-size: 0.95rem;
+            border: 1px solid var(--badge-border); letter-spacing: 0.05em;
         }
 
-        /* 內容容器與區塊 */
+        /* 內容容器與錨點定位留白 */
         .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
         section { padding: 120px 0; border-bottom: 1px solid var(--border-color); }
         section:last-child { border-bottom: none; }
+        
+        /* 確保點擊側邊欄連結時，目標不會被上方 Navbar 擋住 */
+        section, .card, .flip-card-grid { scroll-margin-top: 110px; }
 
         /* 區塊標題 & 語音按鈕 */
         .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 60px;
+            display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 60px;
         }
-        .section-title {
-            font-size: 2rem;
-            color: var(--text-main);
-            font-weight: 600;
-            position: relative;
-        }
+        .section-title { font-size: 2rem; color: var(--text-main); font-weight: 600; position: relative; }
         .section-title::after {
             content: ''; display: block; width: 32px; height: 3px;
-            background-color: var(--primary); margin: 16px auto 0; border-radius: 4px;
-            opacity: 0.7;
+            background-color: var(--primary); margin: 16px auto 0; border-radius: 4px; opacity: 0.7;
         }
         .btn-voice {
-            background: transparent;
-            border: 1px solid var(--border-color); 
-            border-radius: 50%;
-            width: 44px; height: 44px;
-            cursor: pointer; font-size: 1.2rem;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--text-muted);
-            transition: var(--transition);
+            background: transparent; border: 1px solid var(--border-color); border-radius: 50%;
+            width: 44px; height: 44px; cursor: pointer; font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: var(--transition);
         }
         .btn-voice:hover { 
-            background: var(--bg-card); 
-            border-color: var(--primary); 
-            color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: var(--card-shadow);
+            background: var(--bg-card); border-color: var(--primary); color: var(--primary);
+            transform: translateY(-2px); box-shadow: var(--card-shadow);
         }
 
         /* 一般卡片網格與樣式 (乾淨、大圓角、極細邊框) */
         .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
         .card {
-            background: var(--bg-card); 
-            border-radius: var(--radius-md); 
-            padding: 48px 40px;
-            box-shadow: var(--card-shadow); 
-            transition: var(--transition);
-            border: 1px solid var(--border-color);
+            background: var(--bg-card); border-radius: var(--radius-md); padding: 48px 40px;
+            box-shadow: var(--card-shadow); transition: var(--transition); border: 1px solid var(--border-color);
         }
-        .card:hover { 
-            transform: translateY(-6px); 
-            box-shadow: var(--card-shadow-hover);
-            border-color: var(--accent); 
-        }
-        .card h3 { 
-            color: var(--primary); 
-            margin-bottom: 20px; 
-            font-size: 1.35rem; 
-            font-weight: 600; 
-        }
+        .card:hover { transform: translateY(-6px); box-shadow: var(--card-shadow-hover); border-color: var(--accent); }
+        .card h3 { color: var(--primary); margin-bottom: 20px; font-size: 1.35rem; font-weight: 600; }
 
         /* 翻轉字卡 (Flip Cards) */
-        .flip-card-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;
-        }
-        .flip-card {
-            background-color: transparent; height: 320px; perspective: 1000px; cursor: pointer;
-        }
+        .flip-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+        .flip-card { background-color: transparent; height: 320px; perspective: 1000px; cursor: pointer; }
         .flip-card-inner {
             position: relative; width: 100%; height: 100%; text-align: center;
-            transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-            transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1); transform-style: preserve-3d;
         }
         .flip-card.is-flipped .flip-card-inner { transform: rotateY(180deg); }
         .flip-card-front, .flip-card-back {
-            position: absolute; width: 100%; height: 100%;
-            backface-visibility: hidden; 
-            border-radius: var(--radius-md);
-            padding: 40px; 
+            position: absolute; width: 100%; height: 100%; backface-visibility: hidden; 
+            border-radius: var(--radius-md); padding: 40px; 
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            box-shadow: var(--card-shadow); 
-            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow); border: 1px solid var(--border-color);
         }
-        .flip-card-front { 
-            background: var(--bg-card); 
-            color: var(--text-main); 
-        }
-        .flip-card-back { 
-            background: var(--primary); 
-            border-color: var(--primary);
-            color: #FFFFFF; 
-            transform: rotateY(180deg); 
-        }
-        /* 暗色模式下翻轉背面的文字顏色適配 */
+        .flip-card-front { background: var(--bg-card); color: var(--text-main); }
+        .flip-card-back { background: var(--primary); border-color: var(--primary); color: #FFFFFF; transform: rotateY(180deg); }
         body.dark-mode .flip-card-back { color: #0F172A; }
         
         .card-icon { 
-            width: 72px; height: 72px; 
-            background: var(--icon-bg); 
-            border: var(--icon-border);
-            border-radius: var(--icon-radius); 
-            display: flex; align-items: center; justify-content: center; 
-            margin-bottom: 24px; font-size: 1.8rem; 
-            color: var(--primary);
+            width: 72px; height: 72px; background: var(--icon-bg); border: var(--icon-border);
+            border-radius: var(--icon-radius); display: flex; align-items: center; justify-content: center; 
+            margin-bottom: 24px; font-size: 1.8rem; color: var(--primary);
         }
         .flip-card-back h4 { font-size: 1.5rem; font-weight: 600; margin-bottom: 16px; }
         .flip-card-back p { font-weight: 300; opacity: 0.9; }
 
         /* 互動測驗區塊 */
         .quiz-container {
-            background: var(--bg-card); 
-            padding: 56px 48px; 
-            border-radius: var(--radius-md);
-            box-shadow: var(--card-shadow); 
-            border: 1px solid var(--border-color);
-            max-width: 800px;
-            margin: 0 auto;
+            background: var(--bg-card); padding: 56px 48px; border-radius: var(--radius-md);
+            box-shadow: var(--card-shadow); border: 1px solid var(--border-color); max-width: 800px; margin: 0 auto;
         }
-        .quiz-question { 
-            font-size: 1.25rem; font-weight: 500; margin-bottom: 32px; color: var(--text-main); 
-        }
+        .quiz-question { font-size: 1.25rem; font-weight: 500; margin-bottom: 32px; color: var(--text-main); }
         .quiz-options { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
         .quiz-option {
-            padding: 16px 24px; 
-            border: 1px solid var(--border-color); 
-            border-radius: var(--radius-sm);
-            cursor: pointer; transition: var(--transition); 
-            background: var(--bg-main);
-            color: var(--text-muted);
-            font-weight: 400;
+            padding: 16px 24px; border: 1px solid var(--border-color); border-radius: var(--radius-sm);
+            cursor: pointer; transition: var(--transition); background: var(--bg-main); color: var(--text-muted); font-weight: 400;
         }
-        .quiz-option:hover { 
-            border-color: var(--primary); 
-            background: transparent; 
-            color: var(--primary); 
-        }
+        .quiz-option:hover { border-color: var(--primary); background: transparent; color: var(--primary); }
         .quiz-btn {
-            background: var(--primary); 
-            color: #FFFFFF; 
-            border: none; 
-            padding: 14px 32px;
-            border-radius: var(--radius-sm); 
-            font-weight: 500; cursor: pointer; transition: var(--transition);
-            letter-spacing: 0.05em;
+            background: var(--primary); color: #FFFFFF; border: none; padding: 14px 32px;
+            border-radius: var(--radius-sm); font-weight: 500; cursor: pointer; transition: var(--transition); letter-spacing: 0.05em;
         }
         body.dark-mode .quiz-btn { color: #0F172A; }
         .quiz-btn:hover { opacity: 0.85; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(123, 175, 212, 0.3); }
@@ -342,18 +305,12 @@
 
         /* 頁尾 */
         footer {
-            text-align: center; padding: 60px 20px; 
-            background-color: var(--bg-secondary);
-            color: var(--text-muted); 
-            border-top: 1px solid var(--border-color); 
-            font-size: 0.9rem;
-            font-weight: 300;
+            text-align: center; padding: 60px 20px; background-color: var(--bg-secondary);
+            color: var(--text-muted); border-top: 1px solid var(--border-color); font-size: 0.9rem; font-weight: 300;
         }
 
         @media (max-width: 768px) {
-            nav { padding: 0 24px; flex-direction: column; height: auto; padding: 20px; gap: 16px; }
-            .nav-links a { margin: 0 12px; }
-            body { padding-top: 130px; }
+            nav { padding: 0 20px; }
             .header-title { font-size: 2.5rem; }
             section { padding: 80px 0; }
             .card { padding: 32px 24px; }
@@ -363,26 +320,44 @@
 </head>
 <body class="zh">
 
+    <!-- 導覽列 -->
     <nav>
-        <div class="nav-links">
-            <a href="#home" class="lang-zh">首頁</a>
-            <a href="#home" class="lang-en">Home</a>
-            <a href="#intro" class="lang-zh">公司介紹</a>
-            <a href="#intro" class="lang-en">Intro</a>
-            <a href="#analysis" class="lang-zh">市場與策略</a>
-            <a href="#analysis" class="lang-en">Strategy</a>
-            <a href="#jobs" class="lang-zh">職缺資訊</a>
-            <a href="#jobs" class="lang-en">Careers</a>
-            <a href="#quiz" class="lang-zh">互動測驗</a>
-            <a href="#quiz" class="lang-en">Quiz</a>
-            <a href="#team" class="lang-zh">團隊與反思</a>
-            <a href="#team" class="lang-en">Team</a>
+        <div class="nav-left">
+            <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Open Menu">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <a href="#home" class="nav-home-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                <span class="lang-zh">首頁</span>
+                <span class="lang-en">Home</span>
+            </a>
+            <div class="stock-badge" style="margin:0; padding: 4px 12px; font-size: 0.85rem; display: none;">2308.TW</div>
         </div>
         <div class="controls">
             <button id="theme-toggle-btn" class="btn-toggle" style="padding: 8px 16px;" onclick="toggleTheme()" title="切換明暗模式 / Toggle Theme" aria-label="Toggle Theme">☀️</button>
             <button class="btn-toggle" onclick="toggleLanguage()">🌐 <span class="lang-zh">EN</span><span class="lang-en">中</span></button>
         </div>
     </nav>
+
+    <!-- 側邊抽屜選單 -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title lang-zh">目錄導覽</div>
+            <div class="sidebar-title lang-en">Index</div>
+            <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+        </div>
+        <div class="sidebar-nav">
+            <!-- 7 個主要項目精簡呈現 -->
+            <a href="#home" onclick="toggleSidebar()"><span class="lang-zh">🏠 首頁</span><span class="lang-en">🏠 Home</span></a>
+            <a href="#intro" onclick="toggleSidebar()"><span class="lang-zh">🏢 公司介紹</span><span class="lang-en">🏢 Company Intro</span></a>
+            <a href="#market-analysis" onclick="toggleSidebar()"><span class="lang-zh">📊 市場分析</span><span class="lang-en">📊 Market Analysis</span></a>
+            <a href="#resource-evaluation" onclick="toggleSidebar()"><span class="lang-zh">💎 資源評價</span><span class="lang-en">💎 Resource Eval</span></a>
+            <a href="#growth-strategy" onclick="toggleSidebar()"><span class="lang-zh">🚀 成長策略</span><span class="lang-en">🚀 Growth Strategy</span></a>
+            <a href="#interactive-learning" onclick="toggleSidebar()"><span class="lang-zh">🧠 互動學習</span><span class="lang-en">🧠 Interactive Learning</span></a>
+            <a href="#team" onclick="toggleSidebar()"><span class="lang-zh">👥 團隊專區</span><span class="lang-en">👥 Team Section</span></a>
+        </div>
+    </aside>
 
     <header id="home">
         <div class="container" id="text-home">
@@ -397,14 +372,15 @@
     </header>
 
     <main class="container">
+        <!-- 企業簡介 (錨點 #intro) -->
         <section id="intro">
             <div class="section-header">
                 <h2 class="section-title lang-zh">公司介紹與財務亮點</h2>
                 <h2 class="section-title lang-en">Company Intro & Financials</h2>
-                <button class="btn-voice" onclick="readAloud('text-intro')" title="語音導覽">🔊</button>
+                <button class="btn-voice" onclick="readAloud('intro')" title="語音導覽">🔊</button>
             </div>
             
-            <div class="flip-card-grid" id="text-intro">
+            <div class="flip-card-grid">
                 <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -459,43 +435,66 @@
             </div>
         </section>
 
-        <section id="analysis">
+        <!-- 市場分析 (錨點 #market-analysis) -->
+        <section id="market-analysis">
             <div class="section-header">
-                <h2 class="section-title lang-zh">市場分析、資源評價與成長策略</h2>
-                <h2 class="section-title lang-en">Market Analysis & Growth Strategy</h2>
-                <button class="btn-voice" onclick="readAloud('text-analysis')" title="語音導覽">🔊</button>
+                <h2 class="section-title lang-zh">市場分析</h2>
+                <h2 class="section-title lang-en">Market Analysis</h2>
+                <button class="btn-voice" onclick="readAloud('market-analysis')" title="語音導覽">🔊</button>
             </div>
-
-            <div class="card-grid" id="text-analysis">
+            <div class="card-grid">
                 <div class="card">
-                    <h3 class="lang-zh">1. 市場分析 (Market Analysis)</h3>
-                    <h3 class="lang-en">1. Market Analysis</h3>
+                    <h3 class="lang-zh">環境挑戰與 PESTEL 分析</h3>
+                    <h3 class="lang-en">Market Environment & PESTEL</h3>
                     <p class="lang-zh">運用 PESTEL 與波特五力分析：AI 伺服器與電動車 (EV) 市場處於爆發期。儘管地緣政治風險上升，但全球綠能減碳政策為公司帶來龐大商機。</p>
                     <p class="lang-en">Using PESTEL & Porter's Five Forces: AI servers and EV markets are booming. Despite geopolitical risks, global ESG policies bring massive opportunities.</p>
                 </div>
+            </div>
+        </section>
+        
+        <!-- 資源評價 (錨點 #resource-evaluation) -->
+        <section id="resource-evaluation">
+            <div class="section-header">
+                <h2 class="section-title lang-zh">資源評價</h2>
+                <h2 class="section-title lang-en">Resource Evaluation</h2>
+                <button class="btn-voice" onclick="readAloud('resource-evaluation')" title="語音導覽">🔊</button>
+            </div>
+            <div class="card-grid">
                 <div class="card">
-                    <h3 class="lang-zh">2. 資源評價 (Resource Evaluation)</h3>
-                    <h3 class="lang-en">2. Resource Evaluation</h3>
+                    <h3 class="lang-zh">核心優勢與 VRIO 架構</h3>
+                    <h3 class="lang-en">Core Competencies & VRIO</h3>
                     <p class="lang-zh">依據 VRIO 架構：台達電在「高階電力電子技術」與「液冷散熱專利」具備高度價值、稀缺性與難以模仿性，形成強大競爭優勢。</p>
                     <p class="lang-en">Based on VRIO: Delta's core tech in power electronics and liquid cooling patents possess high value, rarity, and inimitability.</p>
                 </div>
+            </div>
+        </section>
+
+        <!-- 成長策略 (錨點 #growth-strategy) -->
+        <section id="growth-strategy">
+            <div class="section-header">
+                <h2 class="section-title lang-zh">成長策略</h2>
+                <h2 class="section-title lang-en">Growth Strategy</h2>
+                <button class="btn-voice" onclick="readAloud('growth-strategy')" title="語音導覽">🔊</button>
+            </div>
+            <div class="card-grid">
                 <div class="card">
-                    <h3 class="lang-zh">3. 成長策略 (Growth Strategy)</h3>
-                    <h3 class="lang-en">3. Growth Strategy</h3>
+                    <h3 class="lang-zh">跨國擴張與系統整合</h3>
+                    <h3 class="lang-en">Global Expansion & Integration</h3>
                     <p class="lang-zh">泰國等東南亞新廠全面量產 (China+1)，強化供應鏈韌性。並透過併購與研發，加速從零組件供應商轉型為系統整合解決方案提供者。</p>
                     <p class="lang-en">Expanding Thailand plants (China+1) for resilience. Transforming from a component supplier to a system solution provider via M&A and R&D.</p>
                 </div>
             </div>
         </section>
 
+        <!-- 職缺資訊 (保留於畫面內，供加分參考) -->
         <section id="jobs">
             <div class="section-header">
                 <h2 class="section-title lang-zh">人才招募 (104人力銀行資料)</h2>
                 <h2 class="section-title lang-en">Careers (104 Job Bank)</h2>
-                <button class="btn-voice" onclick="readAloud('text-jobs')" title="語音導覽">🔊</button>
+                <button class="btn-voice" onclick="readAloud('jobs')" title="語音導覽">🔊</button>
             </div>
             
-            <div class="card-grid" id="text-jobs">
+            <div class="card-grid">
                 <div class="card">
                     <h3 class="lang-zh">AI 散熱研發工程師</h3>
                     <h3 class="lang-en">AI Thermal R&D Engineer</h3>
@@ -511,14 +510,15 @@
             </div>
         </section>
 
-        <section id="quiz">
+        <!-- 互動學習 (錨點 #interactive-learning) -->
+        <section id="interactive-learning">
             <div class="section-header">
-                <h2 class="section-title lang-zh">互動問答 (知識小測驗)</h2>
-                <h2 class="section-title lang-en">Interactive Quiz</h2>
-                <button class="btn-voice" onclick="readAloud('text-quiz')" title="語音導覽">🔊</button>
+                <h2 class="section-title lang-zh">互動學習</h2>
+                <h2 class="section-title lang-en">Interactive Learning</h2>
+                <button class="btn-voice" onclick="readAloud('interactive-learning')" title="語音導覽">🔊</button>
             </div>
 
-            <div class="quiz-container" id="text-quiz">
+            <div class="quiz-container">
                 <div class="lang-zh">
                     <div class="quiz-question">Q: 下列何者是台達電近年推升營收成長的「雙引擎」關鍵技術？</div>
                     <div class="quiz-options">
@@ -543,29 +543,32 @@
             </div>
         </section>
 
+        <!-- 團隊專區 (錨點 #team) -->
         <section id="team">
             <div class="section-header">
-                <h2 class="section-title lang-zh">團隊合作與 AI 運用反思</h2>
-                <h2 class="section-title lang-en">Team & AI Reflection</h2>
-                <button class="btn-voice" onclick="readAloud('text-team')" title="語音導覽">🔊</button>
+                <h2 class="section-title lang-zh">團隊專區</h2>
+                <h2 class="section-title lang-en">Team Section</h2>
+                <button class="btn-voice" onclick="readAloud('team')" title="語音導覽">🔊</button>
             </div>
 
-            <div class="card-grid" id="text-team">
+            <div class="card-grid">
+                <!-- 小組成員介紹 -->
                 <div class="card">
-                    <h3 class="lang-zh">小組成員與協作歷程</h3>
-                    <h3 class="lang-en">Team Members & Collaboration</h3>
-                    <p class="lang-zh"><strong>成員：</strong>邱佳慧、李東翰、黃品筑、簡楷倫、劉家槥、馮焱玲、羅芊柔<br>
-                    <strong>協作說明：</strong>我們並未採用傳統切割任務的方式。全組透過雲端共編，共同討論台達電的策略框架與財務指標。在網頁開發階段，我們採用結對編程（Pair Programming），確保所有成員皆參與企劃、設計與邏輯檢驗，共同對專案品質負責。</p>
-                    <p class="lang-en"><strong>Members:</strong> Chia-Hui, Tung-Han, Pin-Chu, Kai-Lun, Chia-Hui (Liu), Yen-Ling, Chien-Jou<br>
-                    <strong>Collaboration:</strong> Instead of splitting tasks, we collaborated holistically. We discussed strategy frameworks together and used Pair Programming for web dev, ensuring everyone contributed to planning, design, and quality assurance.</p>
+                    <h3 class="lang-zh">小組成員與簡介</h3>
+                    <h3 class="lang-en">Team Members</h3>
+                    <p class="lang-zh"><strong>G7 台達電小組：</strong><br>邱佳慧、李東翰、黃品筑、簡楷倫、劉家槥、馮焱玲、羅芊柔</p>
+                    <p class="lang-en"><strong>G7 Delta Team:</strong><br>Chia-Hui, Tung-Han, Pin-Chu, Kai-Lun, Chia-Hui (Liu), Yen-Ling, Chien-Jou</p>
                 </div>
+                
+                <!-- 團隊協作與反思 -->
                 <div class="card">
-                    <h3 class="lang-zh">AI 工具運用與版權聲明</h3>
-                    <h3 class="lang-en">AI Usage & Copyright</h3>
-                    <p class="lang-zh"><strong>AI 工具使用：</strong>本專案使用 Google Gemini 協助潤飾英文化文本，並輔助生成 HTML/CSS 基礎語法與響應式框架。內容策略與分析邏輯由團隊全體原創產出。<br>
-                    <strong>學術誠信：</strong>符合教育合理使用原則，所有財務數據與新聞分析皆基於台達電公開財報與市場資訊進行歸納。</p>
-                    <p class="lang-en"><strong>AI Tools:</strong> Google Gemini was used to polish English translations and assist with HTML/CSS frameworks. Strategic analysis is entirely original.<br>
-                    <strong>Integrity:</strong> All data complies with fair use policies, based on Delta's public financial reports.</p>
+                    <h3 class="lang-zh">協作歷程與反思</h3>
+                    <h3 class="lang-en">Collaboration & Reflection</h3>
+                    <p class="lang-zh"><strong>協作說明：</strong>我們並未採用傳統切割任務的方式。全組透過雲端共編，共同討論策略框架與財務指標。在網頁開發階段採用結對編程（Pair Programming），確保所有成員皆參與企劃、設計與邏輯檢驗。</p>
+                    <p class="lang-zh" style="margin-top: 12px;"><strong>AI 工具運用：</strong>使用 Google Gemini 輔助生成 HTML/CSS 基礎語法並潤飾英文。內容分析邏輯由團隊全體原創產出，皆基於台達電公開財報與市場資訊進行歸納，符合教育合理使用原則。</p>
+                    
+                    <p class="lang-en"><strong>Collaboration:</strong> We collaborated holistically rather than splitting tasks. We discussed strategy frameworks together and used Pair Programming for web dev, ensuring everyone contributed to quality assurance.</p>
+                    <p class="lang-en" style="margin-top: 12px;"><strong>AI Usage:</strong> Google Gemini assisted with HTML/CSS and English polishing. Strategic analysis is entirely original and complies with fair use policies based on public reports.</p>
                 </div>
             </div>
         </section>
@@ -578,6 +581,14 @@
     </footer>
 
     <script>
+        // --- 側邊抽屜選單切換 ---
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+
         // --- 主題切換 (Dark/Light Mode) ---
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
@@ -621,7 +632,7 @@
             }
         }
 
-        // --- 語音導覽 (Web Speech API) 依規定設定 EN=British-Male, 繁=Taiwan-Yating ---
+        // --- 語音導覽 (Web Speech API) ---
         let voices = [];
         window.speechSynthesis.onvoiceschanged = () => {
             voices = window.speechSynthesis.getVoices();
@@ -649,14 +660,12 @@
             voices = window.speechSynthesis.getVoices();
 
             if (currentLang === 'en') {
-                // 尋找 British-Male
                 const enVoice = voices.find(v => v.lang.includes('en-GB') && v.name.includes('Male')) 
                              || voices.find(v => v.lang.includes('en-GB'))
                              || voices.find(v => v.lang.includes('en'));
                 if (enVoice) utterance.voice = enVoice;
                 utterance.lang = 'en-GB';
             } else {
-                // 尋找 Taiwan-Yating (若無則使用預設繁體中文)
                 const zhVoice = voices.find(v => v.lang.includes('zh-TW') && v.name.includes('Yating')) 
                              || voices.find(v => v.lang.includes('zh-TW'))
                              || voices.find(v => v.lang.includes('zh'));
@@ -664,10 +673,8 @@
                 utterance.lang = 'zh-TW';
             }
 
-            // 調整語速與音調讓語音更自然
             utterance.rate = 1.0;
             utterance.pitch = 1.0;
-
             window.speechSynthesis.speak(utterance);
         }
     </script>
