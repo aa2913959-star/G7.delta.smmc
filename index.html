@@ -762,6 +762,590 @@
             content: "⚡";
             flex-shrink: 0;
         }
+
+        /* ===== 團隊專區樣式 (Team Section Styles) ===== */
+
+        #team-introduction {
+            width: 100%;
+        }
+
+        #team-introduction .section-header {
+            margin-bottom: 2rem;
+        }
+
+        #team-introduction .team-layout-controls {
+            display: none;
+            margin-bottom: 1.5rem;
+        }
+
+        #team-introduction .btn-toggle-menu {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        #team-introduction .btn-toggle-menu:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* ===== 團隊版面配置 (Team Layout) ===== */
+        #team-introduction .team-layout {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        #team-introduction .team-sidebar {
+            flex-shrink: 0;
+            width: 200px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 100px;
+            transition: var(--transition);
+        }
+
+        #team-introduction .team-sidebar.collapsed {
+            display: none;
+        }
+
+        #team-introduction .nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #team-introduction .nav-item {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-left: 4px solid transparent;
+            transition: var(--transition);
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        #team-introduction .nav-item:hover {
+            background-color: var(--bg-main);
+            border-left-color: var(--secondary);
+        }
+
+        #team-introduction .nav-item.active {
+            background-color: var(--bg-main);
+            border-left-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* ===== 內容區域 (Content Area) ===== */
+        #team-introduction .team-content-area {
+            flex: 1;
+            min-width: 0;
+        }
+
+        #team-introduction .tab-pane {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        #team-introduction .tab-pane.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== 卡片與區塊樣式 (Card Styles) ===== */
+        #team-introduction .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        #team-introduction .card:hover {
+            box-shadow: var(--card-shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        #team-introduction .teamwork-card {
+            background: linear-gradient(135deg, rgba(169, 214, 229, 0.1) 0%, rgba(137, 194, 217, 0.05) 100%);
+        }
+
+        #team-introduction .title-accent {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        /* ===== 動機網格 (Motivation Grid) ===== */
+        #team-introduction .motivation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        #team-introduction .m-block {
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        #team-introduction .m-block:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 8px 20px rgba(169, 214, 229, 0.15);
+            transform: translateY(-6px);
+        }
+
+        #team-introduction .m-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #team-introduction .m-block h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        #team-introduction .m-block p {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        #team-introduction .m-block.highlight-block {
+            background: linear-gradient(135deg, rgba(245, 202, 77, 0.1) 0%, rgba(245, 202, 77, 0.05) 100%);
+            border: 2px solid rgba(245, 202, 77, 0.3);
+        }
+
+        /* ===== 團隊引言與角色 (Team Quote & Roles) ===== */
+        #team-introduction .team-quote {
+            background-color: rgba(74, 111, 165, 0.08);
+            border-left: 5px solid var(--primary);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: var(--radius-md);
+            position: relative;
+        }
+
+        #team-introduction .quote-mark {
+            font-size: 3rem;
+            color: var(--secondary);
+            opacity: 0.3;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+
+        #team-introduction .team-quote p {
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        #team-introduction .team-roles-section {
+            margin-top: 1.5rem;
+        }
+
+        #team-introduction .roles-paragraph p {
+            text-align: justify;
+        }
+
+        #team-introduction .intro-text {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* ===== 成員卡片與手風琴 (Member Cards & Accordion) ===== */
+        #team-introduction .accordion-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        #team-introduction .member-accordion-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        #team-introduction .member-accordion-card:hover {
+            box-shadow: var(--card-shadow-hover);
+            border-color: var(--secondary);
+        }
+
+        #team-introduction .member-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(74, 111, 165, 0.05) 0%, rgba(169, 214, 229, 0.05) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        #team-introduction .member-accordion-card.open .member-header {
+            background: linear-gradient(135deg, rgba(137, 194, 217, 0.15) 0%, rgba(169, 214, 229, 0.1) 100%);
+        }
+
+        #team-introduction .avatar-container {
+            flex-shrink: 0;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+            background-color: var(--bg-main);
+        }
+
+        #team-introduction .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #team-introduction .member-title {
+            flex: 1;
+            min-width: 0;
+        }
+
+        #team-introduction .member-title h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+        }
+
+        #team-introduction .member-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        #team-introduction .member-badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        #team-introduction .member-badge.major {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        #team-introduction .member-badge.skill {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+
+        #team-introduction .member-badge.exp {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        /* ===== 深色模式徽章修正 (Dark Mode Badge Fix) ===== */
+        body.dark-mode #team-introduction .member-badge.skill {
+            background-color: rgba(137, 194, 217, 0.3);
+            color: #B8D8E8;
+        }
+
+        body.dark-mode #team-introduction .member-badge.exp {
+            background-color: rgba(137, 194, 217, 0.4);
+            color: #D0E8F2;
+        }
+
+        #team-introduction .accordion-icon {
+            flex-shrink: 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        #team-introduction .member-accordion-card.open .accordion-icon {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
+
+        /* ===== 手風琴內容 (Accordion Content) ===== */
+        #team-introduction .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: var(--bg-card);
+        }
+
+        #team-introduction .member-accordion-card.open .accordion-content {
+            max-height: 1000px;
+            overflow: visible;
+        }
+
+        #team-introduction .member-body {
+            padding: 1.5rem;
+        }
+
+        #team-introduction .detail-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+
+        #team-introduction .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        #team-introduction .detail-icon {
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+
+        #team-introduction .detail-content {
+            flex: 1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-main);
+        }
+
+        #team-introduction .member-quote {
+            background-color: rgba(169, 214, 229, 0.15);
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: var(--radius-sm);
+            font-style: italic;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        #team-introduction .video-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+
+        #team-introduction .video-btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(137, 194, 217, 0.3);
+        }
+
+        /* ===== 響應式設計 (RWD) ===== */
+        @media (max-width: 992px) {
+            #team-introduction .team-layout {
+                gap: 1.5rem;
+            }
+
+            #team-introduction .team-sidebar {
+                width: 160px;
+            }
+
+            #team-introduction .motivation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #team-introduction .accordion-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #team-introduction .team-layout-controls {
+                display: block;
+            }
+
+            #team-introduction .team-layout {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            #team-introduction .team-sidebar {
+                width: 100%;
+                position: static;
+                padding: 1rem 0;
+                margin-bottom: 1rem;
+            }
+
+            #team-introduction .team-sidebar.collapsed {
+                display: none;
+            }
+
+            #team-introduction .nav-menu {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                padding: 0 1.5rem;
+            }
+
+            #team-introduction .nav-item {
+                flex: 1;
+                min-width: 120px;
+                padding: 0.6rem 0.75rem;
+                text-align: center;
+                border: 1px solid var(--border-color);
+                border-left: none;
+                border-radius: var(--radius-sm);
+                background-color: var(--bg-main);
+            }
+
+            #team-introduction .nav-item.active {
+                background-color: var(--primary);
+                color: white;
+                border-color: var(--primary);
+            }
+
+            #team-introduction .card {
+                padding: 1.5rem;
+            }
+
+            #team-introduction .title-accent {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+                padding-bottom: 0.75rem;
+            }
+
+            #team-introduction .member-accordion-card {
+                border-radius: var(--radius-md);
+            }
+
+            #team-introduction .member-header {
+                padding: 1rem;
+            }
+
+            #team-introduction .avatar-container {
+                width: 60px;
+                height: 60px;
+            }
+
+            #team-introduction .member-title h3 {
+                font-size: 1rem;
+            }
+
+            #team-introduction .member-badges {
+                gap: 0.25rem;
+            }
+
+            #team-introduction .member-badge {
+                font-size: 0.65rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            #team-introduction .accordion-content {
+                max-height: 800px;
+            }
+
+            #team-introduction .motivation-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            #team-introduction .m-block {
+                padding: 1rem;
+            }
+
+            #team-introduction .m-icon {
+                font-size: 2rem;
+            }
+
+            #team-introduction .m-block h4 {
+                font-size: 0.95rem;
+            }
+
+            #team-introduction .m-block p {
+                font-size: 0.85rem;
+            }
+
+            #team-introduction .intro-text {
+                font-size: 0.9rem;
+            }
+
+            #team-introduction .roles-paragraph p {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #team-introduction .section-header {
+                margin-bottom: 1.5rem;
+            }
+
+            #team-introduction .nav-item {
+                min-width: 80px;
+                font-size: 0.85rem;
+            }
+
+            #team-introduction .card {
+                padding: 1rem;
+            }
+
+            #team-introduction .member-header {
+                gap: 0.75rem;
+            }
+
+            #team-introduction .avatar-container {
+                width: 50px;
+                height: 50px;
+            }
+
+            #team-introduction .team-quote {
+                padding: 1rem;
+            }
+
+            #team-introduction .quote-mark {
+                font-size: 2rem;
+            }
+        }
+
     </style>
 </head>
 <body class="zh">
@@ -1433,30 +2017,452 @@
 
         <!-- 團隊專區 (錨點 #team) -->
         <section id="team">
-            <div class="section-header">
-                <h2 class="section-title lang-zh">團隊專區</h2>
-                <h2 class="section-title lang-en">Team Section</h2>
-                <button class="btn-voice" onclick="readAloud('team')" title="語音導覽">🔊</button>
-            </div>
-
-            <div class="card-grid">
-                <!-- 小組成員介紹 -->
-                <div class="card">
-                    <h3 class="lang-zh">小組成員與簡介</h3>
-                    <h3 class="lang-en">Team Members</h3>
-                    <p class="lang-zh"><strong>G7 台達電小組：</strong><br>邱佳慧、李東翰、黃品筑、簡楷倫、劉家槥、馮焱玲、羅芊柔</p>
-                    <p class="lang-en"><strong>G7 Delta Team:</strong><br>Chia-Hui, Tung-Han, Pin-Chu, Kai-Lun, Chia-Hui (Liu), Yen-Ling, Chien-Jou</p>
+            <div id="team-introduction">
+                <div class="section-header">
+                    <h2 class="section-title lang-zh">團隊資訊</h2>
+                    <h2 class="section-title lang-en">Team Information</h2>
+                    <button class="btn-voice" onclick="readAloud('team')" title="語音導覽">🔊</button>
                 </div>
-                
-                <!-- 團隊協作與反思 -->
-                <div class="card">
-                    <h3 class="lang-zh">協作歷程與反思</h3>
-                    <h3 class="lang-en">Collaboration & Reflection</h3>
-                    <p class="lang-zh"><strong>協作說明：</strong>我們並未採用傳統切割任務的方式。全組透過雲端共編，共同討論策略框架與財務指標。在網頁開發階段採用結對編程（Pair Programming），確保所有成員皆參與企劃、設計與邏輯檢驗。</p>
-                    <p class="lang-zh" style="margin-top: 12px;"><strong>AI 工具運用：</strong>使用 Google Gemini 輔助生成 HTML/CSS 基礎語法並潤飾英文。內容分析邏輯由團隊全體原創產出，皆基於台達電公開財報與市場資訊進行歸納，符合教育合理使用原則。</p>
-                    
-                    <p class="lang-en"><strong>Collaboration:</strong> We collaborated holistically rather than splitting tasks. We discussed strategy frameworks together and used Pair Programming for web dev, ensuring everyone contributed to quality assurance.</p>
-                    <p class="lang-en" style="margin-top: 12px;"><strong>AI Usage:</strong> Google Gemini assisted with HTML/CSS and English polishing. Strategic analysis is entirely original and complies with fair use policies based on public reports.</p>
+
+
+                <div class="team-layout-controls">
+                    <button class="btn-toggle-menu" onclick="window.toggleTeamSidebar()">
+                        <span class="lang-zh">☰ 顯示 / 隱藏選單</span>
+                        <span class="lang-en">☰ Toggle Menu</span>
+                    </button>
+                </div>
+
+
+                <div class="team-layout">
+                    <aside class="team-sidebar" id="teamSidebar">
+                        <ul class="nav-menu">
+                            <li class="nav-item active" onclick="window.switchTeamTab('tab-motivation', this)">
+                                <span class="lang-zh">專案動機</span>
+                                <span class="lang-en">Motivation</span>
+                            </li>
+                            <li class="nav-item" onclick="window.switchTeamTab('tab-teamwork', this)">
+                                <span class="lang-zh">團隊合作</span>
+                                <span class="lang-en">Teamwork</span>
+                            </li>
+                            <li class="nav-item" onclick="window.switchTeamTab('tab-members', this)">
+                                <span class="lang-zh">組員介紹</span>
+                                <span class="lang-en">Members</span>
+                            </li>
+                            <li class="nav-item" onclick="window.switchTeamTab('tab-ai', this)">
+                                <span class="lang-zh">AI 使用揭露</span>
+                                <span class="lang-en">AI Disclosure</span>
+                            </li>
+                        </ul>
+                    </aside>
+
+
+                    <div class="team-content-area">
+                        
+                        <!-- 區塊一：專案動機 -->
+                        <div id="tab-motivation" class="tab-pane active">
+                            <div class="card teamwork-card">
+                                <h3 class="lang-zh title-accent">🎯 研究動機與核心目標</h3>
+                                <h3 class="lang-en title-accent">🎯 Research Motivation & Goals</h3>
+                                
+                                <blockquote class="team-quote" style="margin: 1.5rem 0; background-color: rgba(245, 202, 77, 0.12); border-left-color: rgba(245, 202, 77, 0.6);">
+                                    <div class="quote-mark" style="color: rgba(245, 202, 77, 0.5);">💡</div>
+                                    <p class="lang-zh" style="font-weight: 600; color: var(--primary); font-size: 1.05rem; margin: 0;">「從 AI 到綠能，看見台達電的產業價值」</p>
+                                    <p class="lang-en" style="font-weight: 600; color: var(--primary); font-size: 1.05rem; margin: 0.5rem 0 0 0;">"From AI to Green Energy, Discovering Delta's Industry Value"</p>
+                                </blockquote>
+
+                                <div style="padding: 1.5rem; background-color: rgba(169, 214, 229, 0.08); border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 1.5rem;">
+                                    <p class="lang-zh" style="line-height: 1.8; color: var(--text-main); text-align: justify; margin: 0;">
+                                        在 AI、資料中心與永續發展需求快速成長的產業趨勢下，企業的競爭力已不再僅侷限於單一技術優勢，而是涵蓋創新能力、能源效率與全球市場布局。因此，我們選擇台達電作為研究對象，探討其如何透過電源管理、散熱系統與綠能技術建立核心競爭優勢。本專案將結合市場分析、資源評價與成長策略等面向，運用課程所學之價值鏈、五力分析等工具，深入理解台達電的商業模式與產業定位。我們也希望透過本次網頁製作，培養資料整合、團隊合作與策略分析能力，完成一次兼具實務與學習價值的專題實踐。
+                                    </p>
+                                    <p class="lang-en" style="line-height: 1.8; color: var(--text-main); text-align: justify; margin: 1.5rem 0 0 0; padding-top: 1.5rem; border-top: 1px dashed var(--border-color);">
+                                        In an era of rapid growth in AI, data centers, and sustainability demands, corporate competitiveness extends beyond single technological advantages to encompass innovation capabilities, energy efficiency, and global market positioning. We chose Delta Electronics as our research subject to explore how it establishes core competitive advantages through power management, thermal systems, and green energy technology. This project combines market analysis, resource evaluation, and growth strategies, applying frameworks such as value chain and five forces analysis learned in class to deeply understand Delta's business model and industry positioning. Through this webpage project, we aim to cultivate data integration, teamwork, and strategic analysis skills, completing a capstone project with both practical and educational value.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- 區塊二：團隊合作 -->
+                        <div id="tab-teamwork" class="tab-pane">
+                            <div class="card teamwork-card">
+                                <h3 class="lang-zh title-accent">🤝 團隊合作核心</h3>
+                                <h3 class="lang-en title-accent">🤝 Teamwork Core</h3>
+                                
+                                <blockquote class="team-quote">
+                                    <div class="quote-mark">"</div>
+                                    <p class="lang-zh">「學期成績人人有責，同心協力共創佳績」</p>
+                                    <p class="lang-en">"Everyone is responsible for the semester grade, work together and create great results!"</p>
+                                </blockquote>
+
+
+                                <div class="team-roles-section">
+                                    <h4 class="lang-zh title-accent" style="font-size: 1.2rem; border-bottom: 2px solid var(--secondary); padding-bottom: 1rem; margin-bottom: 1rem;">🧑‍💻 團隊合作方式</h4>
+                                    <div class="roles-paragraph">
+                                        <p class="lang-zh" style="line-height: 1.8; color: var(--text-main); text-align: justify; margin-bottom: 1.5rem;">
+                                            <strong>▪ 主責制工作分配</strong><br>
+                                            本組採用「主責制」進行專題製作，由各組員依照分工負責不同主題內容，包含公司介紹、市場分析、資源評價、成長策略以及互動功能設計等。各成員先完成初稿與資料蒐集後，再透過小組討論進行交叉檢查與內容修正，確保資料正確性與整體一致性。
+                                        </p>
+                                        <p class="lang-zh" style="line-height: 1.8; color: var(--text-main); text-align: justify;">
+                                            <strong>▪ 協作與把關流程</strong><br>
+                                            在製作過程中，組員間會定期討論網頁架構、內容呈現方式與視覺設計，並互相提供建議與補充資料，最後再進行網站整合與程式碼編輯，統整所有內容與頁面設計，使整體網站呈現一致且完整的成果。
+                                        </p>
+                                    </div>
+                                    <h4 class="lang-en title-accent" style="font-size: 1.2rem; border-bottom: 2px solid var(--secondary); padding-bottom: 1rem; margin: 1.5rem 0 1rem 0; display: none;">🧑‍💻 Collaboration Approach</h4>
+                                    <div class="roles-paragraph lang-en" style="display: none;">
+                                        <p style="line-height: 1.8; color: var(--text-main); text-align: justify; margin-bottom: 1.5rem;">
+                                            <strong>▪ Primary Responsibility System</strong><br>
+                                            Our team employed a "Primary Responsibility" approach where each member took ownership of different aspects including company introduction, market analysis, resource evaluation, growth strategy, and interactive feature design. After completing initial drafts and data collection, team members conducted cross-checking during group discussions, ensuring data accuracy and overall consistency.
+                                        </p>
+                                        <p style="line-height: 1.8; color: var(--text-main); text-align: justify;">
+                                            <strong>▪ Collaborative Review & Integration Process</strong><br>
+                                            Throughout the project, team members regularly discussed webpage architecture, content presentation, and visual design, providing mutual feedback and supplementary materials. Finally, we integrated the website and edited the code to consolidate all content and page design, ensuring a cohesive and complete final product.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- 區塊三：組員介紹 (恢復兩人一列網格 + 修改專長經歷標籤) -->
+                        <div id="tab-members" class="tab-pane">
+                            <div class="card-grid accordion-grid">
+                                
+                                <div class="card member-accordion-card" onclick="window.toggleAccordion(this)">
+                                    <div class="member-header">
+                                        <div class="avatar-container">
+                                            <img src="https://docs.google.com/drawings/d/e/2PACX-1vTz4rK5zOztziTCaniQi9RXO9sHnj72oXi7NyZaTe5bBRM1yNs61tCSEgZZlSL7GxB4elfBrY0Puu8D/pub?w=960&h=720" alt="劉家槥" />
+                                        </div>
+                                        <div class="member-title">
+                                            <h3 class="lang-zh">劉家槥</h3>
+                                            <h3 class="lang-en">Liu Jia-Hui</h3>
+                                            <div class="member-badges">
+                                                <span class="member-badge major">公行四 DPPA</span>
+                                                <span class="member-badge skill"><span class="lang-zh">運動聽歌</span><span class="lang-en">Sports & Music</span></span>
+                                                <span class="member-badge exp"><span class="lang-zh">教學＆研究助理</span><span class="lang-en">TA & RA</span></span>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-icon">▼</div>
+                                    </div>
+                                    <div class="member-body accordion-content">
+                                        <div class="detail-item">
+                                            <span class="detail-icon">✨</span>
+                                            <div class="detail-content">
+                                                <span class="lang-zh"><strong>專長與經歷：</strong>運動、聽音樂。曾任教學及研究助理、國泰企業實習、數位學伴。</span>
+                                                <span class="lang-en"><strong>Expertise & Exp:</strong> Sports, listening to music. TA/RA, Cathay Internship, Digital Study Companion.</span>
+                                            </div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-icon">🎯</span>
+                                            <div class="detail-content">
+                                                <span class="lang-zh"><strong>未來方向：</strong>公務員</span>
+                                                <span class="lang-en"><strong>Future:</strong> Civil Servant</span>
+                                            </div>
+                                        </div>
+                                        <blockquote class="member-quote">
+                                            <span class="lang-zh">「我是劉家槥，個性活潑外向、愛搞笑，目前大四即將畢業，對生活抱有熱忱，喜歡體驗一切新事物。」</span>
+                                            <span class="lang-en">"I am Liu Jia-Hui, outgoing and humorous. Passionate about life and trying new things."</span>
+                                        </blockquote>
+                                        <a href="https://www.youtube.com/shorts/jdIPNAhGcNg" target="_blank" rel="noopener noreferrer" class="btn-toggle video-btn lang-zh" onclick="event.stopPropagation();">▶ 觀看介紹影片</a>
+                                        <a href="https://www.youtube.com/shorts/jdIPNAhGcNg" target="_blank" rel="noopener noreferrer" class="btn-toggle video-btn lang-en" onclick="event.stopPropagation();">▶ Watch Video</a>
+                                    </div>
+                                </div>
+
+
+                                <div class="card member-accordion-card" onclick="window.toggleAccordion(this)">
+                                    <div class="member-header">
+                                        <div class="avatar-container">
+                                            <img src="https://docs.google.com/drawings/d/e/2PACX-1vR5qT3Ktm-xfwW-zp0ABM8Yq_ktqZbiD1j7VZZWmncLEdZdM98eN_H7uKqfWIHqSsmtdRHiiqh7RLh2/pub?w=960&h=720" alt="馮焱玲" />
+                                        </div>
+                                        <div class="member-title">
+                                            <h3 class="lang-zh">馮焱玲</h3>
+                                            <h3 class="lang-en">Feng Yan-Ling</h3>
+                                            <div class="member-badges">
+                                                <span class="member-badge major">公行四 DPPA</span>
+                                                <span class="member-badge skill"><span class="lang-zh">做甜點</span><span class="lang-en">Baking</span></span>
+                                                <span class="member-badge exp"><span class="lang-zh">西點烘焙社社長</span><span class="lang-en">Baking Club Pres</span></span>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-icon">▼</div>
+                                    </div>
+                                    <div class="member-body accordion-content">
+                                        <div class="detail-item">
+                                            <span class="detail-icon">✨</span>
+                                            <div class="detail-content">
+                                                <span class="lang-zh"><strong>專長與經歷：</strong>社群行銷、做甜點。曾任烘焙社社長、系學會活動長、國泰企業實習，並為朗讀比賽冠軍。</span>
+                                                <span class="lang-en"><strong>Expertise & Exp:</strong> Social media marketing, baking. Baking club pres, student assoc. lead, Cathay internship.</span>
+                                            </div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-icon">🎯</span>
+                                            <div class="detail-content">
+                                                <span class="lang-zh"><strong>未來方向：</strong>產品經理(PM)、電商行銷或自行創業</span>
+                                                <span class="lang-en"><strong>Future:</strong> PM or Entrepreneurship</span>
+                                            </div>
+                                        </div>
+                                        <blockquote class="member-quote">
+                                            <span class="lang-zh">「個性活潑外向，追求效率及結果導向。雖然很多人說我高冷，但我比較慢熟，熟了之後會發現我很有趣。」</span>
+                                            <span class="lang-en">"Outgoing and result-oriented. Might seem aloof at first, but I am slow to warm up and very fun."</span>
+                                        </blockquote>
+                                        <a href="https://www.youtube.com/watch?v=LgB6OxTnqTw&list=PLL8lQgtXhxxQkTbOKXKhWLSDg2FmHNfAq&index=43" target="_blank" rel="noopener noreferrer" class="btn-toggle video-btn lang-zh" onclick="event.stopPropagation();">▶ 觀看介紹影片</a>
+                                        <a href="https://www.youtube.com/watch?v=LgB6OxTnqTw&list=PLL8lQgtXhxxQkTbOKXKhWLSDg2FmHNfAq&index=43" target="_blank" rel="noopener noreferrer" class="btn-toggle video-btn lang-en" onclick="event.stopPropagation();">▶ Watch Video</a>
+                                    </div>
+                                </div>
+
+
+                                <div class="card member-accordion-card" onclick="window.toggleAccordion(this)">
+                                    <div class="member-header">
+                                        <div class="avatar-container">
+                                            <img src="https://docs.google.com/drawings/d/e/2PACX-1vRdSFloIlc2q7VshyAHEmdkmR5ZHPgjb9MilE24wLiQH0-wq1OLZnNKntE7JLYcdGDN1XDuxlIWlkhJ/pub?w=960&h=720" alt="羅芊柔" />
+                                        </div>
+                                        <div class="member-title">
+                                            <h3 class="lang-zh">羅芊柔</h3>
+                                            <h3 class="lang-en">Luo Qian-Rou</h3>
+                                            <div class="member-badges">
+                                                <span class="member-badge major">管學四 IPCM</span>
+                                                <span class="member-badge skill"><span class="lang-zh">獨旅及拍攝</span><span class="lang-en">Travel & Photo</span></span>
+                                                <span class="member-badge exp"><span class="lang-zh">暨馬公關</span><span class="lang-en">PR</span></span>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-icon">▼</div>
+                                    </div>
+                                    <div class="member-body accordion-content">
+                                        <div class="detail-item">
+                                            <span class="detail-icon">✨</span>
+                                            <div class="detail-content">
+                                                <span class="lang-zh"><strong>專長與經歷：</strong>對新媒體、行銷、策展有興趣，熱愛獨旅與潛水。具備跨文化生活經驗，曾任社團公關、攝影與半工讀。</span>
+                                                <span class="lang-en"><strong>Expertise & Exp:</strong> New media, marketing, curation, solo travel, diving. Cross-cultural living, club PR & photography.</span>
+                                            </div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-icon">🎯</span>
+                                            <div class="detail-content">
+                                                <span class="lang-zh"><strong>未來方向：</strong>策展人員 / 行銷</span>
+                                                <span class="lang-en"><strong>Future:</strong> Curator / Marketing</span>
+                                            </div>
+                                        </div>
+                                        <blockquote class="member-quote">
+                                            <span class="lang-zh">「INFP，很內向也很容易內耗，很容易逃避現實。喜歡一個人探索新事物，喜歡潛水。」</span>
+                                            <span class="lang-en">"INFP, introverted and prone to overthinking. I enjoy exploring new things alone and diving."</span>
+                                        </blockquote>
+                                    </div>
+                                </div>
+
+
+                                <div class="card member-accordion-card" onclick="window.toggleAccordion(this)">
+                                    <div class="member-header">
+                                        <div class="avatar-container">
+                                            <img src="https://docs.google.com/drawings/d/e/2PACX-1vRO1j6stJcbz1rK5UMYy37GZmpZ4c1DgSzTdm5rEfQFW4hILeRVFvpqjQwWXAJS8QGvAC9ox1Fnm9OG/pub?w=960&h=720" alt="黃品筑" />
+                                        </div>
+                                        <div class="member-title">
+                                            <h3 class="lang-zh">黃品筑</h3>
+                                            <h3 class="lang-en">Huang Pin-Zhu</h3>
+                                            <div class="member-badges">
+                                                <span class="member-badge major">管學五 IPCM</span>
+                                                <span class="member-badge skill"><span class="lang-zh">編織及靈性</span><span class="lang-en">Knitting & Spirit</span></span>
+                                                <span class="member-badge exp"><span class="lang-zh">西卡宇宙工作室</span><span class="lang-en">Sika Studio</span></span>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-icon">▼</div>
+                                    </div>
+                                    <div class="member-body accordion-content">
+                                        <div class="detail-item">
+                                            <span class="detail-icon">✨</span>
+                                            <div class="detail-content">
+                                                <span class="lang-zh"><strong>專長與經歷：</strong>毛線編織、畫畫、靈性玄學。現為西卡宇宙工作室經營者，並具備服務台與櫃檯工讀經驗。</span>
+                                                <span class="lang-en"><strong>Expertise & Exp:</strong> Knitting, drawing, spirituality. Owner of Sika Universe Studio, receptionist.</span>
+                                            </div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-icon">🎯</span>
+                                            <div class="detail-content">
+                                                <span class="lang-zh"><strong>未來方向：</strong>為自己工作賺錢</span>
+                                                <span class="lang-en"><strong>Future:</strong> Working for myself</span>
+                                            </div>
+                                        </div>
+                                        <blockquote class="member-quote">
+                                            <span class="lang-zh">「我經營社群帳號三年，生活有很大的改變，在這過程慢慢找到了自己真正想要的生活，會繼續朝目標前進。」</span>
+                                            <span class="lang-en">"Ran my social media account for 3 years, which greatly changed my life. I've gradually found what I truly want to do."</span>
+                                        </blockquote>
+                                        <a href="https://www.youtube.com/watch?v=L7T1Zh6HbN0&list=PLL81QgtXhxxQkTbOKXKhWLSDg2FmHNfAq&index=42" target="_blank" rel="noopener noreferrer" class="btn-toggle video-btn lang-zh" onclick="event.stopPropagation();">▶ 觀看介紹影片</a>
+                                        <a href="https://www.youtube.com/watch?v=L7T1Zh6HbN0&list=PLL81QgtXhxxQkTbOKXKhWLSDg2FmHNfAq&index=42" target="_blank" rel="noopener noreferrer" class="btn-toggle video-btn lang-en" onclick="event.stopPropagation();">▶ Watch Video</a>
+                                    </div>
+                                </div>
+
+
+                                <div class="card member-accordion-card" onclick="window.toggleAccordion(this)">
+                                    <div class="member-header">
+                                        <div class="avatar-container">
+                                            <img src="https://docs.google.com/drawings/d/e/2PACX-1vTnfrAPhzH9vcCNvyYJexyJVm7tevVtN0xHiy3szVEZNXFDdqFMiolE9Qgw69fpQsmTYdn_j3OTVbYb/pub?w=960&h=720" alt="李東翰" />
+                                        </div>
+                                        <div class="member-title">
+                                            <h3 class="lang-zh">李東翰</h3>
+                                            <h3 class="lang-en">Li Dong-Han</h3>
+                                            <div class="member-badges">
+                                                <span class="member-badge major">國企三 IBS</span>
+                                                <span class="member-badge skill"><span class="lang-zh">語言學習</span><span class="lang-en">Language</span></span>
+                                                <span class="member-badge exp"><span class="lang-zh">LUMO校園運動平台開發者</span><span class="lang-en">LUMO Platform Dev</span></span>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-icon">▼</div>
+                                    </div>
+                                    <div class="member-body accordion-content">
+                                        <div class="detail-item">
+                                            <span class="detail-icon">✨</span>
+                                            <div class="detail-content">
+                                                <span class="lang-zh"><strong>專長與經歷：</strong>商管框架應用、網頁開發、語言學習與羽球。曾任 LUMO 平台專案經理與主要開發者，具第一線服務實務經驗。</span>
+                                                <span class="lang-en"><strong>Expertise & Exp:</strong> Business frameworks, web dev, languages. LUMO Platform PM & Developer, customer service.</span>
+                                            </div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-icon">🎯</span>
+                                            <div class="detail-content">
+                                                <span class="lang-zh"><strong>未來方向：</strong>五年一貫碩士，結合商管策略與數位開發</span>
+                                                <span class="lang-en"><strong>Future:</strong> Combine business strategy & digital dev</span>
+                                            </div>
+                                        </div>
+                                        <blockquote class="member-quote">
+                                            <span class="lang-zh">「我是國企大三的李東翰。擅長結合商管思維與數位工具，具服務業與專案管理經驗，期待與團隊共創佳績！」</span>
+                                            <span class="lang-en">"Specializes in combining business thinking with digital tools. Looking forward to creating great results with the team!"</span>
+                                        </blockquote>
+                                        <a href="https://www.youtube.com/watch?v=mxqL0husIIU&list=PLL81QgtXhxxQkTbOKXKhWLSDg2FmHNfAq" target="_blank" rel="noopener noreferrer" class="btn-toggle video-btn lang-zh" onclick="event.stopPropagation();">▶ 觀看介紹影片</a>
+                                        <a href="https://www.youtube.com/watch?v=mxqL0husIIU&list=PLL81QgtXhxxQkTbOKXKhWLSDg2FmHNfAq" target="_blank" rel="noopener noreferrer" class="btn-toggle video-btn lang-en" onclick="event.stopPropagation();">▶ Watch Video</a>
+                                    </div>
+                                </div>
+
+
+                                <div class="card member-accordion-card" onclick="window.toggleAccordion(this)">
+                                    <div class="member-header">
+                                        <div class="avatar-container">
+                                            <img src="https://docs.google.com/drawings/d/e/2PACX-1vRmEOW2o-hu2JdOiEWp6t2YNqAetXkz7dTJTMAuAd0qeNfgabKz-ZXMMdWiHsNHFyqeRy93LjU2M-NE/pub?w=960&h=720" alt="邱佳慧" />
+                                        </div>
+                                        <div class="member-title">
+                                            <h3 class="lang-zh">邱佳慧</h3>
+                                            <h3 class="lang-en">Qiu Jia-Hui</h3>
+                                            <div class="member-badges">
+                                                <span class="member-badge major">國企三 IBS</span>
+                                                <span class="member-badge skill"><span class="lang-zh">運動及畫畫</span><span class="lang-en">Sports & Art</span></span>
+                                                <span class="member-badge exp"><span class="lang-zh">數位學伴＆國企系學會</span><span class="lang-en">Companion & Assoc</span></span>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-icon">▼</div>
+                                    </div>
+                                    <div class="member-body accordion-content">
+                                        <div class="detail-item">
+                                            <span class="detail-icon">✨</span>
+                                            <div class="detail-content">
+                                                <span class="lang-zh"><strong>專長與經歷：</strong>運動、閱讀、畫畫。曾參與數位學伴、系學會，並具備系辦工讀經驗。</span>
+                                                <span class="lang-en"><strong>Expertise & Exp:</strong> Sports, reading, drawing. Digital study companion, student assoc., office assistant.</span>
+                                            </div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-icon">🎯</span>
+                                            <div class="detail-content">
+                                                <span class="lang-zh"><strong>未來方向：</strong>產品經理或人資</span>
+                                                <span class="lang-en"><strong>Future:</strong> PM or HR</span>
+                                            </div>
+                                        </div>
+                                        <blockquote class="member-quote">
+                                            <span class="lang-zh">「喜歡觀察，擅長記人臉跟名字，個性悶騷，變熟之後愛講幹話，生活不能沒有諧音梗。」</span>
+                                            <span class="lang-en">"Love observing and have a good memory for faces. Reserved at first but love making puns and jokes with friends."</span>
+                                        </blockquote>
+                                        <a href="https://www.youtube.com/watch?v=z7FUSUZVz2Y" target="_blank" rel="noopener noreferrer" class="btn-toggle video-btn lang-zh" onclick="event.stopPropagation();">▶ 觀看介紹影片</a>
+                                        <a href="https://www.youtube.com/watch?v=z7FUSUZVz2Y" target="_blank" rel="noopener noreferrer" class="btn-toggle video-btn lang-en" onclick="event.stopPropagation();">▶ Watch Video</a>
+                                    </div>
+                                </div>
+
+
+                                <div class="card member-accordion-card" onclick="window.toggleAccordion(this)">
+                                    <div class="member-header">
+                                        <div class="avatar-container">
+                                            <img src="https://docs.google.com/drawings/d/e/2PACX-1vTJQWwFuRTyU0REJmTMFrIFrHsVUr_HgCD6F9VoW5NcBX7E6vprb3Bwmj4r2CHZMnjygXLOrWMlPBJT/pub?w=960&h=720" alt="簡楷倫" />
+                                        </div>
+                                        <div class="member-title">
+                                            <h3 class="lang-zh">簡楷倫</h3>
+                                            <h3 class="lang-en">Jian Kai-Lun</h3>
+                                            <div class="member-badges">
+                                                <span class="member-badge major">國企四 IBS</span>
+                                                <span class="member-badge skill"><span class="lang-zh">聽音樂</span><span class="lang-en">Music</span></span>
+                                                <span class="member-badge exp"><span class="lang-zh">餐廳的兒子</span><span class="lang-en">Restaurant Son</span></span>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-icon">▼</div>
+                                    </div>
+                                    <div class="member-body accordion-content">
+                                        <div class="detail-item">
+                                            <span class="detail-icon">✨</span>
+                                            <div class="detail-content">
+                                                <span class="lang-zh"><strong>專長與經歷：</strong>聽音樂、podcast。具備餐飲業服務、行銷等相關經驗。</span>
+                                                <span class="lang-en"><strong>Expertise & Exp:</strong> Listening to music, podcasts. F&B service, marketing.</span>
+                                            </div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-icon">🎯</span>
+                                            <div class="detail-content">
+                                                <span class="lang-zh"><strong>未來方向：</strong>餐飲管理、零售業或軟體業</span>
+                                                <span class="lang-en"><strong>Future:</strong> F&B management, retail, software</span>
+                                            </div>
+                                        </div>
+                                        <blockquote class="member-quote">
+                                            <span class="lang-zh">「我是一名混血兒，比較內向但正在努力練習變得外向一些，即將要畢業了，很期待也很有壓力。」</span>
+                                            <span class="lang-en">"A mixed-race student. Introverted but practicing to be more outgoing. Excited yet stressed about graduation."</span>
+                                        </blockquote>
+                                        <a href="https://www.youtube.com/watch?v=y163OhG0fl0&list=PLL8lQgtXhxxQkTbOKXKhWLSDg2FmHNfAq&index=45" target="_blank" rel="noopener noreferrer" class="btn-toggle video-btn lang-zh" onclick="event.stopPropagation();">▶ 觀看介紹影片</a>
+                                        <a href="https://www.youtube.com/watch?v=y163OhG0fl0&list=PLL8lQgtXhxxQkTbOKXKhWLSDg2FmHNfAq&index=45" target="_blank" rel="noopener noreferrer" class="btn-toggle video-btn lang-en" onclick="event.stopPropagation();">▶ Watch Video</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <!-- 區塊四：AI 使用揭露 -->
+                        <div id="tab-ai" class="tab-pane">
+                            <div class="card teamwork-card">
+                                <h3 class="lang-zh title-accent">🤖 AI 使用揭露</h3>
+                                <h3 class="lang-en title-accent">🤖 AI Disclosure</h3>
+                                
+                                <p class="lang-zh intro-text" style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color);">
+                                    本專題於製作過程中使用多種 AI 工具協助資料整理與內容優化，我們對所有 AI 使用進行完整揭露，以符合教育誠信與合理使用原則。
+                                </p>
+                                <p class="lang-en intro-text" style="display: none; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color);">
+                                    During this project, we utilized various AI tools to assist with data organization and content optimization. We fully disclose all AI usage to comply with educational integrity and fair use principles.
+                                </p>
+
+                                <div style="background-color: rgba(169, 214, 229, 0.08); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1.5rem;">
+                                    <h4 class="lang-zh" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem; font-size: 1.05rem; border-bottom: 2px solid var(--secondary); padding-bottom: 0.75rem; margin-top: 0;">具體應用工具與範疇</h4>
+                                    <h4 class="lang-en" style="display: none; color: var(--primary); font-weight: 600; margin-bottom: 1rem; font-size: 1.05rem; border-bottom: 2px solid var(--secondary); padding-bottom: 0.75rem; margin-top: 0;">Specific Tools & Applications</h4>
+                                    
+                                    <div style="line-height: 2; color: var(--text-main);" class="lang-zh">
+                                        <p style="margin: 0.75rem 0;"><strong>✓ ChatGPT</strong> — 協助文字潤稿、內容統整與重點摘要</p>
+                                        <p style="margin: 0.75rem 0;"><strong>✓ NotebookLM</strong> — 協助整理文獻資料與研究內容分析、互動題目生成</p>
+                                        <p style="margin: 0.75rem 0;"><strong>✓ Google Gemini</strong> — 協助程式碼生成、優化網頁製作</p>
+                                        <p style="margin: 0.75rem 0;"><strong>✓ 多工具協作</strong> — 協助程式碼除錯、網頁內容優化與互動功能設計</p>
+                                    </div>
+                                    <div style="line-height: 2; color: var(--text-main); display: none;" class="lang-en">
+                                        <p style="margin: 0.75rem 0;"><strong>✓ ChatGPT</strong> — Text polishing, content consolidation, and key point summarization</p>
+                                        <p style="margin: 0.75rem 0;"><strong>✓ NotebookLM</strong> — Literature organization, research analysis, and interactive question generation</p>
+                                        <p style="margin: 0.75rem 0;"><strong>✓ Google Gemini</strong> — Code generation and webpage optimization</p>
+                                        <p style="margin: 0.75rem 0;"><strong>✓ Multi-tool Collaboration</strong> — Debugging, content optimization, and interactive feature design</p>
+                                    </div>
+                                </div>
+
+                                <div class="m-block highlight-block" style="background: linear-gradient(135deg, rgba(245, 202, 77, 0.15) 0%, rgba(245, 202, 77, 0.08) 100%); border: 2px solid rgba(245, 202, 77, 0.3); margin: 0;">
+                                    <div class="m-icon">📋</div>
+                                    <h4 class="lang-zh" style="color: var(--primary); font-size: 1.1rem; margin-bottom: 0.75rem; margin-top: 0;">重要聲明與原創性保證</h4>
+                                    <h4 class="lang-en" style="display: none; color: var(--primary); font-size: 1.1rem; margin-bottom: 0.75rem; margin-top: 0;">Important Statement on Originality</h4>
+                                    <div class="lang-zh" style="line-height: 1.8; color: var(--text-main); font-size: 0.95rem;">
+                                        <strong>【核心聲明】</strong><br>
+                                        所有由 AI 工具生成的初稿文字與程式碼框架，皆經過團隊成員的嚴格人工審核、完整的事實查核與風格確認，確保最終產出具備高度的原創性、準確性與專業品質。我們並未直接採用任何未經審視的 AI 生成內容，所有涉及台達電企業分析的核心洞察與策略建議，均由團隊成員基於公開財報與學理框架原創產出。
+                                    </div>
+                                    <div class="lang-en" style="line-height: 1.8; color: var(--text-main); font-size: 0.95rem; display: none;">
+                                        <strong>[Core Statement]</strong><br>
+                                        All AI-generated drafts and code frameworks underwent rigorous manual review, comprehensive fact-checking, and style verification by team members to ensure high originality, accuracy, and professional quality. We did not directly adopt any unreviewed AI-generated content. All core insights and strategic recommendations regarding Delta Electronics analysis are original products of the team based on public financial reports and academic frameworks.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </section>
@@ -1532,15 +2538,32 @@
             const section = document.getElementById(sectionId);
             const currentLang = document.body.classList.contains('zh') ? 'zh' : 'en';
             
-            // 抓取該區塊內當前語言的可見文字
-            const elements = section.querySelectorAll(`.lang-${currentLang}`);
             let textToRead = "";
-            elements.forEach(el => {
-                // 排除隱藏元素與按鈕文字
-                if (window.getComputedStyle(el).display !== 'none' && el.tagName !== 'BUTTON') {
-                    textToRead += el.innerText + "。 ";
+            
+            // 特殊處理：如果是團隊專區，只讀取當前活躍的選項卡內容
+            if (sectionId === 'team') {
+                const teamIntro = section.querySelector('#team-introduction');
+                if (teamIntro) {
+                    const activePane = teamIntro.querySelector('.tab-pane.active');
+                    if (activePane) {
+                        const elements = activePane.querySelectorAll(`.lang-${currentLang}`);
+                        elements.forEach(el => {
+                            if (window.getComputedStyle(el).display !== 'none' && el.tagName !== 'BUTTON') {
+                                textToRead += el.innerText + "。 ";
+                            }
+                        });
+                    }
                 }
-            });
+            } else {
+                // 抓取該區塊內當前語言的可見文字
+                const elements = section.querySelectorAll(`.lang-${currentLang}`);
+                elements.forEach(el => {
+                    // 排除隱藏元素與按鈕文字
+                    if (window.getComputedStyle(el).display !== 'none' && el.tagName !== 'BUTTON') {
+                        textToRead += el.innerText + "。 ";
+                    }
+                });
+            }
 
             if (!textToRead.trim()) return;
 
@@ -1565,6 +2588,48 @@
             utterance.pitch = 1.0;
             window.speechSynthesis.speak(utterance);
         }
+
+        // ===== 團隊專區函數 (Team Section Functions) =====
+        window.toggleTeamSidebar = function() {
+            const sidebar = document.getElementById('teamSidebar');
+            if (sidebar) {
+                sidebar.classList.toggle('collapsed');
+            }
+        };
+
+        window.switchTeamTab = function(tabId, clickedElement) {
+            // 移除所有 nav-item 的 active 狀態
+            const navItems = document.querySelectorAll('#team-introduction .nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            
+            // 為點擊的元素加上 active 狀態
+            if (clickedElement) {
+                clickedElement.classList.add('active');
+            }
+            
+            // 隱藏所有 tab-pane
+            const panes = document.querySelectorAll('#team-introduction .tab-pane');
+            panes.forEach(pane => pane.classList.remove('active'));
+            
+            // 顯示目標 tab-pane
+            const activePane = document.getElementById(tabId);
+            if (activePane) {
+                activePane.classList.add('active');
+            }
+        };
+
+        window.toggleAccordion = function(cardElement) {
+            // 移除其他卡片的 open 狀態（單選模式）
+            const otherCards = document.querySelectorAll('#team-introduction .member-accordion-card.open');
+            otherCards.forEach(card => {
+                if (card !== cardElement) {
+                    card.classList.remove('open');
+                }
+            });
+            
+            // 切換當前卡片的 open 狀態
+            cardElement.classList.toggle('open');
+        };
 
         // =======================================================================
         // 以下為「市場分析」專區的專用 JavaScript (整合自 市場分析.txt)
@@ -1689,7 +2754,8 @@
                 ctx.stroke();
 
                 // 精算外圈標籤排版位置
-                ctx.fillStyle = textColor;
+                // 暗色模式用白色，亮色模式用原本的黑色
+                ctx.fillStyle = document.body.classList.contains('dark-mode') ? '#FFFFFF' : textColor;
                 ctx.font = 'bold 11px sans-serif';
                 const labelDist = maxRadius + 15;
                 const lx = cx + labelDist * Math.cos(angle);
