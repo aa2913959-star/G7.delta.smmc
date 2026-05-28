@@ -566,6 +566,11 @@
             aspect-ratio: 1;
         }
 
+        /* Increase radar canvas width specifically inside Five Forces panel to avoid label clipping */
+        #tab-fiveforces .canvas-container {
+            max-width: 400px;
+        }
+
         #radarChartCanvas {
             width: 100%;
             height: 100%;
@@ -1346,6 +1351,240 @@
             }
         }
 
+        /* ================================
+           Company Intro 區塊專屬樣式
+           Scope: #intro only
+        ================================ */
+
+        #intro .intro-hero-card,
+        #intro .intro-info-card,
+        #intro .intro-metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        #intro .intro-hero-card {
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        #intro .intro-hero-card:hover,
+        #intro .intro-info-card:hover,
+        #intro .intro-metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        #intro .intro-kicker {
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        #intro .intro-hero-card h3 {
+            color: var(--primary);
+            font-size: clamp(1.6rem, 3vw, 2.3rem);
+            line-height: 1.35;
+            margin-bottom: 1rem;
+        }
+
+        #intro .intro-position {
+            color: var(--text-muted);
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+            margin-bottom: 1.4rem;
+            font-weight: 600;
+        }
+
+        #intro .intro-hero-card p {
+            color: var(--text-main);
+            line-height: 1.85;
+        }
+
+        #intro .intro-subtitle {
+            color: var(--primary);
+            text-align: center;
+            font-size: 1.7rem;
+            font-weight: 800;
+            margin: 3.2rem 0 1.6rem;
+            position: relative;
+        }
+
+        #intro .intro-subtitle::after {
+            content: "";
+            display: block;
+            width: 52px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 99px;
+            margin: 0.65rem auto 0;
+        }
+
+        #intro .intro-business-grid .flip-card-back p {
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+
+        #intro .intro-info-grid,
+        #intro .intro-metric-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #intro .intro-info-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        #intro .intro-metric-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        #intro .intro-info-card,
+        #intro .intro-metric-card {
+            padding: 1.6rem;
+        }
+
+        #intro .intro-info-card h4,
+        #intro .intro-metric-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        #intro .intro-info-card p,
+        #intro .intro-metric-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        #intro .intro-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 3.2rem;
+            padding: 0.35rem 0.8rem;
+            margin-bottom: 1rem;
+            border-radius: 999px;
+            background: var(--primary);
+            color: var(--bg-card);
+            font-weight: 800;
+            letter-spacing: 0.04em;
+        }
+
+        #intro .intro-metric-card {
+            text-align: center;
+        }
+
+        #intro .intro-metric-number {
+            color: var(--primary);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        #intro .intro-metric-number span {
+            color: var(--accent);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-left: 0.2rem;
+        }
+
+        #intro .intro-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            background: var(--bg-card);
+            box-shadow: var(--card-shadow);
+        }
+
+        #intro .intro-finance-table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+}
+
+#intro .intro-finance-table th,
+#intro .intro-finance-table td {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+        #intro .intro-finance-table th {
+            background: var(--primary);
+            color: var(--bg-card);
+            font-weight: 700;
+        }
+
+        #intro .intro-finance-table td {
+            color: var(--text-main);
+        }
+
+        #intro .intro-finance-table tbody tr:nth-child(even) {
+            background: var(--bg-secondary);
+        }
+
+        #intro .intro-finance-table tbody tr:hover {
+            background: rgba(74, 111, 165, 0.08);
+        }
+
+        #intro .intro-highlight-row {
+            font-weight: 700;
+        }
+
+        #intro .intro-highlight-row td {
+            color: var(--primary);
+        }
+
+        #intro .intro-source-note {
+            margin-top: 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            #intro .intro-info-grid,
+            #intro .intro-metric-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            #intro .intro-hero-card {
+                padding: 1.5rem;
+            }
+
+            #intro .intro-info-grid,
+            #intro .intro-metric-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #intro .intro-subtitle {
+                font-size: 1.45rem;
+            }
+
+            /* Mobile optimization for finance table */
+            #intro .intro-finance-table {
+                min-width: 680px;
+            }
+
+            #intro .intro-finance-table th,
+            #intro .intro-finance-table td {
+                padding: 0.8rem 0.85rem;
+                font-size: 0.9rem;
+            }
+        }
+
     </style>
 </head>
 <body class="zh">
@@ -1404,66 +1643,298 @@
     <main class="container">
         <!-- 企業簡介 (錨點 #intro) -->
         <section id="intro">
-            <div class="section-header">
-                <h2 class="section-title lang-zh">公司介紹與財務亮點</h2>
-                <h2 class="section-title lang-en">Company Intro & Financials</h2>
-                <button class="btn-voice" onclick="readAloud('intro')" title="語音導覽">🔊</button>
-            </div>
-            
-            <div class="flip-card-grid">
-                <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="card-icon">🏢</div>
-                            <h3 class="lang-zh">組織架構與歷史</h3>
-                            <h3 class="lang-en">History & Org</h3>
-                            <p class="lang-zh text-muted">點擊翻轉查看</p>
-                            <p class="lang-en text-muted">Click to flip</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <h4 class="lang-zh">創立於1971年</h4>
-                            <h4 class="lang-en">Founded in 1971</h4>
-                            <p class="lang-zh">涵蓋電源及零組件、自動化、基礎設施三大業務範疇，事業群遍佈全球。</p>
-                            <p class="lang-en">Three main business categories: Power Electronics, Automation, and Infrastructure.</p>
-                        </div>
-                    </div>
+    <div class="section-header">
+        <h2 class="section-title lang-zh">公司介紹與財務亮點</h2>
+        <h2 class="section-title lang-en">Company Intro & Financials</h2>
+        <button class="btn-voice" onclick="readAloud('intro')" title="語音導覽">🔊</button>
+    </div>
+
+    <!-- 公司定位與歷史轉型 -->
+    <div class="intro-hero-card">
+        <div class="intro-kicker lang-zh">Delta Electronics</div>
+        <div class="intro-kicker lang-en">Delta Electronics</div>
+
+        <h3 class="lang-zh">從電源零組件到永續 AI 基礎設施</h3>
+        <h3 class="lang-en">From Power Components to Sustainable AI Infrastructure</h3>
+
+        <p class="intro-position lang-zh">
+            台達電子以電源管理與散熱技術為核心，從零組件供應商轉型為全球節能與智慧基礎設施解決方案提供者。
+        </p>
+        <p class="intro-position lang-en">
+            Delta Electronics builds on its core strengths in power management and thermal solutions, evolving from a component supplier into a global provider of energy-saving and smart infrastructure solutions.
+        </p>
+
+        <p class="lang-zh">
+            台達電子成立於 1971 年，早期以電源零組件與交換式電源供應器起家，逐步累積電源管理、散熱、自動化與能源基礎設施技術。隨著全球能源轉型、資料中心與電動車需求成長，台達電已從單純零組件供應商，轉型為整合電源、散熱、自動化與能源管理的系統解決方案企業。近年台達電進一步聚焦 AI 資料中心、電動車與智慧製造，將節能技術延伸到更高階的基礎設施應用。
+        </p>
+        <p class="lang-en">
+            Founded in 1971, Delta Electronics began with power components and switching power supplies, gradually building capabilities in power management, thermal solutions, automation, and energy infrastructure. As demand for energy transition, data centers, and electric vehicles has grown, Delta has evolved from a component supplier into a system solution provider integrating power, cooling, automation, and energy management. In recent years, Delta has further focused on AI data centers, electric mobility, and smart manufacturing, extending its energy-saving technologies into higher-value infrastructure applications.
+        </p>
+    </div>
+
+    <!-- 四大事業範疇 -->
+    <h3 class="intro-subtitle lang-zh">四大事業範疇</h3>
+    <h3 class="intro-subtitle lang-en">Four Business Domains</h3>
+
+    <div class="flip-card-grid intro-business-grid">
+        <!-- 電源及零組件 -->
+        <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="card-icon">⚡</div>
+                    <h3 class="lang-zh">電源及零組件</h3>
+                    <h3 class="lang-en">Power Electronics</h3>
+                    <p class="lang-zh text-muted">設備運作的節能心臟</p>
+                    <p class="lang-en text-muted">The energy-saving heart of modern devices</p>
                 </div>
-                <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="card-icon">📈</div>
-                            <h3 class="lang-zh">2025 營運規模</h3>
-                            <h3 class="lang-en">2025 Revenue</h3>
-                            <p class="lang-zh text-muted">點擊翻轉查看</p>
-                            <p class="lang-en text-muted">Click to flip</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <h4 class="lang-zh">創新高</h4>
-                            <h4 class="lang-en">Record High</h4>
-                            <p class="lang-zh">受惠 AI 伺服器電源與液冷散熱需求，帶動營收與 EPS 雙位數成長。</p>
-                            <p class="lang-en">Driven by AI server power and liquid cooling demand, achieving double-digit growth in Revenue & EPS.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="card-icon">🎯</div>
-                            <h3 class="lang-zh">企業願景與使命</h3>
-                            <h3 class="lang-en">Vision & Mission</h3>
-                            <p class="lang-zh text-muted">點擊翻轉查看</p>
-                            <p class="lang-en text-muted">Click to flip</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <h4 class="lang-zh">永續發展</h4>
-                            <h4 class="lang-en">Sustainability</h4>
-                            <p class="lang-zh">致力於提供創新、潔淨與節能的解決方案，減緩氣候暖化。</p>
-                            <p class="lang-en">Committed to innovative, clean, and energy-efficient solutions to address global warming.</p>
-                        </div>
-                    </div>
+                <div class="flip-card-back">
+                    <h4 class="lang-zh">電源、散熱與關鍵零組件</h4>
+                    <h4 class="lang-en">Power, Cooling & Key Components</h4>
+                    <p class="lang-zh">提供交換式電源供應器、電源模組、風扇與散熱方案、微型化零組件等產品，應用於 AI 伺服器、資料中心、5G 通訊、消費性電子與工業設備。</p>
+                    <p class="lang-en">Provides switching power supplies, power modules, fans, thermal solutions, and miniaturized components for AI servers, data centers, 5G communications, consumer electronics, and industrial equipment.</p>
                 </div>
             </div>
-        </section>
+        </div>
+
+        <!-- 交通 -->
+        <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="card-icon">🚗</div>
+                    <h3 class="lang-zh">交通</h3>
+                    <h3 class="lang-en">Mobility</h3>
+                    <p class="lang-zh text-muted">驅動電動車與低碳移動</p>
+                    <p class="lang-en text-muted">Powering electric mobility and low-carbon transport</p>
+                </div>
+                <div class="flip-card-back">
+                    <h4 class="lang-zh">電動車動力系統</h4>
+                    <h4 class="lang-en">EV Powertrain Solutions</h4>
+                    <p class="lang-zh">聚焦電動車動力系統，包含電力電子、驅動馬達、馬達驅動器與 X-in-1 多合一整合系統，協助車廠提升能源效率與續航表現。</p>
+                    <p class="lang-en">Focuses on EV powertrain solutions, including power electronics, drive motors, motor drives, and X-in-1 integrated systems, helping automakers improve energy efficiency and driving range.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 自動化 -->
+        <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="card-icon">🏭</div>
+                    <h3 class="lang-zh">自動化</h3>
+                    <h3 class="lang-en">Automation</h3>
+                    <p class="lang-zh text-muted">讓工廠與建築更智慧</p>
+                    <p class="lang-en text-muted">Making factories and buildings smarter</p>
+                </div>
+                <div class="flip-card-back">
+                    <h4 class="lang-zh">工業與樓宇自動化</h4>
+                    <h4 class="lang-en">Industrial & Building Automation</h4>
+                    <p class="lang-zh">涵蓋工業自動化與樓宇自動化，提供變頻器、伺服驅動、感測器、工業機器人、智慧樓宇管理、能源管理與安防系統。</p>
+                    <p class="lang-en">Covers industrial and building automation, offering drives, servo systems, sensors, industrial robots, smart building management, energy management, and security solutions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 基礎設施 -->
+        <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="card-icon">🔋</div>
+                    <h3 class="lang-zh">基礎設施</h3>
+                    <h3 class="lang-en">Infrastructure</h3>
+                    <p class="lang-zh text-muted">支撐資料中心、能源與城市運作</p>
+                    <p class="lang-en text-muted">Supporting data centers, energy systems, and smart cities</p>
+                </div>
+                <div class="flip-card-back">
+                    <h4 class="lang-zh">資通訊、能源與視訊系統</h4>
+                    <h4 class="lang-en">ICT, Energy & Display Systems</h4>
+                    <p class="lang-zh">包含資通訊基礎設施、資料中心電源與散熱、電信設備、EV 充電、儲能系統、太陽能逆變器與視訊系統，支援低碳城市與數位基礎建設。</p>
+                    <p class="lang-en">Includes ICT infrastructure, data center power and cooling, telecom equipment, EV charging, energy storage systems, solar inverters, and display solutions for low-carbon cities and digital infrastructure.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BU / GU / FU 組織架構 -->
+    <h3 class="intro-subtitle lang-zh">BU / GU / FU 組織架構</h3>
+    <h3 class="intro-subtitle lang-en">BU / GU / FU Corporate Structure</h3>
+
+    <div class="intro-info-grid">
+        <article class="intro-info-card">
+            <div class="intro-badge">BU</div>
+            <h4 class="lang-zh">Business Unit 事業單位</h4>
+            <h4 class="lang-en">Business Unit</h4>
+            <p class="lang-zh">BU 代表事業單位，台達電以「電源及零組件、交通、自動化、基礎設施」四大事業範疇配置資源，讓各事業能依照不同市場需求發展產品與解決方案。</p>
+            <p class="lang-en">BU refers to Business Units. Delta allocates resources across four major business domains: Power Electronics, Mobility, Automation, and Infrastructure, allowing each unit to develop solutions for different market needs.</p>
+        </article>
+
+        <article class="intro-info-card">
+            <div class="intro-badge">GU</div>
+            <h4 class="lang-zh">Global Unit 全球區域單位</h4>
+            <h4 class="lang-en">Global Unit</h4>
+            <p class="lang-zh">GU 代表全球區域布局，協助台達電貼近亞洲、歐洲、美洲等不同市場。透過區域化生產、研發與服務，台達電能降低供應鏈風險並更快回應客戶需求。</p>
+            <p class="lang-en">GU refers to Global Units, helping Delta stay close to markets across Asia, Europe, the Americas, and other regions. Localized production, R&D, and services help reduce supply chain risks and improve customer responsiveness.</p>
+        </article>
+
+        <article class="intro-info-card">
+            <div class="intro-badge">FU</div>
+            <h4 class="lang-zh">Functional Unit 功能單位</h4>
+            <h4 class="lang-en">Functional Unit</h4>
+            <p class="lang-zh">FU 代表功能部門，包含研發、財務、人資、法務、資訊科技、智慧製造與 ESG 等支援單位，讓不同事業部共享專業資源並提升跨部門整合能力。</p>
+            <p class="lang-en">FU refers to Functional Units, including R&D, finance, HR, legal, IT, smart manufacturing, and ESG, enabling different business units to share resources and improve cross-functional integration.</p>
+        </article>
+    </div>
+
+    <!-- 關鍵營運數字 -->
+    <h3 class="intro-subtitle lang-zh">關鍵營運數字</h3>
+    <h3 class="intro-subtitle lang-en">Key Operating Figures</h3>
+
+    <div class="intro-metric-grid">
+        <article class="intro-metric-card">
+            <div class="intro-metric-number">5,549<span> 億元</span></div>
+            <h4 class="lang-zh">2025 合併營業額</h4>
+            <h4 class="lang-en">2025 Consolidated Revenue</h4>
+            <p class="lang-zh">較上年度成長 32%，反映 AI 相關應用、資料中心與高階電源散熱需求推升營運規模。</p>
+            <p class="lang-en">Up 32% year over year, reflecting growth driven by AI-related applications, data centers, and advanced power and cooling demand.</p>
+        </article>
+
+        <article class="intro-metric-card">
+            <div class="intro-metric-number">34.3<span>%</span></div>
+            <h4 class="lang-zh">2025 毛利率</h4>
+            <h4 class="lang-en">2025 Gross Margin</h4>
+            <p class="lang-zh">毛利率提升至 34.3%，顯示產品組合與高附加價值解決方案對獲利結構的改善。</p>
+            <p class="lang-en">Gross margin reached 34.3%, reflecting a stronger product mix and higher-value solutions.</p>
+        </article>
+
+        <article class="intro-metric-card">
+            <div class="intro-metric-number">23.14<span> 元</span></div>
+            <h4 class="lang-zh">2025 EPS</h4>
+            <h4 class="lang-en">2025 EPS</h4>
+            <p class="lang-zh">每股稅後盈餘達新台幣 23.14 元，全年營收與 EPS 均有成長。</p>
+            <p class="lang-en">Earnings per share reached NT$23.14, with both annual revenue and EPS increasing.</p>
+        </article>
+
+        <article class="intro-metric-card">
+            <div class="intro-metric-number">24.1<span>%</span></div>
+            <h4 class="lang-zh">2025 ROE</h4>
+            <h4 class="lang-en">2025 ROE</h4>
+            <p class="lang-zh">股東權益報酬率達 24.1%，顯示台達電在獲利能力與資本運用效率上的表現。</p>
+            <p class="lang-en">Return on equity reached 24.1%, indicating strong profitability and capital efficiency.</p>
+        </article>
+    </div>
+
+    <!-- 近五年財務資訊 -->
+    <h3 class="intro-subtitle lang-zh">近五年財務資訊</h3>
+    <h3 class="intro-subtitle lang-en">Five-Year Financial Highlights</h3>
+
+    <div class="intro-table-wrapper lang-zh">
+        <table class="intro-finance-table">
+            <thead>
+                <tr>
+                    <th>年份</th>
+                    <th>合併營收</th>
+                    <th>毛利率</th>
+                    <th>EPS</th>
+                    <th>備註</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2021</td>
+                    <td>3,147 億元</td>
+                    <td>28.7%</td>
+                    <td>10.32 元</td>
+                    <td>供應鏈波動下仍維持穩定獲利</td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td>3,844 億元</td>
+                    <td>28.8%</td>
+                    <td>12.58 元</td>
+                    <td>營收與 EPS 較前一年成長</td>
+                </tr>
+                <tr>
+                    <td>2023</td>
+                    <td>4,012 億元</td>
+                    <td>約 29.2%</td>
+                    <td>12.86 元</td>
+                    <td>營收突破 4,000 億元</td>
+                </tr>
+                <tr>
+                    <td>2024</td>
+                    <td>4,211 億元</td>
+                    <td>32.4%</td>
+                    <td>13.56 元</td>
+                    <td>毛利率明顯提升，產品組合改善</td>
+                </tr>
+                <tr class="intro-highlight-row">
+                    <td>2025</td>
+                    <td>5,549 億元</td>
+                    <td>34.3%</td>
+                    <td>23.14 元</td>
+                    <td>營收與 EPS 均成長，AI 與資料中心需求為重要推力</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="intro-table-wrapper lang-en">
+        <table class="intro-finance-table">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Revenue</th>
+                    <th>Gross Margin</th>
+                    <th>EPS</th>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2021</td>
+                    <td>NT$314.7B</td>
+                    <td>28.7%</td>
+                    <td>NT$10.32</td>
+                    <td>Maintained profitability amid supply chain volatility</td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td>NT$384.4B</td>
+                    <td>28.8%</td>
+                    <td>NT$12.58</td>
+                    <td>Revenue and EPS increased from the previous year</td>
+                </tr>
+                <tr>
+                    <td>2023</td>
+                    <td>NT$401.2B</td>
+                    <td>Approx. 29.2%</td>
+                    <td>NT$12.86</td>
+                    <td>Revenue exceeded NT$400B</td>
+                </tr>
+                <tr>
+                    <td>2024</td>
+                    <td>NT$421.1B</td>
+                    <td>32.4%</td>
+                    <td>NT$13.56</td>
+                    <td>Gross margin improved with a better product mix</td>
+                </tr>
+                <tr class="intro-highlight-row">
+                    <td>2025</td>
+                    <td>NT$554.9B</td>
+                    <td>34.3%</td>
+                    <td>NT$23.14</td>
+                    <td>Revenue and EPS grew, driven by AI and data center demand</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="intro-source-note lang-zh">
+        資料來源：台達電 2025 致股東報告書、台達電年報與小組 TP 資料整理。2025 財務數字以台達電官網公告為準。
+    </p>
+    <p class="intro-source-note lang-en">
+        Sources: Delta Electronics 2025 Report to Shareholders, Delta annual reports, and the team’s TP materials. 2025 financial figures are based on Delta’s official website.
+    </p>
+</section>
 
         <!-- 市場分析整合區塊 (錨點 #market-analysis) -->
         <section id="market-analysis">
@@ -2107,8 +2578,8 @@
                                             在製作過程中，組員間會定期討論網頁架構、內容呈現方式與視覺設計，並互相提供建議與補充資料，最後再進行網站整合與程式碼編輯，統整所有內容與頁面設計，使整體網站呈現一致且完整的成果。
                                         </p>
                                     </div>
-                                    <h4 class="lang-en title-accent" style="font-size: 1.2rem; border-bottom: 2px solid var(--secondary); padding-bottom: 1rem; margin: 1.5rem 0 1rem 0; display: none;">🧑‍💻 Collaboration Approach</h4>
-                                    <div class="roles-paragraph lang-en" style="display: none;">
+                                    <h4 class="lang-en title-accent" style="font-size: 1.2rem; border-bottom: 2px solid var(--secondary); padding-bottom: 1rem; margin: 1.5rem 0 1rem 0;">🧑‍💻 Collaboration Approach</h4>
+                                    <div class="roles-paragraph lang-en">
                                         <p style="line-height: 1.8; color: var(--text-main); text-align: justify; margin-bottom: 1.5rem;">
                                             <strong>▪ Primary Responsibility System</strong><br>
                                             Our team employed a "Primary Responsibility" approach where each member took ownership of different aspects including company introduction, market analysis, resource evaluation, growth strategy, and interactive feature design. After completing initial drafts and data collection, team members conducted cross-checking during group discussions, ensuring data accuracy and overall consistency.
@@ -2424,13 +2895,13 @@
                                 <p class="lang-zh intro-text" style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color);">
                                     本專題於製作過程中使用多種 AI 工具協助資料整理與內容優化，我們對所有 AI 使用進行完整揭露，以符合教育誠信與合理使用原則。
                                 </p>
-                                <p class="lang-en intro-text" style="display: none; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color);">
-                                    During this project, we utilized various AI tools to assist with data organization and content optimization. We fully disclose all AI usage to comply with educational integrity and fair use principles.
-                                </p>
+                                <p class="lang-en intro-text" style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color);">During this project, we utilized various AI tools to assist with data organization and content optimization. We fully disclose all AI usage to comply with educational integrity and fair use principles.</p>
+                                <h4 class="lang-en" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem; font-size: 1.05rem; border-bottom: 2px solid var(--secondary); padding-bottom: 0.75rem; margin-top: 0;">Specific Tools & Applications</h4>
 
                                 <div style="background-color: rgba(169, 214, 229, 0.08); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1.5rem;">
                                     <h4 class="lang-zh" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem; font-size: 1.05rem; border-bottom: 2px solid var(--secondary); padding-bottom: 0.75rem; margin-top: 0;">具體應用工具與範疇</h4>
-                                    <h4 class="lang-en" style="display: none; color: var(--primary); font-weight: 600; margin-bottom: 1rem; font-size: 1.05rem; border-bottom: 2px solid var(--secondary); padding-bottom: 0.75rem; margin-top: 0;">Specific Tools & Applications</h4>
+                                    <h4 class="lang-en" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem; font-size: 1.05rem; border-bottom: 2px solid var(--secondary); padding-bottom: 0.75rem; margin-top: 0;">Specific Tools & Applications</h4>
+                                    <div style="line-height: 2; color: var(--text-main);" class="lang-en">
                                     
                                     <div style="line-height: 2; color: var(--text-main);" class="lang-zh">
                                         <p style="margin: 0.75rem 0;"><strong>✓ ChatGPT</strong> — 協助文字潤稿、內容統整與重點摘要</p>
@@ -2438,7 +2909,8 @@
                                         <p style="margin: 0.75rem 0;"><strong>✓ Google Gemini</strong> — 協助程式碼生成、優化網頁製作</p>
                                         <p style="margin: 0.75rem 0;"><strong>✓ 多工具協作</strong> — 協助程式碼除錯、網頁內容優化與互動功能設計</p>
                                     </div>
-                                    <div style="line-height: 2; color: var(--text-main); display: none;" class="lang-en">
+                                    <h4 class="lang-en" style="color: var(--primary); font-size: 1.1rem; margin-bottom: 0.75rem; margin-top: 0;">Important Statement on Originality</h4>
+                                    <div class="lang-en" style="line-height: 1.8; color: var(--text-main); font-size: 0.95rem;">
                                         <p style="margin: 0.75rem 0;"><strong>✓ ChatGPT</strong> — Text polishing, content consolidation, and key point summarization</p>
                                         <p style="margin: 0.75rem 0;"><strong>✓ NotebookLM</strong> — Literature organization, research analysis, and interactive question generation</p>
                                         <p style="margin: 0.75rem 0;"><strong>✓ Google Gemini</strong> — Code generation and webpage optimization</p>
@@ -2449,12 +2921,11 @@
                                 <div class="m-block highlight-block" style="background: linear-gradient(135deg, rgba(245, 202, 77, 0.15) 0%, rgba(245, 202, 77, 0.08) 100%); border: 2px solid rgba(245, 202, 77, 0.3); margin: 0;">
                                     <div class="m-icon">📋</div>
                                     <h4 class="lang-zh" style="color: var(--primary); font-size: 1.1rem; margin-bottom: 0.75rem; margin-top: 0;">重要聲明與原創性保證</h4>
-                                    <h4 class="lang-en" style="display: none; color: var(--primary); font-size: 1.1rem; margin-bottom: 0.75rem; margin-top: 0;">Important Statement on Originality</h4>
                                     <div class="lang-zh" style="line-height: 1.8; color: var(--text-main); font-size: 0.95rem;">
                                         <strong>【核心聲明】</strong><br>
                                         所有由 AI 工具生成的初稿文字與程式碼框架，皆經過團隊成員的嚴格人工審核、完整的事實查核與風格確認，確保最終產出具備高度的原創性、準確性與專業品質。我們並未直接採用任何未經審視的 AI 生成內容，所有涉及台達電企業分析的核心洞察與策略建議，均由團隊成員基於公開財報與學理框架原創產出。
                                     </div>
-                                    <div class="lang-en" style="line-height: 1.8; color: var(--text-main); font-size: 0.95rem; display: none;">
+                                    <div class="lang-en" style="line-height: 1.8; color: var(--text-main); font-size: 0.95rem;">
                                         <strong>[Core Statement]</strong><br>
                                         All AI-generated drafts and code frameworks underwent rigorous manual review, comprehensive fact-checking, and style verification by team members to ensure high originality, accuracy, and professional quality. We did not directly adopt any unreviewed AI-generated content. All core insights and strategic recommendations regarding Delta Electronics analysis are original products of the team based on public financial reports and academic frameworks.
                                     </div>
@@ -2695,7 +3166,7 @@
             const cx = width / 2;
             const cy = height / 2;
             // 保留空間繪製外圍文字標籤
-            const maxRadius = Math.min(width, height) * 0.35;
+            const maxRadius = Math.min(width, height) * 0.32;
 
             // 動態獲取當前 CSS 變數值（支援光亮/暗色模式自適應）
             const computedStyle = getComputedStyle(document.documentElement);
@@ -2757,7 +3228,7 @@
                 // 暗色模式用白色，亮色模式用原本的黑色
                 ctx.fillStyle = document.body.classList.contains('dark-mode') ? '#FFFFFF' : textColor;
                 ctx.font = 'bold 11px sans-serif';
-                const labelDist = maxRadius + 15;
+                const labelDist = maxRadius + 6;
                 const lx = cx + labelDist * Math.cos(angle);
                 const ly = cy + labelDist * Math.sin(angle);
 
@@ -2765,23 +3236,45 @@
                 const cosAngle = Math.cos(angle);
                 const sinAngle = Math.sin(angle);
 
+                let textAlignChoice;
                 if (Math.abs(cosAngle) < 0.1) {
-                ctx.textAlign = 'center';
+                textAlignChoice = 'center';
                 } else if (cosAngle > 0) {
-                ctx.textAlign = 'left';
+                textAlignChoice = 'left';
                 } else {
-                ctx.textAlign = 'right';
+                textAlignChoice = 'right';
                 }
 
+                let textBaselineChoice;
                 if (Math.abs(sinAngle) < 0.1) {
-                ctx.textBaseline = 'middle';
+                textBaselineChoice = 'middle';
                 } else if (sinAngle > 0) {
-                ctx.textBaseline = 'top';
+                textBaselineChoice = 'top';
                 } else {
-                ctx.textBaseline = 'bottom';
+                textBaselineChoice = 'bottom';
                 }
 
-                ctx.fillText(labels[i], lx, ly);
+                ctx.textAlign = textAlignChoice;
+                ctx.textBaseline = textBaselineChoice;
+
+                // 文字邊界保護：避免畫到 canvas 外面
+                const label = labels[i];
+                const measured = ctx.measureText(label);
+                const textWidth = measured.width;
+                let drawX = lx;
+
+                if (textAlignChoice === 'center') {
+                if (drawX - textWidth / 2 < 8) drawX = 8 + textWidth / 2;
+                if (drawX + textWidth / 2 > width - 8) drawX = width - 8 - textWidth / 2;
+                } else if (textAlignChoice === 'left') {
+                if (drawX < 8) drawX = 8;
+                if (drawX + textWidth > width - 8) drawX = width - 8 - textWidth;
+                } else { // right
+                if (drawX - textWidth < 8) drawX = 8 + textWidth;
+                if (drawX > width - 8) drawX = width - 8;
+                }
+
+                ctx.fillText(label, drawX, ly);
             }
 
             // 3. 繪製數據覆蓋網狀區域
