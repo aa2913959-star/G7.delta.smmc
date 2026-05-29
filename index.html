@@ -321,9 +321,7 @@
            以下為「市場分析」專區的專用 CSS (整合自 市場分析.txt)
            使用相同的設計系統變數與響應式排版
            ======================================================================= */
-        #market-analysis {
-            /* padding 與 margin 已由全域 section 控制，此處針對內部細節調整 */
-        }
+       
 
         #market-analysis .btn-voice-market {
             background: var(--bg-card);
@@ -2396,21 +2394,880 @@
         </section>
         
         <!-- 資源評價 (錨點 #resource-evaluation) -->
-        <section id="resource-evaluation">
-            <div class="section-header">
-                <h2 class="section-title lang-zh">資源評價</h2>
-                <h2 class="section-title lang-en">Resource Evaluation</h2>
-                <button class="btn-voice" onclick="readAloud('resource-evaluation')" title="語音導覽">🔊</button>
-            </div>
-            <div class="card-grid">
-                <div class="card">
-                    <h3 class="lang-zh">核心優勢與 VRIO 架構</h3>
-                    <h3 class="lang-en">Core Competencies & VRIO</h3>
-                    <p class="lang-zh">依據 VRIO 架構：台達電在「高階電力電子技術」與「液冷散熱專利」具備高度價值、稀缺性與難以模仿性，形成強大競爭優勢。</p>
-                    <p class="lang-en">Based on VRIO: Delta's core tech in power electronics and liquid cooling patents possess high value, rarity, and inimitability.</p>
-                </div>
-            </div>
-        </section>
+<section id="resource-evaluation" class="content-section resource-evaluation-section" aria-labelledby="resource-title">
+  <style>
+    /* Style-neutral version:
+       這份樣式盡量繼承原網站的顏色變數，避免資源評價區塊看起來像另一個網站。 */
+    #resource-evaluation {
+      --resource-accent: var(--primary-color, var(--accent-color, var(--delta-blue, #2f78b7)));
+      --resource-accent-2: var(--secondary-color, var(--accent-2, var(--resource-accent)));
+      --resource-card: var(--card-bg, var(--surface-color, var(--section-card-bg, rgba(255, 255, 255, 0.72))));
+      --resource-card-strong: var(--card-bg, var(--surface-color, rgba(255, 255, 255, 0.86)));
+      --resource-text: var(--text-primary, var(--text-color, currentColor));
+      --resource-muted: var(--text-secondary, var(--muted-text, var(--text-muted, #64748b)));
+      --resource-border: var(--border-color, rgba(148, 163, 184, 0.28));
+      --resource-soft: var(--soft-bg, var(--accent-soft, rgba(47, 120, 183, 0.08)));
+      --resource-shadow: var(--card-shadow, 0 10px 28px rgba(15, 23, 42, 0.08));
+      --resource-good: var(--success-color, #0f766e);
+      color: var(--resource-text);
+      background: transparent;
+      padding: clamp(56px, 8vw, 92px) 20px;
+      scroll-margin-top: 90px;
+    }
+
+    body.dark-mode #resource-evaluation,
+    body[data-theme="dark"] #resource-evaluation,
+    html.dark #resource-evaluation,
+    .dark #resource-evaluation {
+      --resource-card: var(--card-bg, rgba(15, 23, 42, 0.72));
+      --resource-card-strong: var(--card-bg, rgba(15, 23, 42, 0.86));
+      --resource-text: var(--text-primary, var(--text-color, #e5edf7));
+      --resource-muted: var(--text-secondary, var(--muted-text, #a8b3c7));
+      --resource-border: var(--border-color, rgba(148, 163, 184, 0.26));
+      --resource-soft: var(--soft-bg, rgba(56, 189, 248, 0.10));
+      --resource-shadow: var(--card-shadow, 0 14px 34px rgba(0, 0, 0, 0.28));
+      --resource-good: var(--success-color, #5eead4);
+    }
+
+    #resource-evaluation * { box-sizing: border-box; }
+
+    #resource-evaluation .resource-wrap {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    #resource-evaluation .resource-eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--resource-soft);
+      color: var(--resource-accent);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      border: 1px solid var(--resource-border);
+      margin-bottom: 14px;
+    }
+
+    #resource-evaluation h2,
+    #resource-evaluation h3,
+    #resource-evaluation p { margin: 0; }
+
+    #resource-evaluation .resource-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    #resource-evaluation .resource-title-row h2 {
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: min(72ch, 100%);
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      color: var(--resource-text);
+      margin-bottom: 0;
+    }
+
+    #resource-evaluation .resource-voice-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      background: transparent;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    #resource-evaluation .resource-voice-button:hover {
+      background: var(--bg-card);
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-1px);
+      box-shadow: var(--card-shadow);
+    }
+
+    #resource-evaluation .resource-header {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 26px;
+    }
+
+    #resource-evaluation .resource-lead {
+      color: var(--resource-muted);
+      line-height: 1.8;
+      font-size: 1rem;
+      max-width: 720px;
+    }
+
+    #resource-evaluation .resource-lead {
+      color: var(--resource-muted);
+      line-height: 1.8;
+      font-size: 1rem;
+      max-width: 720px;
+    }
+
+    #resource-evaluation .resource-framework-card {
+      background: var(--resource-card);
+      border: 1px solid var(--resource-border);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: var(--resource-shadow);
+    }
+
+    #resource-evaluation .resource-framework-card strong {
+      display: block;
+      color: var(--resource-text);
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    #resource-evaluation .resource-framework-card span {
+      color: var(--resource-muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    #resource-evaluation .resource-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 24px 0;
+    }
+
+    #resource-evaluation .resource-tab {
+      appearance: none;
+      border: 1px solid var(--resource-border);
+      background: var(--resource-card);
+      color: var(--resource-text);
+      border-radius: 22px;
+      padding: 18px;
+      text-align: left;
+      cursor: pointer;
+      box-shadow: var(--resource-shadow);
+      transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+      min-height: 148px;
+    }
+
+    #resource-evaluation .resource-tab:hover,
+    #resource-evaluation .resource-tab:focus-visible {
+      transform: translateY(-2px);
+      border-color: var(--resource-accent);
+      outline: none;
+    }
+
+    #resource-evaluation .resource-tab.active {
+      border-color: var(--resource-accent);
+      background: var(--resource-soft);
+      color: var(--resource-text);
+      box-shadow: var(--resource-shadow);
+    }
+
+    #resource-evaluation .resource-tab .tab-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      background: var(--resource-soft);
+      color: var(--resource-accent);
+      margin-bottom: 12px;
+    }
+
+    #resource-evaluation .resource-tab.active .tab-icon {
+      color: #fff;
+      background: var(--resource-accent);
+    }
+
+    #resource-evaluation .resource-tab.active h3 { color: var(--resource-accent); }
+
+    #resource-evaluation .resource-tab h3 {
+      font-size: 1.03rem;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    #resource-evaluation .resource-tab p {
+      color: var(--resource-muted);
+      line-height: 1.55;
+      font-size: 0.92rem;
+    }
+
+    #resource-evaluation .resource-tab.active p { color: var(--resource-muted); }
+
+    #resource-evaluation .resource-analysis {
+      background: var(--resource-card-strong);
+      border: 1px solid var(--resource-border);
+      border-radius: 28px;
+      padding: clamp(20px, 3vw, 32px);
+      box-shadow: var(--resource-shadow);
+      overflow: hidden;
+    }
+
+    #resource-evaluation .resource-analysis-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 24px;
+    }
+
+    #resource-evaluation .resource-active-title {
+      font-size: clamp(1.3rem, 2.4vw, 2rem);
+      line-height: 1.25;
+      color: var(--resource-text);
+    }
+
+    #resource-evaluation .resource-confidence {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: var(--resource-soft);
+      color: var(--resource-good);
+      border: 1px solid var(--resource-border);
+      font-size: 0.86rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    #resource-evaluation .resource-stepper-wrap {
+      position: relative;
+      margin: 18px 0 24px;
+      padding-top: 10px;
+    }
+
+    #resource-evaluation .resource-step-line,
+    #resource-evaluation .resource-step-progress {
+      position: absolute;
+      top: 31px;
+      left: 6%;
+      right: 6%;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.28);
+      z-index: 0;
+    }
+
+    #resource-evaluation .resource-step-progress {
+      right: auto;
+      width: 0;
+      background: var(--resource-accent);
+      transition: width .28s ease;
+    }
+
+    #resource-evaluation .resource-stepper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    #resource-evaluation .resource-step {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--resource-muted);
+      cursor: pointer;
+      padding: 0;
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      font-weight: 800;
+      min-width: 0;
+    }
+
+    #resource-evaluation .resource-step-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: var(--resource-card-strong);
+      color: var(--resource-muted);
+      border: 1px solid var(--resource-border);
+      box-shadow: var(--resource-shadow);
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+
+    #resource-evaluation .resource-step.active .resource-step-mark,
+    #resource-evaluation .resource-step.completed .resource-step-mark {
+      background: var(--resource-accent);
+      color: #fff;
+      border-color: var(--resource-accent);
+      transform: scale(1.05);
+    }
+
+    #resource-evaluation .resource-step-label {
+      font-size: 0.86rem;
+      line-height: 1.25;
+      text-align: center;
+      color: inherit;
+      max-width: 130px;
+    }
+
+    #resource-evaluation .resource-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    #resource-evaluation .resource-detail-card {
+      border-radius: 22px;
+      padding: 20px;
+      background: var(--resource-soft);
+      border: 1px solid var(--resource-border);
+      min-height: 180px;
+    }
+
+    #resource-evaluation .resource-detail-card h4 {
+      margin: 0 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--resource-text);
+      font-size: 1rem;
+    }
+
+    #resource-evaluation .resource-badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 0.75rem;
+      line-height: 1;
+      color: #fff;
+      background: var(--resource-accent);
+      font-weight: 900;
+    }
+
+    #resource-evaluation .resource-detail-card p {
+      color: var(--resource-muted);
+      line-height: 1.8;
+      font-size: 0.98rem;
+    }
+
+    #resource-evaluation .resource-judgement {
+      margin-top: 18px;
+      border-radius: 22px;
+      padding: 18px 20px;
+      border: 1px solid var(--resource-border);
+      background: var(--resource-soft);
+    }
+
+    #resource-evaluation .resource-judgement strong {
+      display: block;
+      color: var(--resource-text);
+      margin-bottom: 8px;
+    }
+
+    #resource-evaluation .resource-judgement p {
+      color: var(--resource-muted);
+      line-height: 1.75;
+    }
+
+    #resource-evaluation .resource-status {
+      margin-top: 22px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--resource-border);
+      background: var(--resource-soft);
+    }
+
+    #resource-evaluation .resource-status-bar {
+      height: 12px;
+      width: 25%;
+      background: var(--resource-accent);
+      transition: width .28s ease;
+    }
+
+    #resource-evaluation .resource-status-labels {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--resource-muted);
+    }
+
+    #resource-evaluation .resource-status-labels span {
+      padding: 10px 8px;
+      text-align: center;
+      border-right: 1px solid var(--resource-border);
+    }
+
+    #resource-evaluation .resource-status-labels span:last-child { border-right: 0; }
+    #resource-evaluation .resource-status-labels span.active { color: var(--resource-accent); }
+
+    #resource-evaluation .resource-notes {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    #resource-evaluation .resource-note {
+      border-radius: 18px;
+      border: 1px dashed var(--resource-border);
+      background: var(--resource-card);
+      padding: 14px 16px;
+      color: var(--resource-muted);
+      line-height: 1.65;
+      font-size: 0.9rem;
+    }
+
+    /* Bilingual fallback: 若原網站沒有語言切換 CSS，預設顯示中文。 */
+    #resource-evaluation .lang-en { display: none; }
+    body.en #resource-evaluation .lang-zh,
+    html[lang^="en"] #resource-evaluation .lang-zh,
+    body.lang-en #resource-evaluation .lang-zh,
+    body[data-lang="en"] #resource-evaluation .lang-zh,
+    body.english #resource-evaluation .lang-zh { display: none !important; }
+    body.en #resource-evaluation .lang-en,
+    html[lang^="en"] #resource-evaluation .lang-en,
+    body.lang-en #resource-evaluation .lang-en,
+    body[data-lang="en"] #resource-evaluation .lang-en,
+    body.english #resource-evaluation .lang-en { display: inline !important; }
+
+    @media (max-width: 860px) {
+      #resource-evaluation .resource-header,
+      #resource-evaluation .resource-detail-grid,
+      #resource-evaluation .resource-notes { grid-template-columns: 1fr; }
+      #resource-evaluation .resource-tabs { grid-template-columns: 1fr; }
+      #resource-evaluation .resource-analysis-head { flex-direction: column; }
+      #resource-evaluation .resource-confidence { white-space: normal; }
+    }
+
+    @media (max-width: 560px) {
+      #resource-evaluation { padding-inline: 14px; }
+      #resource-evaluation .resource-analysis { border-radius: 22px; padding: 18px; }
+      #resource-evaluation .resource-step-label { font-size: 0.72rem; }
+      #resource-evaluation .resource-step-mark { width: 40px; height: 40px; }
+      #resource-evaluation .resource-status-labels { font-size: 0.68rem; }
+      #resource-evaluation .resource-detail-card { padding: 16px; }
+    }
+  </style>
+
+  <div class="resource-wrap">
+    <div class="resource-header">
+      <div>
+        <div class="resource-eyebrow">
+          <span class="lang-zh">資源評價｜VRIO</span>
+          <span class="lang-en">Resource Evaluation｜VRIO</span>
+        </div>
+        <div class="resource-title-row">
+          <h2 id="resource-title">
+            <span class="lang-zh">台達電核心資源與可持續競爭優勢</span>
+            <span class="lang-en">Delta's Core Resources and Sustainable Competitive Advantage</span>
+          </h2>
+          <button class="btn-voice resource-voice-button" onclick="readAloud('resource-evaluation')" title="語音導覽" aria-label="語音導覽 / Read Aloud">🔊</button>
+        </div>
+        <p class="resource-lead">
+          <span class="lang-zh">使用 VRIO 架構，明確區分「客觀事實」與「策略推論」，並避免使用過度絕對的敘述。點選不同資源與 VRIO 節點，可快速理解台達電如何把技術、組織與客戶關係轉化為競爭優勢。</span>
+          <span class="lang-en">This section applies the VRIO framework, separates objective facts from strategic inferences, and avoids overclaiming. Select a resource and a VRIO criterion to see how Delta turns technology, organization, and customer relationships into competitive advantage.</span>
+        </p>
+      </div>
+
+      <div class="resource-framework-card">
+        <strong>
+          <span class="lang-zh">判斷邏輯</span>
+          <span class="lang-en">Evaluation Logic</span>
+        </strong>
+        <span class="lang-zh">若資源同時具備價值、稀少性、難以模仿性，且台達電有組織能力加以運用，才較能形成可持續競爭優勢。</span>
+        <span class="lang-en">A resource is more likely to create sustainable advantage when it is valuable, rare, hard to imitate, and supported by the firm's organization.</span>
+      </div>
+    </div>
+
+    <div class="resource-tabs" id="resource-tabs" aria-label="Resource options"></div>
+
+    <div class="resource-analysis" aria-live="polite">
+      <div class="resource-analysis-head">
+        <div>
+          <h3 class="resource-active-title" id="resource-active-title"></h3>
+        </div>
+        <div class="resource-confidence" id="resource-confidence"></div>
+      </div>
+
+      <div class="resource-stepper-wrap">
+        <div class="resource-step-line"></div>
+        <div class="resource-step-progress" id="resource-step-progress"></div>
+        <div class="resource-stepper" id="resource-stepper" aria-label="VRIO criteria"></div>
+      </div>
+
+      <div class="resource-detail-grid">
+        <article class="resource-detail-card">
+          <h4>
+            <span class="resource-badge">Facts</span>
+            <span class="lang-zh">客觀事實</span>
+            <span class="lang-en">Objective Facts</span>
+          </h4>
+          <p id="resource-fact"></p>
+        </article>
+        <article class="resource-detail-card">
+          <h4>
+            <span class="resource-badge">Inference</span>
+            <span class="lang-zh">策略推論</span>
+            <span class="lang-en">Strategic Inference</span>
+          </h4>
+          <p id="resource-inference"></p>
+        </article>
+      </div>
+
+      <div class="resource-judgement">
+        <strong>
+          <span class="lang-zh">綜合判斷</span>
+          <span class="lang-en">Overall Judgement</span>
+        </strong>
+        <p id="resource-judgement"></p>
+      </div>
+
+      <div class="resource-status" aria-hidden="true">
+        <div class="resource-status-bar" id="resource-status-bar"></div>
+        <div class="resource-status-labels" id="resource-status-labels">
+          <span>
+            <span class="lang-zh">具備價值</span>
+            <span class="lang-en">Valuable</span>
+          </span>
+          <span>
+            <span class="lang-zh">形成差異化</span>
+            <span class="lang-en">Differentiated</span>
+          </span>
+          <span>
+            <span class="lang-zh">具模仿障礙</span>
+            <span class="lang-en">Imitation Barrier</span>
+          </span>
+          <span>
+            <span class="lang-zh">可轉為持續優勢</span>
+            <span class="lang-en">Sustained Advantage</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="resource-notes">
+      <div class="resource-note">
+        <strong>
+          <span class="lang-zh">來源說明：</span>
+          <span class="lang-en">Source Note:</span>
+        </strong>
+        <span class="lang-zh">本區依據 TP1/TP2 小組分析與台達電官方公開資料整理。</span>
+        <span class="lang-en">This section is based on TP1/TP2 team analysis and Delta's official public information.</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const root = document.getElementById('resource-evaluation');
+      if (!root) return;
+
+      const text = (zh, en) => `<span class="lang-zh">${zh}</span><span class="lang-en">${en}</span>`;
+
+      const resources = [
+        {
+          icon: 'AI',
+          confidence: {
+            zh: '資料強度：高',
+            en: 'Evidence Strength: High'
+          },
+          title: {
+            zh: 'AI 伺服器電源與液冷整合能力',
+            en: 'AI Server Power and Liquid-Cooling Integration'
+          },
+          subtitle: {
+            zh: 'Grid-to-Chip 系統級解決方案',
+            en: 'Grid-to-Chip system-level solution'
+          },
+          judgement: {
+            zh: '這是目前三項資源中最適合作為主軸的核心優勢。其競爭力不只來自單一電源或散熱零件，而是來自電源、液冷、機櫃與客戶協作的系統整合能力。若能持續取得大型雲端與 AI 平台專案，較可能形成可持續競爭優勢。',
+            en: 'This is the strongest core resource among the three. Its advantage does not come from a single power or cooling component, but from system integration across power, liquid cooling, racks, and customer co-development. If Delta continues to win major cloud and AI platform projects, this resource is more likely to support sustainable competitive advantage.'
+          },
+          steps: [
+            {
+              code: 'V',
+              name: { zh: '價值', en: 'Value' },
+              fact: {
+                zh: '台達電在 AI 資料中心領域提供涵蓋 HVDC 電力架構、AI 伺服器 Power Shelf、CDU、冷板與資料中心基礎設施管理等方案，主軸是處理高密度 AI 運算下的供電效率與散熱瓶頸。',
+                en: 'Delta provides AI data center solutions covering HVDC power architecture, AI server power shelves, CDUs, cold plates, and data center infrastructure management, aiming to address power-efficiency and thermal bottlenecks in high-density AI computing.'
+              },
+              inference: {
+                zh: '此資源能降低客戶在供電損耗、散熱失效與系統整合上的風險，因此具備高度商業價值，並有助於回應 AI 算力擴張帶來的能耗與散熱痛點。',
+                en: 'This resource reduces customer risks related to power loss, thermal failure, and system integration, giving it high commercial value while helping address the energy and cooling pain points caused by AI computing growth.'
+              }
+            },
+            {
+              code: 'R',
+              name: { zh: '稀少性', en: 'Rarity' },
+              fact: {
+                zh: '市場上部分競爭者較集中於電源、風扇、水冷板或 CDU 等單一環節；台達電的差異化在於同時具備電源與液冷散熱的整合能力。',
+                en: `Some competitors focus on individual areas such as power supplies, fans, cold plates, or CDUs; Delta's differentiation lies in its ability to integrate both power and liquid-cooling capabilities.`
+              },
+              inference: {
+                zh: '跨電力電子、熱管理與機櫃系統的整合能力並非普遍資源，因此具備稀少性，也能讓台達電在高密度 AI 資料中心方案中形成差異化。',
+                en: 'The ability to integrate power electronics, thermal management, and rack-level systems is not common, so it has rarity and helps Delta differentiate in high-density AI data center solutions.'
+              }
+            },
+            {
+              code: 'I',
+              name: { zh: '難以模仿', en: 'Inimitability' },
+              fact: {
+                zh: 'AI 資料中心電源與液冷方案需要長期的電力電子、熱傳、可靠度測試、量產良率與客戶共同驗證經驗；這些能力通常需要多年專案與工程資料累積。',
+                en: 'AI data center power and liquid-cooling solutions require long-term capabilities in power electronics, thermal engineering, reliability testing, manufacturing yield, and customer validation; these capabilities usually require years of projects and engineering data.'
+              },
+              inference: {
+                zh: '難以模仿性主要來自路徑依賴、驗證週期與客戶轉換成本。較保守的結論是：新進者即使投入資本，也不容易在短期內複製同等的系統整合與客戶信任。',
+                en: 'Inimitability mainly comes from path dependence, validation cycles, and customer switching costs. A conservative conclusion is that even well-funded entrants are unlikely to replicate the same level of system integration and customer trust in the short term.'
+              }
+            },
+            {
+              code: 'O',
+              name: { zh: '組織支援', en: 'Organization' },
+              fact: {
+                zh: '台達電近年以事業單位、地理區域與功能部門形成混合式組織，並透過全球研發、生產、智慧製造與客戶支援能力承接大型 B2B 專案。',
+                en: 'Delta uses a hybrid organization combining business units, geographic units, and functional units, supported by global R&D, manufacturing, smart manufacturing, and customer service capabilities for large B2B projects.'
+              },
+              inference: {
+                zh: '此組織架構有助於把分散在電源、散熱、自動化與全球營運的資源整合成可交付的系統方案。因此在 VRIO 中，AI Grid-to-Chip 較能被判定為「可形成持續性競爭優勢」的資源。',
+                en: 'This organizational design helps integrate resources across power, cooling, automation, and global operations into deliverable system solutions. In VRIO terms, AI Grid-to-Chip is more likely to support sustainable competitive advantage.'
+              }
+            }
+          ]
+        },
+        {
+          icon: 'EV',
+          confidence: {
+            zh: '資料強度：中高',
+            en: 'Evidence Strength: Medium-High'
+          },
+          title: {
+            zh: '電動車 X-in-1 動力系統整合能力',
+            en: 'EV X-in-1 Powertrain Integration'
+          },
+          subtitle: {
+            zh: '第二成長曲線與車規級資源',
+            en: 'Second growth curve and automotive-grade capability'
+          },
+          judgement: {
+            zh: 'X-in-1 可作為資源評價的第二主軸，但論述應比 AI 伺服器更保守。其優勢來自高整合產品設計、車規級驗證與全球供應能力；是否能形成長期優勢，仍取決於車廠採用、量產規模與價格競爭。',
+            en: 'X-in-1 can serve as the second pillar of the resource evaluation, but the claims should be more conservative than those for AI servers. Its advantage comes from integrated product design, automotive-grade validation, and global supply capability. Whether it becomes a long-term advantage depends on OEM adoption, production scale, and pricing competition.'
+          },
+          steps: [
+            {
+              code: 'V',
+              name: { zh: '價值', en: 'Value' },
+              fact: {
+                zh: '台達電 Mobility 事業涵蓋電動車電力電子、驅動馬達、馬達驅動器與 X-in-1 整合型系統；X-in-1 可依客戶需求整合牽引逆變器、車載充電器、DC/DC 與 EVCC 等模組。',
+                en: `Delta's Mobility business covers EV power electronics, traction motors, motor drives, and X-in-1 integrated systems. X-in-1 can integrate modules such as traction inverter, onboard charger, DC/DC converter, and EVCC according to customer needs.`
+              },
+              inference: {
+                zh: '整合式設計可協助車廠降低體積、重量、成本與組裝複雜度，對電動車續航、空間配置與供應鏈管理具有商業價值。',
+                en: 'Integrated design can help automakers reduce size, weight, cost, and assembly complexity, creating commercial value for EV range, packaging, and supply-chain management.'
+              }
+            },
+            {
+              code: 'R',
+              name: { zh: '稀少性', en: 'Rarity' },
+              fact: {
+                zh: '車用動力系統需要電力電子、馬達控制、熱管理、機械結構與車規驗證能力。能同時進行高度整合並達到穩定量產的供應商，比單一零組件供應商更少。',
+                en: 'EV powertrain systems require capabilities in power electronics, motor control, thermal management, mechanical design, and automotive validation. Suppliers that can integrate these capabilities and deliver stable mass production are fewer than single-component suppliers.'
+              },
+              inference: {
+                zh: 'X-in-1 的稀少性來自跨領域整合與車規經驗，而不是單一技術本身。相較於單一零組件供應商，這類整合能力具備一定稀少性。',
+                en: 'The rarity of X-in-1 comes from cross-domain integration and automotive-grade experience, not from one single technology. Compared with single-component suppliers, this integration capability has a certain degree of rarity.'
+              }
+            },
+            {
+              code: 'I',
+              name: { zh: '難以模仿', en: 'Inimitability' },
+              fact: {
+                zh: '車規級產品通常需要長時間驗證、安全與可靠度測試，以及與車廠平台設計的配合。供應商必須累積量產紀錄與品質信任。',
+                en: 'Automotive-grade products usually require long validation cycles, safety and reliability testing, and alignment with automaker platform designs. Suppliers must accumulate mass-production records and quality trust.'
+              },
+              inference: {
+                zh: '模仿障礙主要來自驗證週期、品質責任與車廠信任，而非單靠專利。新進者短期內較難取得同等客戶信任，但既有車用供應商仍可能競爭。',
+                en: 'The imitation barrier comes mainly from validation cycles, quality responsibility, and automaker trust, rather than patents alone. New entrants may find it difficult to gain equivalent trust quickly, although established automotive suppliers can still compete.'
+              }
+            },
+            {
+              code: 'O',
+              name: { zh: '組織支援', en: 'Organization' },
+              fact: {
+                zh: '台達電已將交通事業獨立為四大事業範疇之一，使電動車動力系統能獲得更清楚的市場定位與資源配置。',
+                en: 'Delta has established Mobility as one of its four business categories, giving EV powertrain systems clearer market positioning and resource allocation.'
+              },
+              inference: {
+                zh: '獨立事業範疇有助於聚焦車用市場與客戶需求，因此 X-in-1 具備被組織有效利用的條件。但其持續性優勢仍需用實際車廠專案與營收貢獻補強。',
+                en: 'A dedicated business category helps focus on automotive markets and customer needs, so X-in-1 has organizational support. However, its long-term advantage still needs to be strengthened with concrete OEM projects and revenue contribution.'
+              }
+            }
+          ]
+        },
+        {
+          icon: 'ESG',
+          confidence: {
+            zh: '資料強度：中',
+            en: 'Evidence Strength: Medium'
+          },
+          title: {
+            zh: '智慧綠色工廠與能源管理解決方案',
+            en: 'Smart Green Factory and Energy Management Solutions'
+          },
+          subtitle: {
+            zh: 'ESG、節能與自動化的組織能力',
+            en: 'Organizational capability in ESG, energy saving, and automation'
+          },
+          judgement: {
+            zh: 'ESG 與智慧綠色工廠能力較適合定位為支援性資源，可強化品牌信任、顧問式銷售與解決方案可信度。搭配具體節能案例時，更能支撐台達電在企業級市場的差異化。',
+            en: `ESG and smart green factory capabilities are better positioned as supporting resources that strengthen brand trust, consultative selling, and solution credibility. When paired with concrete energy-saving cases, they can better support Delta's differentiation in enterprise markets.`
+          },
+          steps: [
+            {
+              code: 'V',
+              name: { zh: '價值', en: 'Value' },
+              fact: {
+                zh: '台達電的自動化與基礎設施業務涵蓋工業自動化、樓宇管理、能源管理、儲能、太陽能逆變器、資料中心與智慧綠色工廠相關方案。',
+                en: `Delta's Automation and Infrastructure businesses cover industrial automation, building management, energy management, energy storage, solar inverters, data centers, and smart green factory solutions.`
+              },
+              inference: {
+                zh: '在企業面臨碳費、能源成本與 ESG 揭露壓力的情境下，能同時提供節能硬體、能源管理與自動化整合服務，具備實際商業價值。',
+                en: 'As companies face carbon fees, energy costs, and ESG disclosure pressure, the ability to provide energy-saving hardware, energy management, and automation integration has practical commercial value.'
+              }
+            },
+            {
+              code: 'R',
+              name: { zh: '稀少性', en: 'Rarity' },
+              fact: {
+                zh: '部分市場參與者偏向硬體設備、顧問服務或軟體平台；台達電的特色在於結合自有自動化產品、能源管理技術與內部永續實踐經驗。',
+                en: `Some market participants focus mainly on hardware, consulting services, or software platforms. Delta's distinctive feature is the combination of its automation products, energy-management technologies, and internal sustainability practices.`
+              },
+              inference: {
+                zh: '這類「硬體＋軟體＋實作經驗」的組合具有一定稀少性。由於 ESG 方案市場參與者多元，台達電的優勢更適合描述為相對差異化。',
+                en: `This combination of hardware, software, and implementation experience has some rarity. Because ESG solution providers are diverse, Delta's advantage is best described as relative differentiation.`
+              }
+            },
+            {
+              code: 'I',
+              name: { zh: '難以模仿', en: 'Inimitability' },
+              fact: {
+                zh: '智慧製造、節能營運、供應鏈低碳管理與品牌信任，通常來自長期制度、流程、員工能力與跨部門合作，而不是單一設備。',
+                en: 'Smart manufacturing, energy-saving operations, low-carbon supply-chain management, and brand trust usually come from long-term systems, processes, employee capabilities, and cross-functional collaboration rather than a single device.'
+              },
+              inference: {
+                zh: '此資源的模仿障礙主要是組織常規、因果模糊性與社會複雜性。競爭者可以購買類似設備，但較難快速複製台達長期累積的節能營運經驗與品牌信任。',
+                en: `The imitation barrier mainly comes from organizational routines, causal ambiguity, and social complexity. Competitors can buy similar equipment, but it is harder to quickly replicate Delta's accumulated energy-saving operational experience and brand trust.`
+              }
+            },
+            {
+              code: 'O',
+              name: { zh: '組織支援', en: 'Organization' },
+              fact: {
+                zh: '台達電設有 ESG、智慧製造、能源管理、品牌管理與台達管理系統等功能單位，可支援不同事業部把節能經驗轉化為對外方案。',
+                en: 'Delta has functional units such as ESG, smart manufacturing, energy management, brand management, and the Delta Management System, supporting business units in turning energy-saving experience into external solutions.'
+              },
+              inference: {
+                zh: '組織支援使 ESG 不只是形象敘事，而能連結到自動化、能源管理與資料中心解決方案。其競爭優勢屬於「支援性與信任型優勢」，強度中等，但能提升整體解決方案可信度。',
+                en: `Organizational support makes ESG more than a branding narrative; it connects to automation, energy management, and data center solutions. Its advantage is supportive and trust-based, moderate in strength, but helpful in increasing the credibility of Delta's overall solutions.`
+              }
+            }
+          ]
+        }
+      ];
+
+      let activeResource = 0;
+      let activeStep = 0;
+
+      const tabsEl = root.querySelector('#resource-tabs');
+      const stepperEl = root.querySelector('#resource-stepper');
+      const titleEl = root.querySelector('#resource-active-title');
+      const confidenceEl = root.querySelector('#resource-confidence');
+      const factEl = root.querySelector('#resource-fact');
+      const inferenceEl = root.querySelector('#resource-inference');
+      const judgementEl = root.querySelector('#resource-judgement');
+      const progressEl = root.querySelector('#resource-step-progress');
+      const statusBarEl = root.querySelector('#resource-status-bar');
+      const statusLabelsEl = root.querySelector('#resource-status-labels');
+
+      function renderTabs() {
+        tabsEl.innerHTML = resources.map((item, index) => `
+          <button type="button" class="resource-tab ${index === activeResource ? 'active' : ''}" aria-pressed="${index === activeResource}" data-resource-index="${index}">
+            <div class="tab-icon">${item.icon}</div>
+            <h3>${text(item.title.zh, item.title.en)}</h3>
+            <p>${text(item.subtitle.zh, item.subtitle.en)}</p>
+          </button>
+        `).join('');
+
+        tabsEl.querySelectorAll('.resource-tab').forEach(button => {
+          button.addEventListener('click', () => {
+            activeResource = Number(button.dataset.resourceIndex);
+            activeStep = 0;
+            render();
+          });
+        });
+      }
+
+      function renderStepper() {
+        const steps = resources[activeResource].steps;
+        stepperEl.innerHTML = steps.map((step, index) => {
+          const stateClass = index === activeStep ? 'active' : index < activeStep ? 'completed' : '';
+          return `
+            <button type="button" class="resource-step ${stateClass}" aria-pressed="${index === activeStep}" data-step-index="${index}">
+              <span class="resource-step-mark">${step.code}</span>
+              <span class="resource-step-label">${text(step.name.zh, step.name.en)}</span>
+            </button>
+          `;
+        }).join('');
+
+        stepperEl.querySelectorAll('.resource-step').forEach(button => {
+          button.addEventListener('click', () => {
+            activeStep = Number(button.dataset.stepIndex);
+            render();
+          });
+        });
+      }
+
+      function renderContent() {
+        const resource = resources[activeResource];
+        const step = resource.steps[activeStep];
+        titleEl.innerHTML = text(resource.title.zh, resource.title.en);
+        confidenceEl.innerHTML = text(resource.confidence.zh, resource.confidence.en);
+        factEl.innerHTML = text(step.fact.zh, step.fact.en);
+        inferenceEl.innerHTML = text(step.inference.zh, step.inference.en);
+        judgementEl.innerHTML = text(resource.judgement.zh, resource.judgement.en);
+
+        const progress = activeStep / (resource.steps.length - 1) * 88;
+        progressEl.style.width = `${progress}%`;
+        statusBarEl.style.width = `${(activeStep + 1) * 25}%`;
+
+        statusLabelsEl.querySelectorAll('span').forEach((label, index) => {
+          label.classList.toggle('active', index <= activeStep);
+        });
+      }
+
+      function render() {
+        renderTabs();
+        renderStepper();
+        renderContent();
+      }
+
+      render();
+    })();
+  </script>
+</section>
 
         <!-- 成長策略 (錨點 #growth-strategy) -->
         <section id="growth-strategy">
@@ -3011,8 +3868,55 @@
             
             let textToRead = "";
             
+            // 特殊處理：如果是資源評價，只讀取當前活躍的內容
+            if (sectionId === 'resource-evaluation') {
+                // 讀取資源評價標題
+                const titleEl = section.querySelector('#resource-title');
+                if (titleEl) {
+                    const titleSpan = titleEl.querySelector(`.lang-${currentLang}`);
+                    if (titleSpan && window.getComputedStyle(titleSpan).display !== 'none') {
+                        textToRead += titleSpan.innerText + "。 ";
+                    }
+                }
+                
+                // 讀取當前選中的資源名稱 - 提取只有可見語言的文字
+                const activeTitle = section.querySelector('#resource-active-title');
+                if (activeTitle) {
+                    const titleSpan = activeTitle.querySelector(`.lang-${currentLang}`);
+                    if (titleSpan && window.getComputedStyle(titleSpan).display !== 'none') {
+                        textToRead += titleSpan.innerText + "。 ";
+                    }
+                }
+                
+                // 讀取客觀事實 (Objective Facts) - 提取只有可見語言的文字
+                const factEl = section.querySelector('#resource-fact');
+                if (factEl) {
+                    const factSpan = factEl.querySelector(`.lang-${currentLang}`);
+                    if (factSpan && window.getComputedStyle(factSpan).display !== 'none' && factSpan.innerText.trim()) {
+                        textToRead += factSpan.innerText + "。 ";
+                    }
+                }
+                
+                // 讀取策略推論 (Strategic Inference) - 提取只有可見語言的文字
+                const inferenceEl = section.querySelector('#resource-inference');
+                if (inferenceEl) {
+                    const inferenceSpan = inferenceEl.querySelector(`.lang-${currentLang}`);
+                    if (inferenceSpan && window.getComputedStyle(inferenceSpan).display !== 'none' && inferenceSpan.innerText.trim()) {
+                        textToRead += inferenceSpan.innerText + "。 ";
+                    }
+                }
+                
+                // 讀取綜合判斷 (Overall Judgement) - 提取只有可見語言的文字
+                const judgementEl = section.querySelector('#resource-judgement');
+                if (judgementEl) {
+                    const judgementSpan = judgementEl.querySelector(`.lang-${currentLang}`);
+                    if (judgementSpan && window.getComputedStyle(judgementSpan).display !== 'none' && judgementSpan.innerText.trim()) {
+                        textToRead += judgementSpan.innerText + "。 ";
+                    }
+                }
+            }
             // 特殊處理：如果是團隊專區，只讀取當前活躍的選項卡內容
-            if (sectionId === 'team') {
+            else if (sectionId === 'team') {
                 const teamIntro = section.querySelector('#team-introduction');
                 if (teamIntro) {
                     const activePane = teamIntro.querySelector('.tab-pane.active');
