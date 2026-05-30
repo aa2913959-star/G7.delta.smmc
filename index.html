@@ -3696,6 +3696,588 @@
       padding: 0.85rem 1rem;
     }
   }
+
+/* Interactive learning block — copy into <style> when integrating */
+
+
+/* Bilingual */
+body.en .lang-zh {
+  display: none !important;
+}
+body.zh .lang-en {
+  display: none !important;
+}
+
+
+/* Section header */
+#interactive-learning .section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+
+#interactive-learning .section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary, #4a6fa5);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+
+#interactive-learning .section-title {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--text-main, #2b2d42);
+  line-height: 1.2;
+}
+
+
+#interactive-learning .section-description {
+  margin: 0;
+  max-width: 56rem;
+  color: var(--text-muted, #6b7280);
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+
+#interactive-learning .interactive-learning-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+
+#interactive-learning .il-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  width: 100%;
+}
+
+
+#interactive-learning .il-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 10rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(74, 111, 165, 0.24);
+  border-radius: 999px;
+  background: rgba(74, 111, 165, 0.08);
+  color: var(--text-main, #2b2d42);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition, all 0.35s ease);
+}
+
+
+#interactive-learning .il-tab:hover {
+  background: rgba(74, 111, 165, 0.14);
+  border-color: rgba(74, 111, 165, 0.4);
+}
+
+
+#interactive-learning .il-tab.is-active {
+  background: var(--primary, #4a6fa5);
+  color: #ffffff;
+  border-color: var(--primary, #4a6fa5);
+}
+
+
+#interactive-learning .il-panels {
+  width: 100%;
+}
+
+
+#interactive-learning .il-panel {
+  display: none;
+}
+
+
+#interactive-learning .il-panel.is-active {
+  display: block;
+}
+
+
+#interactive-learning .il-panel[hidden] {
+  display: none !important;
+}
+
+
+#interactive-learning .il-placeholder {
+  margin: 2rem 0;
+  text-align: center;
+  color: var(--text-muted, #6b7280);
+  font-size: 1rem;
+}
+
+
+/* Quiz */
+#interactive-learning .quiz-widget {
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-color, rgba(169, 214, 229, 0.4));
+  border-radius: var(--radius-md, 20px);
+  box-shadow: var(--card-shadow, 0 12px 32px rgba(43, 45, 66, 0.05));
+  padding: 1.5rem;
+}
+
+
+#interactive-learning .quiz-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.25rem;
+}
+
+
+#interactive-learning .quiz-counter {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted, #6b7280);
+}
+
+
+#interactive-learning .quiz-slide {
+  display: none;
+}
+
+
+#interactive-learning .quiz-slide.is-active {
+  display: block;
+}
+
+
+#interactive-learning .quiz-question {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-main, #2b2d42);
+  line-height: 1.5;
+  margin: 0 0 1.25rem;
+}
+
+
+#interactive-learning .quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+
+#interactive-learning .quiz-options-tf {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+#interactive-learning .quiz-options-tf .quiz-option {
+  flex: 1;
+  min-width: 7rem;
+}
+
+
+#interactive-learning .quiz-option {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-color, rgba(169, 214, 229, 0.4));
+  border-radius: var(--radius-sm, 12px);
+  background: var(--bg-secondary, #e8f4f8);
+  color: var(--text-main, #2b2d42);
+  font-family: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition, all 0.5s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+
+#interactive-learning .quiz-option:hover:not(:disabled) {
+  border-color: var(--accent, #89c2d9);
+  box-shadow: var(--card-shadow-hover, 0 16px 40px rgba(43, 45, 66, 0.1));
+}
+
+
+#interactive-learning .quiz-option:disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+
+
+#interactive-learning .quiz-option.is-selected.is-correct {
+  border-color: #16a34a;
+  background: rgba(22, 163, 74, 0.12);
+  color: #15803d;
+}
+
+
+#interactive-learning .quiz-option.is-selected.is-wrong {
+  border-color: #dc2626;
+  background: rgba(220, 38, 38, 0.1);
+  color: #b91c1c;
+}
+
+
+#interactive-learning .quiz-option.is-correct-answer {
+  border-color: #16a34a;
+  background: rgba(22, 163, 74, 0.12);
+  color: #15803d;
+}
+
+
+#interactive-learning .quiz-feedback {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm, 12px);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+
+#interactive-learning .quiz-feedback.is-correct {
+  background: rgba(22, 163, 74, 0.12);
+  color: #15803d;
+  border: 1px solid rgba(22, 163, 74, 0.35);
+}
+
+
+#interactive-learning .quiz-feedback.is-wrong {
+  background: rgba(220, 38, 38, 0.1);
+  color: #b91c1c;
+  border: 1px solid rgba(220, 38, 38, 0.35);
+}
+
+
+#interactive-learning .quiz-explanation {
+  margin-bottom: 1rem;
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius-sm, 12px);
+  background: var(--bg-secondary, #e8f4f8);
+  border-left: 4px solid var(--primary, #4a6fa5);
+}
+
+
+#interactive-learning .quiz-explanation p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-muted, #6b7280);
+}
+
+
+#interactive-learning .quiz-explanation p + p {
+  margin-top: 0.5rem;
+}
+
+
+#interactive-learning .quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color, rgba(169, 214, 229, 0.4));
+}
+
+
+#interactive-learning .quiz-btn {
+  padding: 0.65rem 1.35rem;
+  border: 1px solid var(--border-color, rgba(169, 214, 229, 0.4));
+  border-radius: var(--radius-sm, 12px);
+  background: var(--bg-card, #ffffff);
+  color: var(--text-main, #2b2d42);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition, all 0.5s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+
+#interactive-learning .quiz-btn:hover:not(:disabled) {
+  background: var(--primary, #4a6fa5);
+  color: #ffffff;
+  border-color: var(--primary, #4a6fa5);
+}
+
+
+#interactive-learning .quiz-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+
+#interactive-learning .quiz-results {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+
+#interactive-learning .quiz-results-title {
+  margin: 0 0 1rem;
+  font-size: 1.35rem;
+  color: var(--text-main, #2b2d42);
+}
+
+
+#interactive-learning .quiz-score-display {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary, #4a6fa5);
+}
+
+
+#interactive-learning .quiz-comment {
+  margin: 0 0 1.5rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--text-muted, #6b7280);
+}
+
+
+#interactive-learning .quiz-retry {
+  margin-top: 0.5rem;
+  background: var(--primary, #4a6fa5);
+  color: #ffffff;
+  border-color: var(--primary, #4a6fa5);
+}
+
+
+#interactive-learning .quiz-retry:hover:not(:disabled) {
+  background: var(--accent, #89c2d9);
+  border-color: var(--accent, #89c2d9);
+  color: var(--text-main, #2b2d42);
+}
+
+
+/* FAQ accordion */
+#interactive-learning .faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+
+#interactive-learning .faq-item {
+  border: 1px solid var(--border-color, rgba(169, 214, 229, 0.4));
+  border-radius: var(--radius-md, 20px);
+  background: var(--bg-card, #ffffff);
+  box-shadow: var(--card-shadow, 0 12px 32px rgba(43, 45, 66, 0.05));
+  overflow: hidden;
+  transition: var(--transition, all 0.5s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+
+#interactive-learning .faq-item.is-open {
+  border-color: var(--accent, #89c2d9);
+  box-shadow: var(--card-shadow-hover, 0 16px 40px rgba(43, 45, 66, 0.1));
+}
+
+
+#interactive-learning .faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: none;
+  background: transparent;
+  color: var(--text-main, #2b2d42);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition, all 0.5s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+
+#interactive-learning .faq-question-label {
+  flex: 1;
+  min-width: 0;
+}
+
+
+#interactive-learning .faq-question:hover {
+  color: var(--primary, #4a6fa5);
+}
+
+
+#interactive-learning .faq-item.is-open .faq-question {
+  color: var(--primary, #4a6fa5);
+}
+
+
+#interactive-learning .faq-icon {
+  flex-shrink: 0;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: 0.15rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+#interactive-learning .faq-item.is-open .faq-icon {
+  transform: rotate(225deg);
+}
+
+
+#interactive-learning .faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+#interactive-learning .faq-answer-inner {
+  overflow: hidden;
+}
+
+
+#interactive-learning .faq-answer-inner p {
+  margin: 0;
+  padding: 0 1.25rem 1.15rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-muted, #6b7280);
+}
+
+
+/* Flip card grid */
+#interactive-learning .flip-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+
+#interactive-learning .flip-card {
+  height: 300px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+
+#interactive-learning .flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+
+#interactive-learning .flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+
+#interactive-learning .flip-card-front,
+#interactive-learning .flip-card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--radius-md, 20px);
+  border: 1px solid var(--border-color, rgba(169, 214, 229, 0.4));
+  box-shadow: var(--card-shadow, 0 12px 32px rgba(43, 45, 66, 0.05));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.25rem 1.5rem;
+  transition: var(--transition, all 0.5s cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+
+#interactive-learning .flip-card-front {
+  background: var(--bg-card, #ffffff);
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+
+#interactive-learning .flip-card-back {
+  background: var(--primary, #4a6fa5);
+  color: #ffffff;
+  transform: rotateY(180deg);
+  justify-content: center;
+  gap: 0.75rem;
+  overflow-y: auto;
+}
+
+
+#interactive-learning .flip-card-keyword {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  color: var(--text-main, #2b2d42);
+  line-height: 1.35;
+  margin: 0;
+}
+
+
+#interactive-learning .flip-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted, #6b7280);
+  margin: 0.5rem 0 0;
+  letter-spacing: 0.02em;
+}
+
+
+#interactive-learning .flip-card-back p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0;
+  text-align: center;
+}
+
+
+body.dark-mode #interactive-learning .flip-card-back {
+  color: #0f172a;
+}
+
+
+@media (max-width: 767px) {
+  #interactive-learning .interactive-learning-layout {
+    gap: 1rem;
+  }
+
+
+  #interactive-learning .il-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+
+  #interactive-learning .il-tab {
+    flex: 0 0 auto;
+    min-width: 8rem;
+    font-size: 0.85rem;
+    padding: 0.75rem 0.85rem;
+  }
+}
 </style>
 
 <section id="delta-growth-strategy" aria-labelledby="delta-growth-title">
@@ -3927,37 +4509,474 @@
         </section>
 
         <!-- 互動學習 (錨點 #interactive-learning) -->
-        <section id="interactive-learning">
-            <div class="section-header">
-                <h2 class="section-title lang-zh">互動學習</h2>
-                <h2 class="section-title lang-en">Interactive Learning</h2>
-                <button class="btn-voice" onclick="readAloud('interactive-learning')" title="語音導覽">🔊</button>
+<section id="interactive-learning" class="content-section">
+  <div class="section-header">
+    <span class="section-tag">Interactive Learning</span>
+    <h2 class="section-title">
+      <span class="lang-zh">互動學習</span>
+      <span class="lang-en">Interactive Learning</span>
+    </h2>
+    <p class="section-description">
+      <span class="lang-zh">透過翻轉字卡、常見問答與知識測驗，複習台達電策略分析重點。</span>
+      <span class="lang-en">Review Delta's strategic analysis through flashcards, FAQs, and quizzes.</span>
+    </p>
+    <button class="btn-voice" onclick="readAloud('interactive-learning')" title="語音導覽">🔊</button>
+  </div>
+
+  <div class="interactive-learning-layout">
+    <div class="il-tabs" role="tablist" aria-label="互動學習分頁">
+      <button type="button" class="il-tab is-active" role="tab" aria-selected="true" aria-controls="tab-flashcards" data-tab="tab-flashcards" id="il-tab-flashcards">
+        <span class="lang-zh">翻轉字卡</span>
+        <span class="lang-en">Flashcards</span>
+      </button>
+      <button type="button" class="il-tab" role="tab" aria-selected="false" aria-controls="tab-faq" data-tab="tab-faq" id="il-tab-faq">
+        <span class="lang-zh">常見問答</span>
+        <span class="lang-en">FAQ</span>
+      </button>
+      <button type="button" class="il-tab" role="tab" aria-selected="false" aria-controls="tab-quiz" data-tab="tab-quiz" id="il-tab-quiz">
+        <span class="lang-zh">知識測驗</span>
+        <span class="lang-en">Quiz</span>
+      </button>
+    </div>
+
+    <div class="il-panels">
+      <div id="tab-flashcards" class="il-panel is-active" role="tabpanel" aria-labelledby="il-tab-flashcards">
+        <div id="text-flashcards">
+          <div class="flip-card-grid">
+
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <p class="flip-card-keyword lang-zh">從電網到晶片</p>
+                  <p class="flip-card-keyword lang-en">Grid-to-Chip</p>
+                  <p class="flip-hint lang-zh">點擊翻轉</p>
+                  <p class="flip-hint lang-en">Tap to flip</p>
+                </div>
+                <div class="flip-card-back">
+                  <p class="lang-zh">台達電將電源、配電、液冷與機櫃級方案整合，讓電力能從電網端更有效率地支援 AI 晶片運算。</p>
+                  <p class="lang-en">Delta integrates power, distribution, liquid cooling, and rack-level solutions so electricity can support AI chips more efficiently from the grid side to the chip side.</p>
+                </div>
+              </div>
             </div>
 
-            <div class="quiz-container">
-                <div class="lang-zh">
-                    <div class="quiz-question">Q: 下列何者是台達電近年推升營收成長的「雙引擎」關鍵技術？</div>
-                    <div class="quiz-options">
-                        <label class="quiz-option"><input type="radio" name="q1_zh" value="A"> A) 傳統筆記型電腦電源與滑鼠</label>
-                        <label class="quiz-option"><input type="radio" name="q1_zh" value="B"> B) AI 伺服器電源與液冷散熱解決方案</label>
-                        <label class="quiz-option"><input type="radio" name="q1_zh" value="C"> C) 智慧型手機面板製造</label>
-                    </div>
-                    <button class="quiz-btn" onclick="checkAnswer('zh')">提交答案</button>
-                    <div id="quiz-result-zh" style="margin-top: 15px; font-weight: bold;"></div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <p class="flip-card-keyword lang-zh">CDU（冷卻液分配裝置）</p>
+                  <p class="flip-card-keyword lang-en">CDU (Coolant Distribution Unit)</p>
+                  <p class="flip-hint lang-zh">點擊翻轉</p>
+                  <p class="flip-hint lang-en">Tap to flip</p>
                 </div>
-
-                <div class="lang-en">
-                    <div class="quiz-question">Q: What is the key "dual-engine" technology driving Delta's recent revenue growth?</div>
-                    <div class="quiz-options">
-                        <label class="quiz-option"><input type="radio" name="q1_en" value="A"> A) Traditional PC power supplies</label>
-                        <label class="quiz-option"><input type="radio" name="q1_en" value="B"> B) AI server power and liquid cooling solutions</label>
-                        <label class="quiz-option"><input type="radio" name="q1_en" value="C"> C) Smartphone panel manufacturing</label>
-                    </div>
-                    <button class="quiz-btn" onclick="checkAnswer('en')">Submit</button>
-                    <div id="quiz-result-en" style="margin-top: 15px; font-weight: bold;"></div>
+                <div class="flip-card-back">
+                  <p class="lang-zh">CDU 負責讓冷卻液在液冷系統中循環，搭配冷板與機櫃級設計，協助高密度 AI 資料中心降低散熱瓶頸。</p>
+                  <p class="lang-en">A CDU circulates coolant in liquid cooling systems. Together with cold plates and rack-level designs, it helps reduce thermal bottlenecks in high-density AI data centers.</p>
                 </div>
+              </div>
             </div>
-        </section>
+
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <p class="flip-card-keyword lang-zh">HVDC（高壓直流）</p>
+                  <p class="flip-card-keyword lang-en">HVDC (High-Voltage DC)</p>
+                  <p class="flip-hint lang-zh">點擊翻轉</p>
+                  <p class="flip-hint lang-en">Tap to flip</p>
+                </div>
+                <div class="flip-card-back">
+                  <p class="lang-zh">HVDC 是因應高密度、兆瓦級 AI 資料中心供電需求的重要架構，可降低電力傳輸與轉換過程中的損耗。</p>
+                  <p class="lang-en">HVDC is an important architecture for high-density, megawatt-scale AI data centers, helping reduce losses during power transmission and conversion.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <p class="flip-card-keyword lang-zh">BU / GU / FU</p>
+                  <p class="flip-card-keyword lang-en">BU / GU / FU</p>
+                  <p class="flip-hint lang-zh">點擊翻轉</p>
+                  <p class="flip-hint lang-en">Tap to flip</p>
+                </div>
+                <div class="flip-card-back">
+                  <p class="lang-zh">BU 聚焦四大事業範疇；GU 讓台達電貼近全球市場並降低供應鏈風險；FU 則提供研發、財務、人資、法務、IT、智慧製造與 ESG 等支援。</p>
+                  <p class="lang-en">BU focuses on the four business domains; GU keeps Delta close to global markets and reduces supply chain risk; FU provides shared support such as R&D, finance, HR, legal, IT, smart manufacturing, and ESG.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <p class="flip-card-keyword lang-zh">VRIO</p>
+                  <p class="flip-card-keyword lang-en">VRIO</p>
+                  <p class="flip-hint lang-zh">點擊翻轉</p>
+                  <p class="flip-hint lang-en">Tap to flip</p>
+                </div>
+                <div class="flip-card-back">
+                  <p class="lang-zh">VRIO 用來判斷資源是否具備價值、稀少性、難以模仿性，且是否有組織能力加以運用。網站以此分析台達電如何把技術、組織與客戶關係轉化為競爭優勢。</p>
+                  <p class="lang-en">VRIO evaluates whether resources are Valuable, Rare, hard to Imitate, and supported by Organization. The website uses it to explain how Delta turns technology, organization, and customer relationships into competitive advantage.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <p class="flip-card-keyword lang-zh">CSP（雲端服務供應商）</p>
+                  <p class="flip-card-keyword lang-en">CSP (Cloud Service Provider)</p>
+                  <p class="flip-hint lang-zh">點擊翻轉</p>
+                  <p class="flip-hint lang-en">Tap to flip</p>
+                </div>
+                <div class="flip-card-back">
+                  <p class="lang-zh">CSP 包含 Microsoft、AWS、Google、Meta 等大型雲端服務商，是 AI 資料中心建置的重要需求來源。</p>
+                  <p class="lang-en">CSPs include major cloud service providers such as Microsoft, AWS, Google, and Meta. They are major sources of demand for AI data center buildouts.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <p class="flip-card-keyword lang-zh">Design-in（先期共同研發）</p>
+                  <p class="flip-card-keyword lang-en">Design-in (Early Co-development)</p>
+                  <p class="flip-hint lang-zh">點擊翻轉</p>
+                  <p class="flip-hint lang-en">Tap to flip</p>
+                </div>
+                <div class="flip-card-back">
+                  <p class="lang-zh">Design-in 指在客戶平台或產品設計初期就共同定義規格。若方案被採用，後續更換供應商通常需要重新驗證，因而提高客戶黏著度。</p>
+                  <p class="lang-en">Design-in means co-defining specifications early in a customer's platform or product design. Once adopted, switching suppliers often requires re-validation, increasing customer stickiness.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <p class="flip-card-keyword lang-zh">Cold Plate（水冷板）</p>
+                  <p class="flip-card-keyword lang-en">Cold Plate</p>
+                  <p class="flip-hint lang-zh">點擊翻轉</p>
+                  <p class="flip-hint lang-en">Tap to flip</p>
+                </div>
+                <div class="flip-card-back">
+                  <p class="lang-zh">水冷板貼近 GPU、CPU 等高熱源，讓冷卻液帶走熱量，是液冷系統回應高功率密度需求的重要零件。</p>
+                  <p class="lang-en">A cold plate sits close to high-heat sources such as GPUs and CPUs, allowing coolant to carry heat away. It is a key component for handling high power density.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <p class="flip-card-keyword lang-zh">全球布局</p>
+                  <p class="flip-card-keyword lang-en">Global Footprint</p>
+                  <p class="flip-hint lang-zh">點擊翻轉</p>
+                  <p class="flip-hint lang-en">Tap to flip</p>
+                </div>
+                <div class="flip-card-back">
+                  <p class="lang-zh">台達電透過亞洲、歐洲、美洲等區域營運與製造據點，分散單一地區風險，並提高對大型客戶的在地回應能力。</p>
+                  <p class="lang-en">Through operations and manufacturing sites across Asia, Europe, and the Americas, Delta diversifies single-region risk and improves local responsiveness for major customers.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <p class="flip-card-keyword lang-zh">永續能源管理</p>
+                  <p class="flip-card-keyword lang-en">Sustainable Energy Management</p>
+                  <p class="flip-hint lang-zh">點擊翻轉</p>
+                  <p class="flip-hint lang-en">Tap to flip</p>
+                </div>
+                <div class="flip-card-back">
+                  <p class="lang-zh">台達電把高效電源、儲能系統與能源管理軟體整合，協助企業客戶降低能耗並提升能源調度彈性。</p>
+                  <p class="lang-en">Delta integrates efficient power products, energy storage systems, and energy management software to help corporate customers reduce energy use and improve energy flexibility.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-faq" class="il-panel" role="tabpanel" aria-labelledby="il-tab-faq">
+        <div class="faq-accordion">
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false">
+              <span class="faq-question-label">
+                <span class="lang-zh">為什麼台達電能受惠於 AI 資料中心成長？</span>
+                <span class="lang-en">Why can Delta benefit from AI data center growth?</span>
+              </span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p class="lang-zh">生成式 AI 使資料中心從單純追求晶片算力，轉向同時重視電力供應與高密度散熱。台達電原本就具備電源管理與散熱技術，因此能把既有能力延伸到 AI 資料中心基礎設施。</p>
+                <p class="lang-en">Generative AI shifts the data center bottleneck from chip computing power alone to power supply and high-density cooling. Delta already has strong power management and thermal capabilities, allowing it to extend these strengths into AI data center infrastructure.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false">
+              <span class="faq-question-label">
+                <span class="lang-zh">Grid-to-Chip 為什麼重要？</span>
+                <span class="lang-en">Why is Grid-to-Chip important?</span>
+              </span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p class="lang-zh">AI 資料中心的供電與散熱彼此牽動，若只買單一零件，客戶仍需自行處理整合風險。Grid-to-Chip 的價值在於把 HVDC、CDU、冷板與機櫃級方案整合，降低導入複雜度。</p>
+                <p class="lang-en">Power and cooling in AI data centers are tightly connected. If customers purchase only individual components, they still carry integration risk. Grid-to-Chip integrates HVDC, CDUs, cold plates, and rack-level solutions to reduce implementation complexity.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false">
+              <span class="faq-question-label">
+                <span class="lang-zh">台達電和只做電源或只做散熱的競爭者有何不同？</span>
+                <span class="lang-en">How is Delta different from competitors focused only on power or cooling?</span>
+              </span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p class="lang-zh">網站的五力分析指出，多數競爭者較偏向單一領域；台達電的差異在於能把電源與液冷雙核心技術結合，提供一站式方案，減少客戶自行整合的負擔。</p>
+                <p class="lang-en">The website's Five Forces analysis notes that many competitors specialize in one area. Delta's distinction is the ability to combine power and liquid cooling into a one-stop solution, reducing customers' integration burden.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false">
+              <span class="faq-question-label">
+                <span class="lang-zh">全球布局為什麼是競爭優勢？</span>
+                <span class="lang-en">Why is global footprint a competitive advantage?</span>
+              </span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p class="lang-zh">面對地緣政治、關稅與客戶在地化要求，全球布局可降低單一地區風險，並支援大型客戶快速交付。這讓台達電的製造與服務能力不只有效率，也更有韌性。</p>
+                <p class="lang-en">Facing geopolitics, tariffs, and localization requirements, global footprint reduces single-region risk and supports faster delivery for major customers. This makes Delta's manufacturing and service capabilities not only efficient but also resilient.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false">
+              <span class="faq-question-label">
+                <span class="lang-zh">永續能源為什麼不只是 ESG 形象？</span>
+                <span class="lang-en">Why is sustainable energy more than ESG branding?</span>
+              </span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p class="lang-zh">企業面對淨零、RE100 與供應鏈碳管理壓力，會更重視能源效率、儲能與碳足跡管理。台達電能將電源產品、儲能系統與能源管理軟體整合，因此永續能源也是商業成長策略。</p>
+                <p class="lang-en">As companies face net-zero, RE100, and supply chain carbon-management pressure, they care more about energy efficiency, storage, and carbon-footprint management. Delta can integrate power products, energy storage, and energy management software, making sustainable energy a business growth strategy.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-quiz" class="il-panel" role="tabpanel" aria-labelledby="il-tab-quiz">
+        <div class="quiz-widget">
+          <div class="quiz-header">
+            <span class="quiz-counter" aria-live="polite">1 / 10</span>
+          </div>
+
+          <div class="quiz-slides">
+            <div class="quiz-slide is-active" data-index="0" data-correct="A">
+              <p class="quiz-question lang-zh">台達電目前的四大事業範疇包含下列哪一組？</p>
+              <p class="quiz-question lang-en">Which set best describes Delta's four current business domains?</p>
+              <div class="quiz-options" role="group">
+                <button type="button" class="quiz-option" data-value="A"><span class="lang-zh">A) 電源及零組件、交通、自動化、基礎設施</span><span class="lang-en">A) Power Electronics, Mobility, Automation, Infrastructure</span></button>
+                <button type="button" class="quiz-option" data-value="B"><span class="lang-zh">B) 半導體、金融、零售、醫療</span><span class="lang-en">B) Semiconductors, Finance, Retail, Healthcare</span></button>
+                <button type="button" class="quiz-option" data-value="C"><span class="lang-zh">C) 筆電、手機、面板、遊戲</span><span class="lang-en">C) Laptops, Phones, Panels, Gaming</span></button>
+                <button type="button" class="quiz-option" data-value="D"><span class="lang-zh">D) 軟體、影音、廣告、電商</span><span class="lang-en">D) Software, Video, Advertising, E-commerce</span></button>
+              </div>
+              <p class="quiz-feedback" hidden></p>
+              <div class="quiz-explanation" hidden>
+                <p class="lang-zh">網站公司介紹列出台達電四大事業範疇：電源及零組件、交通、自動化、基礎設施。</p>
+                <p class="lang-en">The company introduction lists Delta's four business domains: Power Electronics, Mobility, Automation, and Infrastructure.</p>
+              </div>
+            </div>
+
+            <div class="quiz-slide" data-index="1" data-correct="A">
+              <p class="quiz-question lang-zh">在 BU / GU / FU 架構中，GU 主要代表什麼？</p>
+              <p class="quiz-question lang-en">In the BU / GU / FU structure, what does GU mainly represent?</p>
+              <div class="quiz-options" role="group">
+                <button type="button" class="quiz-option" data-value="A"><span class="lang-zh">A) 全球區域布局，協助貼近市場並降低供應鏈風險</span><span class="lang-en">A) Global units that stay close to markets and reduce supply-chain risk</span></button>
+                <button type="button" class="quiz-option" data-value="B"><span class="lang-zh">B) 只負責財務報表</span><span class="lang-en">B) Only financial reporting</span></button>
+                <button type="button" class="quiz-option" data-value="C"><span class="lang-zh">C) 只負責產品設計</span><span class="lang-en">C) Only product design</span></button>
+                <button type="button" class="quiz-option" data-value="D"><span class="lang-zh">D) 只負責公司品牌口號</span><span class="lang-en">D) Only corporate slogans</span></button>
+              </div>
+              <p class="quiz-feedback" hidden></p>
+              <div class="quiz-explanation" hidden>
+                <p class="lang-zh">GU 代表全球區域布局，能協助台達電貼近不同市場，並透過區域化生產、研發與服務降低供應鏈風險。</p>
+                <p class="lang-en">GU represents global units, helping Delta stay close to different markets and reduce supply-chain risks through localized production, R&D, and services.</p>
+              </div>
+            </div>
+
+            <div class="quiz-slide" data-index="2" data-correct="C">
+              <p class="quiz-question lang-zh">2025 年台達電合併營業額約為多少？</p>
+              <p class="quiz-question lang-en">What was Delta's approximate consolidated revenue in 2025?</p>
+              <div class="quiz-options" role="group">
+                <button type="button" class="quiz-option" data-value="A"><span class="lang-zh">A) 1,549 億元</span><span class="lang-en">A) NT$154.9B</span></button>
+                <button type="button" class="quiz-option" data-value="B"><span class="lang-zh">B) 3,012 億元</span><span class="lang-en">B) NT$301.2B</span></button>
+                <button type="button" class="quiz-option" data-value="C"><span class="lang-zh">C) 5,549 億元</span><span class="lang-en">C) NT$554.9B</span></button>
+                <button type="button" class="quiz-option" data-value="D"><span class="lang-zh">D) 9,000 億元</span><span class="lang-en">D) NT$900.0B</span></button>
+              </div>
+              <p class="quiz-feedback" hidden></p>
+              <div class="quiz-explanation" hidden>
+                <p class="lang-zh">網站的關鍵營運數字顯示，台達電 2025 年合併營業額約為新台幣 5,549 億元。</p>
+                <p class="lang-en">The key operating figures show Delta's 2025 consolidated revenue at about NT$554.9B.</p>
+              </div>
+            </div>
+
+            <div class="quiz-slide" data-index="3" data-correct="B">
+              <p class="quiz-question lang-zh">生成式 AI 與大型語言模型成長後，資料中心的核心瓶頸從「晶片算力」轉向什麼？</p>
+              <p class="quiz-question lang-en">With the rise of generative AI and large language models, what has the core data center bottleneck shifted toward?</p>
+              <div class="quiz-options" role="group">
+                <button type="button" class="quiz-option" data-value="A"><span class="lang-zh">A) 包裝設計與廣告行銷</span><span class="lang-en">A) Packaging design and advertising</span></button>
+                <button type="button" class="quiz-option" data-value="B"><span class="lang-zh">B) 電力供應與高密度散熱</span><span class="lang-en">B) Power supply and high-density thermal dissipation</span></button>
+                <button type="button" class="quiz-option" data-value="C"><span class="lang-zh">C) 門市通路與消費者折扣</span><span class="lang-en">C) Retail channels and consumer discounts</span></button>
+                <button type="button" class="quiz-option" data-value="D"><span class="lang-zh">D) 人資招募與員工旅遊</span><span class="lang-en">D) Recruiting and employee travel</span></button>
+              </div>
+              <p class="quiz-feedback" hidden></p>
+              <div class="quiz-explanation" hidden>
+                <p class="lang-zh">市場分析指出，AI 資料中心的核心瓶頸已從單純晶片算力轉向電力供應與高密度散熱。</p>
+                <p class="lang-en">The market analysis states that the bottleneck has shifted from raw chip computing power to power supply and high-density thermal dissipation.</p>
+              </div>
+            </div>
+
+            <div class="quiz-slide" data-index="4" data-correct="B">
+              <p class="quiz-question lang-zh">「Grid-to-Chip」在網站中的意思最接近下列何者？</p>
+              <p class="quiz-question lang-en">Which option best describes "Grid-to-Chip" as used on the website?</p>
+              <div class="quiz-options" role="group">
+                <button type="button" class="quiz-option" data-value="A"><span class="lang-zh">A) 從門市銷售到消費者付款</span><span class="lang-en">A) From retail sales to consumer payment</span></button>
+                <button type="button" class="quiz-option" data-value="B"><span class="lang-zh">B) 從電網端到晶片端，整合電源、液冷與機櫃級方案</span><span class="lang-en">B) From grid side to chip side, integrating power, liquid cooling, and rack-level solutions</span></button>
+                <button type="button" class="quiz-option" data-value="C"><span class="lang-zh">C) 從履歷篩選到員工培訓</span><span class="lang-en">C) From résumé screening to employee training</span></button>
+                <button type="button" class="quiz-option" data-value="D"><span class="lang-zh">D) 從廣告投放到品牌曝光</span><span class="lang-en">D) From ad placement to brand exposure</span></button>
+              </div>
+              <p class="quiz-feedback" hidden></p>
+              <div class="quiz-explanation" hidden>
+                <p class="lang-zh">成長策略區說明，台達電整合 HVDC、L2L CDU、冷板與機櫃級方案，以支撐 Grid-to-Chip 系統級解決方案。</p>
+                <p class="lang-en">The growth strategy section explains that Delta integrates HVDC, L2L CDUs, cold plates, and rack-level solutions to support Grid-to-Chip system solutions.</p>
+              </div>
+            </div>
+
+            <div class="quiz-slide" data-index="5" data-correct="B">
+              <p class="quiz-question lang-zh">成長策略區提到，台達電 AI 資料中心方案的重點不是只賣單一零件，而是什麼？</p>
+              <p class="quiz-question lang-en">According to the growth strategy section, Delta's AI data center strategy is not just selling individual components. What is its focus?</p>
+              <div class="quiz-options" role="group">
+                <button type="button" class="quiz-option" data-value="A"><span class="lang-zh">A) 降低產品品質以壓低價格</span><span class="lang-en">A) Lowering quality to reduce prices</span></button>
+                <button type="button" class="quiz-option" data-value="B"><span class="lang-zh">B) 整合高壓直流供電、CDU、冷板與機櫃級方案</span><span class="lang-en">B) Integrating HVDC power, CDUs, cold plates, and rack-level solutions</span></button>
+                <button type="button" class="quiz-option" data-value="C"><span class="lang-zh">C) 改做手機 App 服務</span><span class="lang-en">C) Switching to smartphone apps</span></button>
+                <button type="button" class="quiz-option" data-value="D"><span class="lang-zh">D) 完全退出硬體市場</span><span class="lang-en">D) Exiting hardware entirely</span></button>
+              </div>
+              <p class="quiz-feedback" hidden></p>
+              <div class="quiz-explanation" hidden>
+                <p class="lang-zh">網站指出台達電重點不是單一電源或散熱零件，而是把高壓直流供電、液冷 CDU、冷板與機櫃級整合方案組合起來。</p>
+                <p class="lang-en">The website notes that Delta's focus is not individual power or cooling parts, but the combination of HVDC power, liquid cooling CDUs, cold plates, and rack-level integration.</p>
+              </div>
+            </div>
+
+            <div class="quiz-slide" data-index="6" data-correct="B">
+              <p class="quiz-question lang-zh">台達電將「交通」事業獨立後，成長策略區認為它能更聚焦於哪一類產品？</p>
+              <p class="quiz-question lang-en">After separating its Mobility business, what product area does the growth strategy section say Delta can focus on more directly?</p>
+              <div class="quiz-options" role="group">
+                <button type="button" class="quiz-option" data-value="A"><span class="lang-zh">A) 手機面板與遊戲主機</span><span class="lang-en">A) Phone panels and game consoles</span></button>
+                <button type="button" class="quiz-option" data-value="B"><span class="lang-zh">B) 電動車動力系統與 X-in-1 整合方案</span><span class="lang-en">B) EV powertrain systems and X-in-1 integrated solutions</span></button>
+                <button type="button" class="quiz-option" data-value="C"><span class="lang-zh">C) 連鎖餐飲與零售通路</span><span class="lang-en">C) Chain restaurants and retail channels</span></button>
+                <button type="button" class="quiz-option" data-value="D"><span class="lang-zh">D) 金融保險與投資顧問</span><span class="lang-en">D) Insurance and investment advisory</span></button>
+              </div>
+              <p class="quiz-feedback" hidden></p>
+              <div class="quiz-explanation" hidden>
+                <p class="lang-zh">成長策略區指出，交通事業獨立後可更聚焦於電動車動力系統與 X-in-1 整合方案。</p>
+                <p class="lang-en">The growth strategy section says that after separating the Mobility business, Delta can focus more directly on EV powertrain systems and X-in-1 integrated solutions.</p>
+              </div>
+            </div>
+
+            <div class="quiz-slide" data-index="7" data-correct="B">
+              <p class="quiz-question lang-zh">目前網站的資源評價區使用哪一個分析框架？</p>
+              <p class="quiz-question lang-en">Which framework does the website's resource evaluation section use?</p>
+              <div class="quiz-options" role="group">
+                <button type="button" class="quiz-option" data-value="A"><span class="lang-zh">A) SWOT</span><span class="lang-en">A) SWOT</span></button>
+                <button type="button" class="quiz-option" data-value="B"><span class="lang-zh">B) VRIO</span><span class="lang-en">B) VRIO</span></button>
+                <button type="button" class="quiz-option" data-value="C"><span class="lang-zh">C) 4P</span><span class="lang-en">C) 4P</span></button>
+                <button type="button" class="quiz-option" data-value="D"><span class="lang-zh">D) STP</span><span class="lang-en">D) STP</span></button>
+              </div>
+              <p class="quiz-feedback" hidden></p>
+              <div class="quiz-explanation" hidden>
+                <p class="lang-zh">目前網站的資源評價區明確使用 VRIO，判斷資源是否具有價值、稀少性、難以模仿性與組織支持。</p>
+                <p class="lang-en">The website's resource evaluation section uses VRIO to evaluate whether resources are valuable, rare, difficult to imitate, and supported by the organization.</p>
+              </div>
+            </div>
+
+            <div class="quiz-slide" data-index="8" data-correct="A">
+              <p class="quiz-question lang-zh">台達電的全球布局策略主要目的是什麼？</p>
+              <p class="quiz-question lang-en">What is the main purpose of Delta's global footprint strategy?</p>
+              <div class="quiz-options" role="group">
+                <button type="button" class="quiz-option" data-value="A"><span class="lang-zh">A) 降低單一地區風險、貼近大型客戶並支援快速交付</span><span class="lang-en">A) Reduce single-region risk, stay close to major customers, and support faster delivery</span></button>
+                <button type="button" class="quiz-option" data-value="B"><span class="lang-zh">B) 完全放棄台灣市場</span><span class="lang-en">B) Completely abandon the Taiwan market</span></button>
+                <button type="button" class="quiz-option" data-value="C"><span class="lang-zh">C) 只為了降低員工薪資</span><span class="lang-en">C) Only to reduce wages</span></button>
+                <button type="button" class="quiz-option" data-value="D"><span class="lang-zh">D) 改做零售門市</span><span class="lang-en">D) Shift to retail stores</span></button>
+              </div>
+              <p class="quiz-feedback" hidden></p>
+              <div class="quiz-explanation" hidden>
+                <p class="lang-zh">成長策略區將全球布局視為降低單一地區風險、貼近大型客戶需求與支援快速交付的策略資產。</p>
+                <p class="lang-en">The growth strategy section views global footprint as a strategic asset for reducing single-region risk, staying close to major customers, and supporting faster delivery.</p>
+              </div>
+            </div>
+
+            <div class="quiz-slide" data-index="9" data-correct="A">
+              <p class="quiz-question lang-zh">台達電的永續策略主要如何創造企業客戶價值？</p>
+              <p class="quiz-question lang-en">How does Delta's sustainability strategy mainly create value for corporate customers?</p>
+              <div class="quiz-options" role="group">
+                <button type="button" class="quiz-option" data-value="A"><span class="lang-zh">A) 整合高效電源、儲能系統與能源管理軟體，協助企業降低能耗並提升調度彈性</span><span class="lang-en">A) Integrate efficient power, energy storage, and energy management software to reduce energy use and improve flexibility</span></button>
+                <button type="button" class="quiz-option" data-value="B"><span class="lang-zh">B) 只靠廣告宣傳環保形象</span><span class="lang-en">B) Rely only on environmental advertising</span></button>
+                <button type="button" class="quiz-option" data-value="C"><span class="lang-zh">C) 只販售消費性手機配件</span><span class="lang-en">C) Sell only consumer phone accessories</span></button>
+                <button type="button" class="quiz-option" data-value="D"><span class="lang-zh">D) 停止所有資料中心業務</span><span class="lang-en">D) Stop all data center business</span></button>
+              </div>
+              <p class="quiz-feedback" hidden></p>
+              <div class="quiz-explanation" hidden>
+                <p class="lang-zh">成長策略區指出，台達電可將電源產品、儲能系統與能源管理軟體整合，協助企業客戶降低能耗並提升能源調度彈性。</p>
+                <p class="lang-en">The growth strategy section states that Delta can integrate power products, energy storage systems, and energy management software to help corporate customers reduce energy use and improve energy flexibility.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="quiz-results" hidden>
+            <h3 class="quiz-results-title lang-zh">測驗完成</h3>
+            <h3 class="quiz-results-title lang-en">Quiz Complete</h3>
+            <p class="quiz-score-display"><span class="quiz-score-num">0</span> / 10</p>
+            <p class="quiz-comment lang-zh"></p>
+            <p class="quiz-comment lang-en"></p>
+            <button type="button" class="quiz-btn quiz-retry">
+              <span class="lang-zh">重新測驗</span>
+              <span class="lang-en">Retake Quiz</span>
+            </button>
+          </div>
+
+          <div class="quiz-nav">
+            <button type="button" class="quiz-btn quiz-prev" disabled>
+              <span class="lang-zh">上一題</span>
+              <span class="lang-en">Previous</span>
+            </button>
+            <button type="button" class="quiz-btn quiz-next">
+              <span class="lang-zh">下一題</span>
+              <span class="lang-en">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
         <!-- 團隊專區 (錨點 #team) -->
         <section id="team">
@@ -4877,6 +5896,127 @@
             });
             observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
         });
+
+        // --- Interactive Learning Block ---
+        (function () {
+          // Tab 切換
+          document.querySelectorAll('.il-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+              const target = tab.dataset.tab;
+              document.querySelectorAll('.il-tab').forEach(t => {
+                t.classList.remove('is-active');
+                t.setAttribute('aria-selected', 'false');
+              });
+              document.querySelectorAll('.il-panel').forEach(p => p.classList.remove('is-active'));
+              tab.classList.add('is-active');
+              tab.setAttribute('aria-selected', 'true');
+              document.getElementById(target)?.classList.add('is-active');
+            });
+          });
+
+          // FAQ 手風琴
+          document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const item = btn.closest('.faq-item');
+              const answer = item.querySelector('.faq-answer');
+              const isOpen = item.classList.contains('is-open');
+              item.classList.toggle('is-open', !isOpen);
+              btn.setAttribute('aria-expanded', String(!isOpen));
+              answer.style.maxHeight = isOpen ? '0' : answer.scrollHeight + 'px';
+            });
+          });
+
+          // Quiz 邏輯
+          const widget = document.querySelector('.quiz-widget');
+          if (!widget) return;
+          const slides = Array.from(widget.querySelectorAll('.quiz-slide'));
+          const counter = widget.querySelector('.quiz-counter');
+          const prevBtn = widget.querySelector('.quiz-prev');
+          const nextBtn = widget.querySelector('.quiz-next');
+          const resultsEl = widget.querySelector('.quiz-results');
+          const slidesWrap = widget.querySelector('.quiz-slides');
+          let current = 0, score = 0;
+
+          function showSlide(i) {
+            slides.forEach((s, idx) => s.classList.toggle('is-active', idx === i));
+            counter.textContent = (i + 1) + ' / ' + slides.length;
+            prevBtn.disabled = i === 0;
+            nextBtn.querySelector('.lang-zh').textContent = i === slides.length - 1 ? '查看結果' : '下一題';
+            nextBtn.querySelector('.lang-en').textContent = i === slides.length - 1 ? 'See Results' : 'Next';
+          }
+
+          widget.querySelectorAll('.quiz-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+              const slide = opt.closest('.quiz-slide');
+              if (slide.dataset.answered) return;
+              slide.dataset.answered = '1';
+              const correct = slide.dataset.correct;
+              const type = slide.dataset.type;
+              const val = opt.dataset.value;
+              let isCorrect;
+              if (type === 'tf') {
+                isCorrect = val === correct;
+              } else {
+                isCorrect = val === correct;
+              }
+              if (isCorrect) score++;
+              slide.querySelectorAll('.quiz-option').forEach(o => {
+                o.disabled = true;
+                if (type === 'tf') {
+                  if (o.dataset.value === correct) o.classList.add('is-correct-answer');
+                } else {
+                  if (o.dataset.value === correct) o.classList.add('is-correct-answer');
+                }
+              });
+              opt.classList.add(isCorrect ? 'is-correct' : 'is-wrong', 'is-selected');
+              const fb = slide.querySelector('.quiz-feedback');
+              fb.hidden = false;
+              fb.className = 'quiz-feedback ' + (isCorrect ? 'is-correct' : 'is-wrong');
+              fb.textContent = isCorrect
+                ? (document.body.classList.contains('zh') ? '✅ 答對了！' : '✅ Correct!')
+                : (document.body.classList.contains('zh') ? '❌ 答錯了' : '❌ Incorrect');
+              slide.querySelector('.quiz-explanation').hidden = false;
+            });
+          });
+
+          nextBtn.addEventListener('click', () => {
+            if (current < slides.length - 1) { current++; showSlide(current); }
+            else {
+              slidesWrap.hidden = true;
+              widget.querySelector('.quiz-nav').hidden = true;
+              widget.querySelector('.quiz-header').hidden = true;
+              resultsEl.hidden = false;
+              resultsEl.querySelector('.quiz-score-num').textContent = score;
+              const comments = [
+                ['加油，再複習一下！', 'Keep reviewing!'],
+                ['不錯，繼續努力！', 'Good effort, keep going!'],
+                ['很棒，掌握得很好！', 'Great job, well done!'],
+              ];
+              const tier = score <= 4 ? 0 : score <= 7 ? 1 : 2;
+              resultsEl.querySelector('.quiz-comment.lang-zh').textContent = comments[tier][0];
+              resultsEl.querySelector('.quiz-comment.lang-en').textContent = comments[tier][1];
+            }
+          });
+          prevBtn.addEventListener('click', () => { if (current > 0) { current--; showSlide(current); } });
+          widget.querySelector('.quiz-retry').addEventListener('click', () => {
+            score = 0; current = 0;
+            slides.forEach(s => {
+              delete s.dataset.answered;
+              s.querySelectorAll('.quiz-option').forEach(o => {
+                o.disabled = false;
+                o.className = 'quiz-option';
+              });
+              s.querySelector('.quiz-feedback').hidden = true;
+              s.querySelector('.quiz-explanation').hidden = true;
+            });
+            slidesWrap.hidden = false;
+            widget.querySelector('.quiz-nav').hidden = false;
+            widget.querySelector('.quiz-header').hidden = false;
+            resultsEl.hidden = true;
+            showSlide(0);
+          });
+          showSlide(0);
+        })();
 
     </script>
 </body>
