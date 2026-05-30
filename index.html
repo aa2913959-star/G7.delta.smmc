@@ -1620,7 +1620,7 @@
             <a href="#intro" onclick="toggleSidebar()"><span class="lang-zh">🏢 公司介紹</span><span class="lang-en">🏢 Company Intro</span></a>
             <a href="#market-analysis" onclick="toggleSidebar()"><span class="lang-zh">📊 市場分析</span><span class="lang-en">📊 Market Analysis</span></a>
             <a href="#resource-evaluation" onclick="toggleSidebar()"><span class="lang-zh">💎 資源評價</span><span class="lang-en">💎 Resource Eval</span></a>
-            <a href="#growth-strategy" onclick="toggleSidebar()"><span class="lang-zh">🚀 成長策略</span><span class="lang-en">🚀 Growth Strategy</span></a>
+            <a href="#delta-growth-strategy" onclick="toggleSidebar()"><span class="lang-zh">🚀 成長策略</span><span class="lang-en">🚀 Growth Strategy</span></a>
             <a href="#interactive-learning" onclick="toggleSidebar()"><span class="lang-zh">🧠 互動學習</span><span class="lang-en">🧠 Interactive Learning</span></a>
             <a href="#team" onclick="toggleSidebar()"><span class="lang-zh">👥 團隊專區</span><span class="lang-en">👥 Team Section</span></a>
         </div>
@@ -3269,22 +3269,638 @@
   </script>
 </section>
 
-        <!-- 成長策略 (錨點 #growth-strategy) -->
-        <section id="growth-strategy">
-            <div class="section-header">
-                <h2 class="section-title lang-zh">成長策略</h2>
-                <h2 class="section-title lang-en">Growth Strategy</h2>
-                <button class="btn-voice" onclick="readAloud('growth-strategy')" title="語音導覽">🔊</button>
-            </div>
-            <div class="card-grid">
-                <div class="card">
-                    <h3 class="lang-zh">跨國擴張與系統整合</h3>
-                    <h3 class="lang-en">Global Expansion & Integration</h3>
-                    <p class="lang-zh">泰國等東南亞新廠全面量產 (China+1)，強化供應鏈韌性。並透過併購與研發，加速從零組件供應商轉型為系統整合解決方案提供者。</p>
-                    <p class="lang-en">Expanding Thailand plants (China+1) for resilience. Transforming from a component supplier to a system solution provider via M&A and R&D.</p>
-                </div>
-            </div>
-        </section>
+        <!-- 成長策略區塊 (Delta Growth Strategy Section) | 錨點 #delta-growth-strategy -->
+<style>
+  /* ===== Delta Growth Strategy｜Scoped Styles Only ===== */
+  #delta-growth-strategy {
+    padding: 3rem 1.5rem;
+    background-color: var(--bg-secondary, #FAFAF7);
+    color: var(--text-main, #2B2D42);
+    font-family: 'Poppins', 'Inter', 'Noto Sans TC', sans-serif;
+  }
+
+  #delta-growth-strategy *,
+  #delta-growth-strategy *::before,
+  #delta-growth-strategy *::after {
+    box-sizing: border-box;
+  }
+
+  /* Bilingual fallback: 預設中文；若主頁已有語言切換，這段只作備援 */
+  #delta-growth-strategy .lang-en {
+    display: none;
+  }
+
+  body.lang-en #delta-growth-strategy .lang-zh,
+  html.lang-en #delta-growth-strategy .lang-zh,
+  body.en #delta-growth-strategy .lang-zh,
+  html.en #delta-growth-strategy .lang-zh,
+  body[data-lang="en"] #delta-growth-strategy .lang-zh,
+  html[data-lang="en"] #delta-growth-strategy .lang-zh,
+  body[data-language="en"] #delta-growth-strategy .lang-zh,
+  html[data-language="en"] #delta-growth-strategy .lang-zh {
+    display: none;
+  }
+
+  body.lang-en #delta-growth-strategy .lang-en,
+  html.lang-en #delta-growth-strategy .lang-en,
+  body.en #delta-growth-strategy .lang-en,
+  html.en #delta-growth-strategy .lang-en,
+  body[data-lang="en"] #delta-growth-strategy .lang-en,
+  html[data-lang="en"] #delta-growth-strategy .lang-en,
+  body[data-language="en"] #delta-growth-strategy .lang-en,
+  html[data-language="en"] #delta-growth-strategy .lang-en {
+    display: inline;
+  }
+
+  #delta-growth-strategy .delta-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color, rgba(169, 214, 229, 0.4));
+  }
+
+  #delta-growth-strategy .delta-section-title {
+    color: var(--primary, #4A6FA5);
+    font-size: 2rem;
+    line-height: 1.25;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  #delta-growth-strategy .delta-voice-btn {
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+  }
+
+  #delta-growth-strategy .delta-voice-btn:hover {
+    background: var(--bg-card);
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow);
+  }
+
+  #delta-growth-strategy .delta-intro {
+    margin: 0 0 1.5rem;
+    color: var(--text-muted, #6B7280);
+    line-height: 1.75;
+    font-size: 1.05rem;
+  }
+
+  #delta-growth-strategy .delta-metric-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1.25rem 0 2rem;
+  }
+
+  #delta-growth-strategy .delta-metric-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 180px;
+    padding: 1.4rem;
+    border-radius: var(--radius-md, 20px);
+    background: var(--bg-card, #FFFFFF);
+    border: 1px solid var(--border-color, rgba(169, 214, 229, 0.4));
+    box-shadow: var(--card-shadow, 0 12px 32px rgba(43, 45, 66, 0.05));
+    transition: var(--transition, all 0.5s cubic-bezier(0.16, 1, 0.3, 1));
+  }
+
+  #delta-growth-strategy .delta-metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover, 0 20px 40px rgba(43, 45, 66, 0.08));
+  }
+
+  #delta-growth-strategy .delta-metric-value {
+    display: block;
+    color: var(--primary, #4A6FA5);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.04em;
+  }
+
+  #delta-growth-strategy .delta-metric-title {
+    display: block;
+    color: var(--text-main, #2B2D42);
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+
+  #delta-growth-strategy .delta-metric-card p {
+    margin: 0;
+    color: var(--text-muted, #6B7280);
+    line-height: 1.65;
+    font-size: 0.92rem;
+  }
+
+  #delta-growth-strategy .delta-source-chip {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-top: 1rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--primary, #4A6FA5);
+    background-color: rgba(169, 214, 229, 0.18);
+    border: 1px solid var(--border-color, rgba(169, 214, 229, 0.4));
+  }
+
+  #delta-growth-strategy .delta-tab-menu {
+    display: flex;
+    gap: 0.85rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color, rgba(169, 214, 229, 0.4));
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  #delta-growth-strategy .delta-tab-menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  #delta-growth-strategy .delta-tab-btn {
+    padding: 1rem 1.35rem;
+    border: none;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    color: var(--text-muted, #6B7280);
+    font-size: 1.03rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: var(--transition, all 0.5s cubic-bezier(0.16, 1, 0.3, 1));
+  }
+
+  #delta-growth-strategy .delta-tab-btn:hover {
+    color: var(--primary, #4A6FA5);
+    background-color: rgba(169, 214, 229, 0.1);
+    border-radius: 10px 10px 0 0;
+  }
+
+  #delta-growth-strategy .delta-tab-btn.is-active {
+    color: var(--primary, #4A6FA5);
+    border-bottom-color: var(--primary, #4A6FA5);
+  }
+
+  #delta-growth-strategy .delta-tab-panel {
+    display: none;
+    animation: deltaGrowthFadeIn 0.45s ease-out both;
+  }
+
+  #delta-growth-strategy .delta-tab-panel.is-active {
+    display: block;
+  }
+
+  @keyframes deltaGrowthFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  #delta-growth-strategy .delta-content-card {
+    padding: 2.4rem;
+    border-radius: var(--radius-lg, 32px);
+    background-color: var(--bg-card, #FFFFFF);
+    box-shadow: var(--card-shadow, 0 12px 32px rgba(43, 45, 66, 0.05));
+    border-top: 6px solid var(--accent, #289C2D);
+  }
+
+  #delta-growth-strategy .delta-tab-heading {
+    margin: 0 0 0.75rem;
+    color: var(--primary, #4A6FA5);
+    font-size: 1.45rem;
+    line-height: 1.35;
+    font-weight: 800;
+  }
+
+  #delta-growth-strategy .delta-tab-lead {
+    margin: 0 0 1.5rem;
+    color: var(--text-muted, #6B7280);
+    line-height: 1.75;
+    font-size: 0.98rem;
+  }
+
+  #delta-growth-strategy .delta-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.1rem;
+    margin-top: 1.25rem;
+  }
+
+  #delta-growth-strategy .delta-strategy-box {
+    padding: 1.35rem;
+    border-radius: var(--radius-md, 20px);
+    background-color: var(--bg-secondary, #FAFAF7);
+    border: 1px solid var(--border-color, rgba(169, 214, 229, 0.4));
+    box-shadow: var(--card-shadow, 0 12px 32px rgba(43, 45, 66, 0.05));
+    transition: var(--transition, all 0.5s cubic-bezier(0.16, 1, 0.3, 1));
+  }
+
+  #delta-growth-strategy .delta-strategy-box:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover, 0 20px 40px rgba(43, 45, 66, 0.08));
+  }
+
+  #delta-growth-strategy .delta-strategy-box h4 {
+    margin: 0 0 0.8rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 2px solid var(--border-color, rgba(169, 214, 229, 0.4));
+    color: var(--primary, #4A6FA5);
+    font-size: 1.02rem;
+    line-height: 1.45;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  #delta-growth-strategy .delta-strategy-box p {
+    margin: 0;
+    color: var(--text-muted, #6B7280);
+    font-size: 0.92rem;
+    line-height: 1.72;
+  }
+
+  #delta-growth-strategy .delta-risk-box {
+    border-top: 4px solid var(--danger, #D9383A);
+  }
+
+  #delta-growth-strategy .delta-risk-box h4 {
+    color: var(--danger, #D9383A);
+  }
+
+  #delta-growth-strategy .delta-flow {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.85rem;
+    margin: 1.25rem 0;
+  }
+
+  #delta-growth-strategy .delta-flow-step {
+    position: relative;
+    padding: 1rem;
+    border-radius: var(--radius-md, 20px);
+    background-color: rgba(169, 214, 229, 0.12);
+    border: 1px solid var(--border-color, rgba(169, 214, 229, 0.4));
+  }
+
+  #delta-growth-strategy .delta-flow-step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -0.65rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary, #4A6FA5);
+    font-weight: 800;
+  }
+
+  #delta-growth-strategy .delta-flow-step strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--text-main, #2B2D42);
+    font-size: 0.95rem;
+  }
+
+  #delta-growth-strategy .delta-flow-step span {
+    color: var(--text-muted, #6B7280);
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  #delta-growth-strategy .delta-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1rem;
+  }
+
+  #delta-growth-strategy .delta-tech-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.55rem 0.8rem;
+    border-radius: 999px;
+    background-color: rgba(40, 156, 45, 0.1);
+    border: 1px solid rgba(40, 156, 45, 0.25);
+    color: var(--text-main, #2B2D42);
+    font-weight: 700;
+    font-size: 0.88rem;
+  }
+
+  #delta-growth-strategy .delta-conclusion {
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: var(--radius-lg, 32px);
+    background-color: var(--primary, #4A6FA5);
+    color: #fff;
+    border-left: 8px solid var(--accent, #289C2D);
+    box-shadow: var(--card-shadow, 0 12px 32px rgba(43, 45, 66, 0.05));
+  }
+
+  #delta-growth-strategy .delta-conclusion p {
+    margin: 0;
+    line-height: 1.75;
+    font-size: 1rem;
+  }
+
+  #delta-growth-strategy .delta-disclosure {
+    margin-top: 1.35rem;
+    padding: 1.25rem 1.4rem;
+    border-radius: var(--radius-md, 20px);
+    background-color: rgba(169, 214, 229, 0.12);
+    border: 1px solid var(--border-color, rgba(169, 214, 229, 0.4));
+    color: var(--text-muted, #6B7280);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  #delta-growth-strategy .delta-disclosure summary {
+    cursor: pointer;
+    color: var(--primary, #4A6FA5);
+    font-weight: 800;
+  }
+
+  #delta-growth-strategy .delta-disclosure p {
+    margin: 0.8rem 0 0;
+  }
+
+  #delta-growth-strategy .delta-source-list {
+    margin: 0.75rem 0 0;
+    padding-left: 1.2rem;
+  }
+
+  #delta-growth-strategy .delta-source-list li {
+    margin-bottom: 0.35rem;
+  }
+
+  @media (max-width: 1024px) {
+    #delta-growth-strategy .delta-card-grid,
+    #delta-growth-strategy .delta-flow {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #delta-growth-strategy .delta-flow-step:not(:last-child)::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #delta-growth-strategy {
+      padding: 2rem 1rem;
+    }
+
+    #delta-growth-strategy .delta-section-header {
+      align-items: flex-start;
+    }
+
+    #delta-growth-strategy .delta-section-title {
+      font-size: 1.55rem;
+    }
+
+    #delta-growth-strategy .delta-metric-grid,
+    #delta-growth-strategy .delta-card-grid,
+    #delta-growth-strategy .delta-flow {
+      grid-template-columns: 1fr;
+    }
+
+    #delta-growth-strategy .delta-content-card,
+    #delta-growth-strategy .delta-conclusion {
+      padding: 1.45rem;
+    }
+
+    #delta-growth-strategy .delta-tab-btn {
+      font-size: 0.95rem;
+      padding: 0.85rem 1rem;
+    }
+  }
+</style>
+
+<section id="delta-growth-strategy" aria-labelledby="delta-growth-title">
+  <div class="delta-section-header">
+    <h2 id="delta-growth-title" class="delta-section-title">
+      <span class="lang-zh">台達電：成長策略與資源整合</span>
+      <span class="lang-en">Delta Electronics: Growth Strategy and Resource Integration</span>
+    </h2>
+    <button class="delta-voice-btn" type="button" aria-label="語音導覽 / Voice guide" title="語音導覽 / Voice guide" data-delta-voice>🔊</button>
+  </div>
+
+  <div class="delta-readable-area">
+    <p class="delta-intro">
+      <span class="lang-zh">本區將台達電的成長策略整理為「AI 資料中心、電動車、全球布局、永續能源」四個方向，並將資料分成官方資料、外部市場估計與小組推論，避免把估計值寫成確定事實。</span>
+      <span class="lang-en">This section summarizes Delta Electronics' growth strategy into four directions: AI data centers, EV mobility, global footprint, and sustainable energy. Data are separated into official information, market estimates, and group inferences to avoid presenting estimates as confirmed facts.</span>
+    </p>
+
+    <div class="delta-metric-grid" aria-label="Key AI data center numbers">
+      <article class="delta-metric-card">
+        <span class="delta-metric-value">65%</span>
+        <strong class="delta-metric-title"><span class="lang-zh">AI 電源市佔估計</span><span class="lang-en">Estimated AI PSU Share</span></strong>
+        <p><span class="lang-zh">市場與法人分析認為，台達電在 AI 伺服器電源供應器市場具領先地位，部分估計市佔率約 65%。此數字屬市場估計，非公司官方財報揭露。</span><span class="lang-en">Market and analyst reports view Delta as a leading AI server PSU supplier, with some estimates placing its share at around 65%. This is a market estimate, not a figure directly disclosed in Delta's financial reports.</span></p>
+        <span class="delta-source-chip"><span class="lang-zh">市場估計</span><span class="lang-en">Market estimate</span></span>
+      </article>
+
+      <article class="delta-metric-card">
+        <span class="delta-metric-value">800V DC</span>
+        <strong class="delta-metric-title"><span class="lang-zh">高壓直流供電架構</span><span class="lang-en">HVDC Power Architecture</span></strong>
+        <p><span class="lang-zh">台達電於 OCP 2025 展示支援 800VDC 與 ±400VDC 的電源架構，對應高密度、兆瓦級 AI 資料中心的供電需求。</span><span class="lang-en">At OCP 2025, Delta showcased power architectures supporting 800VDC and ±400VDC, targeting high-density, megawatt-scale AI data centers.</span></p>
+        <span class="delta-source-chip"><span class="lang-zh">官方資料</span><span class="lang-en">Official source</span></span>
+      </article>
+
+      <article class="delta-metric-card">
+        <span class="delta-metric-value">2MW</span>
+        <strong class="delta-metric-title"><span class="lang-zh">L2L CDU 散熱能力</span><span class="lang-en">L2L CDU Cooling Capacity</span></strong>
+        <p><span class="lang-zh">台達電新一代液對液 L2L 冷卻液分配裝置 CDU，官方展示資料標示散熱能力為 2,000kW，約 2MW。</span><span class="lang-en">Delta's new liquid-to-liquid L2L CDU was presented with 2,000kW, or approximately 2MW, of cooling capacity in its official showcase.</span></p>
+        <span class="delta-source-chip"><span class="lang-zh">官方資料</span><span class="lang-en">Official source</span></span>
+      </article>
+    </div>
+
+    <div class="delta-tab-menu" role="tablist" aria-label="Delta growth strategy tabs">
+      <button class="delta-tab-btn is-active" type="button" role="tab" aria-selected="true" aria-controls="delta-tab-ai" id="delta-tab-ai-btn" data-delta-tab-target="delta-tab-ai"><span>💻</span><span class="lang-zh">AI 資料中心</span><span class="lang-en">AI Data Centers</span></button>
+      <button class="delta-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="delta-tab-ev" id="delta-tab-ev-btn" data-delta-tab-target="delta-tab-ev"><span>🚗</span><span class="lang-zh">電動車成長</span><span class="lang-en">EV Growth</span></button>
+      <button class="delta-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="delta-tab-global" id="delta-tab-global-btn" data-delta-tab-target="delta-tab-global"><span>🌍</span><span class="lang-zh">全球布局</span><span class="lang-en">Global Footprint</span></button>
+      <button class="delta-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="delta-tab-esg" id="delta-tab-esg-btn" data-delta-tab-target="delta-tab-esg"><span>🔋</span><span class="lang-zh">永續能源</span><span class="lang-en">Sustainable Energy</span></button>
+    </div>
+
+    <div id="delta-tab-ai" class="delta-tab-panel is-active" role="tabpanel" aria-labelledby="delta-tab-ai-btn">
+      <div class="delta-content-card">
+        <h3 class="delta-tab-heading"><span class="lang-zh">核心成長策略：AI 資料中心電源與液冷整合</span><span class="lang-en">Core Growth Strategy: Integrated Power and Liquid Cooling for AI Data Centers</span></h3>
+        <p class="delta-tab-lead"><span class="lang-zh">台達電的重點不是只賣單一電源或散熱零件，而是將高壓直流供電、液冷 CDU、冷板與機櫃級整合方案組合起來，回應 AI 資料中心的高功率密度與高能源效率需求。</span><span class="lang-en">Delta's focus is not limited to selling individual power or cooling components. It integrates HVDC power, liquid cooling CDUs, cold plates, and rack-level solutions to address the high power density and efficiency needs of AI data centers.</span></p>
+
+        <div class="delta-flow" aria-label="AI supply chain position">
+          <div class="delta-flow-step"><strong><span class="lang-zh">AI 平台升級</span><span class="lang-en">AI Platform Upgrade</span></strong><span><span class="lang-zh">NVIDIA 等新一代 AI 平台提高功率密度。</span><span class="lang-en">Next-generation AI platforms increase power density.</span></span></div>
+          <div class="delta-flow-step"><strong><span class="lang-zh">CSP / ODM 需求</span><span class="lang-en">CSP / ODM Demand</span></strong><span><span class="lang-zh">雲端服務商與伺服器廠需要更穩定的供電與散熱。</span><span class="lang-en">Cloud and server players need more reliable power and cooling.</span></span></div>
+          <div class="delta-flow-step"><strong><span class="lang-zh">台達電方案</span><span class="lang-en">Delta Solution</span></strong><span><span class="lang-zh">HVDC 電源、L2L CDU、冷板與機櫃級整合。</span><span class="lang-en">HVDC power, L2L CDU, cold plates, and rack-level integration.</span></span></div>
+          <div class="delta-flow-step"><strong><span class="lang-zh">資料中心價值</span><span class="lang-en">Data Center Value</span></strong><span><span class="lang-zh">提升能源效率、降低整合複雜度與散熱瓶頸。</span><span class="lang-en">Improves efficiency and reduces integration and thermal bottlenecks.</span></span></div>
+        </div>
+
+        <div class="delta-card-grid">
+          <article class="delta-strategy-box"><h4><span>📈</span><span class="lang-zh">市場動能</span><span class="lang-en">Market Driver</span></h4><p><span class="lang-zh">AI 運算帶動資料中心機櫃功率密度上升，使高效率電源與液冷散熱從加分項轉為關鍵基礎設施。</span><span class="lang-en">AI computing raises rack-level power density, turning high-efficiency power and liquid cooling from optional upgrades into critical infrastructure.</span></p></article>
+          <article class="delta-strategy-box"><h4><span>💎</span><span class="lang-zh">核心資源</span><span class="lang-en">Key Resource</span></h4><p><span class="lang-zh">台達電具備電力電子、熱管理、機櫃整合與量產可靠度經驗，可支撐 Grid-to-Chip 的系統級方案。</span><span class="lang-en">Delta combines power electronics, thermal management, rack integration, and manufacturing reliability to support Grid-to-Chip system solutions.</span></p></article>
+          <article class="delta-strategy-box"><h4><span>🔗</span><span class="lang-zh">策略行動</span><span class="lang-en">Strategic Action</span></h4><p><span class="lang-zh">以 800VDC、Power Shelf、CDU 與冷板等模組建立一站式方案，提高客戶導入效率與後續擴充黏著度。</span><span class="lang-en">Build one-stop solutions with 800VDC, Power Shelves, CDUs, and cold plates to improve adoption efficiency and future expansion stickiness.</span></p></article>
+          <article class="delta-strategy-box delta-risk-box"><h4><span>⚠️</span><span class="lang-zh">風險控管</span><span class="lang-en">Risk Control</span></h4><p><span class="lang-zh">液冷、HVDC 與 AI 平台規格變化快速，應持續追蹤認證、專利布局、良率與客戶集中風險。</span><span class="lang-en">Liquid cooling, HVDC, and AI platform standards evolve quickly, so certifications, patents, yield, and customer concentration risks must be monitored.</span></p></article>
+        </div>
+        <div class="delta-tag-row" aria-label="AI technology focus tags"><span class="delta-tech-tag">⚡ HVDC</span><span class="delta-tech-tag">💧 Liquid Cooling</span><span class="delta-tech-tag">🧩 Grid-to-Chip</span><span class="delta-tech-tag">🖥️ Rack-level Integration</span></div>
+      </div>
+    </div>
+
+    <div id="delta-tab-ev" class="delta-tab-panel" role="tabpanel" aria-labelledby="delta-tab-ev-btn">
+      <div class="delta-content-card">
+        <h3 class="delta-tab-heading"><span class="lang-zh">鄰近成長策略：擴大電動車驅動整合系統</span><span class="lang-en">Adjacent Growth Strategy: Expanding Integrated EV Drive Systems</span></h3>
+        <p class="delta-tab-lead"><span class="lang-zh">台達電將交通事業獨立後，可更聚焦於電動車動力系統與 X-in-1 整合方案，將既有電力電子能力延伸到車用市場。</span><span class="lang-en">After separating its Mobility business, Delta can focus more directly on EV powertrain systems and X-in-1 integration, extending its power electronics capabilities into automotive applications.</span></p>
+        <div class="delta-card-grid">
+          <article class="delta-strategy-box"><h4><span>📈</span><span class="lang-zh">市場動能</span><span class="lang-en">Market Driver</span></h4><p><span class="lang-zh">全球車廠持續朝電氣化發展，對高整合、輕量化與高效率的驅動及充電模組需求提升。</span><span class="lang-en">Automakers continue moving toward electrification, increasing demand for integrated, lightweight, and efficient drive and charging modules.</span></p></article>
+          <article class="delta-strategy-box"><h4><span>💎</span><span class="lang-zh">核心資源</span><span class="lang-en">Key Resource</span></h4><p><span class="lang-zh">台達電的電力電子基礎可支援馬達、逆變器、車載充電器與驅動系統的整合設計。</span><span class="lang-en">Delta's power electronics base supports integrated design across motors, inverters, onboard chargers, and drive systems.</span></p></article>
+          <article class="delta-strategy-box"><h4><span>🔗</span><span class="lang-zh">策略行動</span><span class="lang-en">Strategic Action</span></h4><p><span class="lang-zh">從單一零組件轉向整合式動力系統，有助提升單車價值、降低客戶整合成本，並深化與車廠合作。</span><span class="lang-en">Moving from components to integrated powertrain systems can increase value per vehicle, reduce integration costs, and deepen automaker partnerships.</span></p></article>
+          <article class="delta-strategy-box delta-risk-box"><h4><span>⚠️</span><span class="lang-zh">風險控管</span><span class="lang-en">Risk Control</span></h4><p><span class="lang-zh">若車廠提高自研自製比重，或電動車市場成長放緩，可能影響交通事業的訂單與毛利表現。</span><span class="lang-en">If automakers increase in-house production or EV growth slows, orders and margins in the Mobility business may face pressure.</span></p></article>
+        </div>
+      </div>
+    </div>
+
+    <div id="delta-tab-global" class="delta-tab-panel" role="tabpanel" aria-labelledby="delta-tab-global-btn">
+      <div class="delta-content-card">
+        <h3 class="delta-tab-heading"><span class="lang-zh">全球布局策略：強化供應鏈韌性與在地服務</span><span class="lang-en">Global Footprint Strategy: Strengthening Supply Chain Resilience and Local Support</span></h3>
+        <p class="delta-tab-lead"><span class="lang-zh">台達電的全球布局可視為降低單一地區風險、貼近大型客戶需求與支援快速交付的策略資產。</span><span class="lang-en">Delta's global footprint is a strategic asset for reducing single-region risk, staying close to major customers, and supporting faster delivery.</span></p>
+        <div class="delta-card-grid">
+          <article class="delta-strategy-box"><h4><span>📈</span><span class="lang-zh">市場動能</span><span class="lang-en">Market Driver</span></h4><p><span class="lang-zh">地緣政治、關稅與客戶在地化要求提高，使跨國供應鏈從效率導向轉為「效率＋韌性」並重。</span><span class="lang-en">Geopolitical risk, tariffs, and localization requirements push supply chains to balance efficiency with resilience.</span></p></article>
+          <article class="delta-strategy-box"><h4><span>💎</span><span class="lang-zh">核心資源</span><span class="lang-en">Key Resource</span></h4><p><span class="lang-zh">透過亞洲、歐洲、美洲等區域營運與製造據點，台達電可分散產能並提升客戶即時回應能力。</span><span class="lang-en">Through operations and manufacturing sites across Asia, Europe, and the Americas, Delta can diversify capacity and improve customer responsiveness.</span></p></article>
+          <article class="delta-strategy-box"><h4><span>🔗</span><span class="lang-zh">策略行動</span><span class="lang-en">Strategic Action</span></h4><p><span class="lang-zh">以區域化生產、在地技術支援與跨區調度能力，降低供應中斷風險並支援大型專案交付。</span><span class="lang-en">Use regional production, local engineering support, and cross-region allocation to reduce disruption risk and support large-scale project delivery.</span></p></article>
+          <article class="delta-strategy-box delta-risk-box"><h4><span>⚠️</span><span class="lang-zh">風險控管</span><span class="lang-en">Risk Control</span></h4><p><span class="lang-zh">海外擴廠涉及資本支出、人才招募、法規適應與文化整合，需避免擴張速度超過管理能力。</span><span class="lang-en">Overseas expansion involves capital expenditure, talent recruitment, local regulations, and cultural integration, so expansion should not exceed managerial capacity.</span></p></article>
+        </div>
+      </div>
+    </div>
+
+    <div id="delta-tab-esg" class="delta-tab-panel" role="tabpanel" aria-labelledby="delta-tab-esg-btn">
+      <div class="delta-content-card">
+        <h3 class="delta-tab-heading"><span class="lang-zh">永續策略：高效電源、儲能與企業能源管理</span><span class="lang-en">Sustainability Strategy: Efficient Power, Energy Storage, and Corporate Energy Management</span></h3>
+        <p class="delta-tab-lead"><span class="lang-zh">台達電可將節能、電力轉換、儲能與能源管理能力整合，從硬體銷售延伸到企業低碳轉型方案。</span><span class="lang-en">Delta can integrate energy saving, power conversion, energy storage, and energy management capabilities, extending from hardware sales to corporate low-carbon transformation solutions.</span></p>
+        <div class="delta-card-grid">
+          <article class="delta-strategy-box"><h4><span>📈</span><span class="lang-zh">市場動能</span><span class="lang-en">Market Driver</span></h4><p><span class="lang-zh">淨零、RE100 與供應鏈碳管理要求提高，使企業更重視能源效率、儲能與碳足跡管理。</span><span class="lang-en">Net-zero goals, RE100, and supply chain carbon management make energy efficiency, storage, and carbon-footprint management more important.</span></p></article>
+          <article class="delta-strategy-box"><h4><span>💎</span><span class="lang-zh">核心資源</span><span class="lang-en">Key Resource</span></h4><p><span class="lang-zh">台達電長期投入高效率電源、BESS、PCS、EMS 與微電網控制，與其永續品牌定位相互支撐。</span><span class="lang-en">Delta's long-term investment in efficient power, BESS, PCS, EMS, and microgrid control supports its sustainability-oriented brand position.</span></p></article>
+          <article class="delta-strategy-box"><h4><span>🔗</span><span class="lang-zh">策略行動</span><span class="lang-en">Strategic Action</span></h4><p><span class="lang-zh">將電源產品、儲能系統與能源管理軟體整合，協助企業客戶降低能耗並提升能源調度彈性。</span><span class="lang-en">Integrate power products, energy storage systems, and energy management software to help corporate customers reduce energy use and improve flexibility.</span></p></article>
+          <article class="delta-strategy-box delta-risk-box"><h4><span>⚠️</span><span class="lang-zh">風險控管</span><span class="lang-en">Risk Control</span></h4><p><span class="lang-zh">儲能電芯與關鍵材料價格可能波動，系統安全與資安風險也會直接影響客戶信任。</span><span class="lang-en">Battery cells and key material prices may fluctuate, while system safety and cybersecurity risks can directly affect customer trust.</span></p></article>
+        </div>
+      </div>
+    </div>
+
+    <div class="delta-conclusion">
+      <p><strong><span class="lang-zh">策略總結：</span><span class="lang-en">Strategic Summary:</span></strong><span class="lang-zh">台達電的成長邏輯，是將既有的電力電子、散熱、全球製造與能源管理能力，整合成高附加價值的系統解決方案。AI 資料中心是核心成長引擎，電動車與永續能源是鄰近延伸，全球布局則支撐供應鏈韌性。若台達電能持續維持技術研發、客戶關係與跨區營運能力，將有助於延長其競爭優勢。</span><span class="lang-en">Delta's growth logic is to integrate its power electronics, thermal management, global manufacturing, and energy management capabilities into higher-value system solutions. AI data centers serve as the core growth engine, EVs and sustainable energy provide adjacent expansion, and the global footprint supports supply chain resilience. If Delta sustains its R&D, customer relationships, and cross-regional operations, it can extend its competitive advantage.</span></p>
+    </div>
+
+    <details class="delta-disclosure">
+      <summary><span class="lang-zh">資料來源與 AI 使用說明</span><span class="lang-en">Sources and AI Disclosure</span></summary>
+      <p><span class="lang-zh">本區內容根據小組 TP0、TP1、TP2 的公司介紹、市場分析與資源評價整理，並使用 AI 協助進行文字精簡、雙語轉換、互動版型設計與程式碼整理。最終內容仍需由小組成員檢核。65% 市佔率採「市場估計」標示；800VDC 與 2MW L2L CDU 採台達電官方展示資料標示。</span><span class="lang-en">This section is based on the group's TP0, TP1, and TP2 materials covering company background, market analysis, and resource evaluation. AI was used to support content condensation, bilingual rewriting, interaction design, and code organization. Final review remains the responsibility of the group. The 65% market share is labeled as a market estimate, while 800VDC and 2MW L2L CDU figures are based on Delta's official showcase materials.</span></p>
+      <ul class="delta-source-list">
+        <li><span class="lang-zh">小組資料：台達電 TP0、TP1、TP2。</span><span class="lang-en">Group materials: Delta Electronics TP0, TP1, and TP2.</span></li>
+        <li><span class="lang-zh">官方資料：台達電 2025 OCP 全球峰會新聞稿與展示資料。</span><span class="lang-en">Official source: Delta's 2025 OCP Global Summit press release and showcase materials.</span></li>
+        <li><span class="lang-zh">外部估計：市場／法人分析對 AI 伺服器電源市佔率之估計，非官方財報揭露。</span><span class="lang-en">External estimate: market and analyst estimates of AI server PSU share, not an official financial disclosure.</span></li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const section = document.getElementById('delta-growth-strategy');
+    if (!section || section.dataset.deltaGrowthReady === 'true') return;
+    section.dataset.deltaGrowthReady = 'true';
+
+    const tabButtons = section.querySelectorAll('[data-delta-tab-target]');
+    const panels = section.querySelectorAll('.delta-tab-panel');
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-delta-tab-target');
+        const targetPanel = section.querySelector('#' + targetId);
+        if (!targetPanel) return;
+
+        tabButtons.forEach((btn) => {
+          btn.classList.remove('is-active');
+          btn.setAttribute('aria-selected', 'false');
+        });
+
+        panels.forEach((panel) => {
+          panel.classList.remove('is-active');
+        });
+
+        button.classList.add('is-active');
+        button.setAttribute('aria-selected', 'true');
+        targetPanel.classList.add('is-active');
+      });
+    });
+
+    const voiceButton = section.querySelector('[data-delta-voice]');
+    if (voiceButton) {
+      voiceButton.addEventListener('click', () => {
+        readDeltaGrowthStrategy(section);
+      });
+    }
+
+    function isEnglishMode() {
+      const enProbe = section.querySelector('.lang-en');
+      if (!enProbe) return false;
+      return window.getComputedStyle(enProbe).display !== 'none';
+    }
+
+    function collectReadableText(root) {
+      const clone = root.cloneNode(true);
+      clone.querySelectorAll('.delta-tab-panel:not(.is-active), .delta-disclosure, script, style').forEach((node) => node.remove());
+      const english = isEnglishMode();
+      clone.querySelectorAll(english ? '.lang-zh' : '.lang-en').forEach((node) => node.remove());
+      return clone.innerText.replace(/\s+/g, ' ').replace(/→/g, ' ').trim();
+    }
+
+    function chooseVoice(utterance, english) {
+      const voices = window.speechSynthesis.getVoices ? window.speechSynthesis.getVoices() : [];
+      if (!voices || voices.length === 0) return;
+      const preferred = english
+        ? voices.find((voice) => /en-GB/i.test(voice.lang) && /Daniel|George|Arthur|Oliver|British|Male/i.test(voice.name)) || voices.find((voice) => /en-GB/i.test(voice.lang)) || voices.find((voice) => /^en/i.test(voice.lang))
+        : voices.find((voice) => /Yating|Taiwan|zh-TW|Mandarin|Chinese/i.test(voice.name) || /zh-TW/i.test(voice.lang)) || voices.find((voice) => /^zh/i.test(voice.lang));
+      if (preferred) utterance.voice = preferred;
+    }
+
+    function readDeltaGrowthStrategy(root) {
+      if (!window.speechSynthesis || !window.SpeechSynthesisUtterance) {
+        console.warn('This browser does not support the Web Speech API.');
+        return;
+      }
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        return;
+      }
+      const english = isEnglishMode();
+      const text = collectReadableText(root);
+      if (!text) return;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = english ? 'en-GB' : 'zh-TW';
+      utterance.rate = 1;
+      utterance.pitch = 1;
+      chooseVoice(utterance, english);
+      window.speechSynthesis.speak(utterance);
+    }
+  })();
+</script>
 
         <!-- 職缺資訊 (保留於畫面內，供加分參考) -->
         <section id="jobs">
