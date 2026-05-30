@@ -8,22 +8,36 @@
     <style>
         /* 基礎重置與變數設定：日系清透科技風 (Japanese Clean Tech) */
         :root {
-            /* 亮面 Light Mode (回復初始柔霧藍設定) */
-            --bg-main: #FAFAF7;
-            --bg-secondary: #FAFAF7;
-            --bg-card: #FFFFFF;
-            --primary: #4A6FA5;
-            --secondary: #A9D6E5;
-            --accent: #89C2D9;
-            --text-main: #2B2D42;
-            --text-muted: #6B7280;
-            --border-color: rgba(169, 214, 229, 0.4);
-            
+            /* 亮面 Light Mode */
+            --color-bg: #F8FAFC;
+            --color-surface: #FFFFFF;
+            --color-primary: #4A6FA5;
+            --color-primary-soft: #A9D6E5;
+            --color-accent: #89C2D9;
+            --color-text: #1E293B;
+            --color-muted: #64748B;
+            --color-border: #E2E8F0;
+            --color-nav: rgba(248, 250, 252, 0.85);
+            --color-card-shadow: 0 12px 32px rgba(43, 45, 66, 0.05);
+            --color-card-shadow-hover: 0 20px 40px rgba(43, 45, 66, 0.08);
+
+            /* alias for legacy styles */
+            --bg-main: var(--color-bg);
+            --bg-secondary: var(--color-bg);
+            --bg-card: var(--color-surface);
+            --primary: var(--color-primary);
+            --secondary: var(--color-primary-soft);
+            --accent: var(--color-accent);
+            --text-main: var(--color-text);
+            --text-muted: var(--color-muted);
+            --border-color: var(--color-border);
+            --nav-bg: var(--color-nav);
+
             /* 亮面專屬：漸層與 Header 設定 */
-            --gradient-01: linear-gradient(135deg, #4A6FA5, #A9D6E5);
-            --gradient-02: linear-gradient(180deg, #FAFAF7, #A9D6E5);
+            --gradient-01: linear-gradient(135deg, var(--color-primary), var(--color-primary-soft));
+            --gradient-02: linear-gradient(180deg, var(--color-bg), var(--color-primary-soft));
             --header-bg: var(--gradient-01);
-            --header-title-color: #FAFAF7;
+            --header-title-color: var(--color-surface);
             --header-sub-color: rgba(250, 250, 247, 0.9);
             --header-glow: transparent;
             --badge-bg: rgba(250, 250, 247, 0.15);
@@ -31,11 +45,10 @@
             --icon-bg: var(--gradient-02);
             --icon-radius: 18px;
             --icon-border: none;
-            
+
             /* UI 視覺細節 */
-            --nav-bg: rgba(250, 250, 247, 0.85);
-            --card-shadow: 0 12px 32px rgba(43, 45, 66, 0.05);
-            --card-shadow-hover: 0 20px 40px rgba(43, 45, 66, 0.08);
+            --card-shadow: var(--color-card-shadow);
+            --card-shadow-hover: var(--color-card-shadow-hover);
             --radius-sm: 12px;
             --radius-md: 20px;
             --radius-lg: 32px;
@@ -43,17 +56,28 @@
         }
 
         body.dark-mode {
-            /* 暗面 Dark Mode (維持新版科技風) */
-            --bg-main: #0F172A;
-            --bg-secondary: #1E293B;
-            --bg-card: #243447;
-            --primary: #7BAFD4;
-            --secondary: #A9D6E5;
-            --accent: #89C2D9;
-            --text-main: #F8FAFC;
-            --text-muted: #CBD5E1;
-            --border-color: #334155;
-            
+            /* 暗面 Dark Mode */
+            --color-dark-bg: #0F172A;
+            --color-dark-surface: #1E293B;
+            --color-dark-card: #243447;
+            --color-dark-primary: #7BAFD4;
+            --color-dark-primary-soft: #A9D6E5;
+            --color-dark-accent: #89C2D9;
+            --color-dark-text: #F8FAFC;
+            --color-dark-muted: #CBD5E1;
+            --color-dark-border: #334155;
+
+            --bg-main: var(--color-dark-bg);
+            --bg-secondary: var(--color-dark-surface);
+            --bg-card: var(--color-dark-card);
+            --primary: var(--color-dark-primary);
+            --secondary: var(--color-dark-primary-soft);
+            --accent: var(--color-dark-accent);
+            --text-main: var(--color-dark-text);
+            --text-muted: var(--color-dark-muted);
+            --border-color: var(--color-dark-border);
+            --nav-bg: rgba(15, 23, 42, 0.75);
+
             /* 暗面專屬：Header 與 Icon 設定 */
             --header-bg: var(--bg-secondary);
             --header-title-color: var(--primary);
@@ -64,9 +88,8 @@
             --icon-bg: var(--bg-main);
             --icon-radius: 50%;
             --icon-border: 1px solid var(--border-color);
-            
+
             /* UI 視覺細節 (暗色) */
-            --nav-bg: rgba(15, 23, 42, 0.75);
             --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
             --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
@@ -129,7 +152,8 @@
             border: 1px solid var(--border-color);
             color: var(--text-main);
             padding: 8px 20px;
-            border-radius: 40px;
+            min-height: 44px;
+            border-radius: 999px;
             cursor: pointer;
             font-weight: 500;
             font-size: 0.9rem;
@@ -173,15 +197,39 @@
         }
         .close-btn:hover { color: var(--text-main); transform: scale(1.1); }
 
-        .sidebar-nav { display: flex; flex-direction: column; gap: 8px; }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 12px; }
         .sidebar-nav a {
-            text-decoration: none; color: var(--text-muted);
-            font-weight: 500; font-size: 1.05rem; padding: 14px 16px;
-            border-radius: var(--radius-sm); transition: var(--transition);
-            display: flex; align-items: center; gap: 12px;
+            text-decoration: none;
+            color: var(--text-muted);
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: var(--radius-md);
+            padding: 16px 18px;
+            display: grid;
+            gap: 4px;
+            transition: var(--transition);
+            min-height: 70px;
         }
-        .sidebar-nav a:hover {
-            background: var(--bg-main); color: var(--primary); padding-left: 24px;
+        .sidebar-nav a .menu-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: inherit;
+            line-height: 1.2;
+        }
+        .sidebar-nav a .menu-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            opacity: 0.9;
+        }
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: var(--color-primary-soft);
+            color: var(--color-primary);
+            border-color: transparent;
+        }
+        .sidebar-nav a.active {
+            box-shadow: var(--card-shadow);
+            border-left: 4px solid var(--color-primary);
         }
 
         /* 標頭 (Hero Section) - 企業科技感 */
@@ -231,12 +279,34 @@
 
         /* 區塊標題 & 語音按鈕 */
         .section-header {
-            display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
         }
-        .section-title { font-size: 2rem; color: var(--text-main); font-weight: 600; position: relative; }
+        .section-meta {
+            max-width: min(760px, 100%);
+        }
+        .section-kicker {
+            font-size: 0.85rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.85rem;
+        }
+        .section-title { font-size: clamp(2rem, 4vw, 2.8rem); color: var(--text-main); font-weight: 600; margin: 0; position: relative; }
+        .section-description {
+            margin-top: 12px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 72ch;
+            font-size: 1rem;
+        }
         .section-title::after {
             content: ''; display: block; width: 32px; height: 3px;
-            background-color: var(--primary); margin: 16px auto 0; border-radius: 4px; opacity: 0.7;
+            background-color: var(--color-primary); margin: 16px auto 0; border-radius: 4px; opacity: 0.7;
         }
         .btn-voice {
             background: transparent; border: 1px solid var(--border-color); border-radius: 50%;
@@ -244,7 +314,7 @@
             display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: var(--transition);
         }
         .btn-voice:hover { 
-            background: var(--bg-card); border-color: var(--primary); color: var(--primary);
+            background: var(--color-surface); border-color: var(--color-primary); color: var(--color-primary);
             transform: translateY(-2px); box-shadow: var(--card-shadow);
         }
 
@@ -256,6 +326,43 @@
         }
         .card:hover { transform: translateY(-6px); box-shadow: var(--card-shadow-hover); border-color: var(--accent); }
         .card h3 { color: var(--primary); margin-bottom: 20px; font-size: 1.35rem; font-weight: 600; }
+        .card p.job-meta { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
+        .job-link-btn,
+        .careers-link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: var(--color-primary);
+            color: #ffffff;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            padding: 12px 18px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .job-link-btn:hover,
+        .careers-link-btn:hover {
+            background: var(--color-primary-soft);
+            color: var(--color-primary);
+            transform: translateY(-1px);
+        }
+        .careers-footer {
+            margin-top: 24px;
+            display: grid;
+            gap: 18px;
+        }
+        .careers-note {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+        .careers-link-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
 
         /* 翻轉字卡 (Flip Cards) */
         .flip-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
@@ -272,8 +379,8 @@
             box-shadow: var(--card-shadow); border: 1px solid var(--border-color);
         }
         .flip-card-front { background: var(--bg-card); color: var(--text-main); }
-        .flip-card-back { background: var(--primary); border-color: var(--primary); color: #FFFFFF; transform: rotateY(180deg); }
-        body.dark-mode .flip-card-back { color: #0F172A; }
+        .flip-card-back { background: var(--primary); border-color: var(--primary); color: var(--color-surface); transform: rotateY(180deg); }
+        body.dark-mode .flip-card-back { color: var(--color-dark-bg); }
         
         .card-icon { 
             width: 72px; height: 72px; background: var(--icon-bg); border: var(--icon-border);
@@ -282,6 +389,13 @@
         }
         .flip-card-back h4 { font-size: 1.5rem; font-weight: 600; margin-bottom: 16px; }
         .flip-card-back p { font-weight: 300; opacity: 0.9; }
+        .flip-card-front .flip-hint {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            opacity: 0.85;
+            line-height: 1.5;
+        }
 
         /* 互動測驗區塊 */
         .quiz-container {
@@ -296,11 +410,11 @@
         }
         .quiz-option:hover { border-color: var(--primary); background: transparent; color: var(--primary); }
         .quiz-btn {
-            background: var(--primary); color: #FFFFFF; border: none; padding: 14px 32px;
+            background: var(--primary); color: var(--color-surface); border: none; padding: 14px 32px;
             border-radius: var(--radius-sm); font-weight: 500; cursor: pointer; transition: var(--transition); letter-spacing: 0.05em;
         }
-        body.dark-mode .quiz-btn { color: #0F172A; }
-        .quiz-btn:hover { opacity: 0.85; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(123, 175, 212, 0.3); }
+        body.dark-mode .quiz-btn { color: var(--color-dark-bg); }
+        .quiz-btn:hover { opacity: 0.85; transform: translateY(-2px); box-shadow: var(--card-shadow-hover); }
         #quiz-result { margin-top: 24px; font-weight: 500; }
 
         /* 頁尾 */
@@ -365,12 +479,12 @@
 
         .market-tab-btn:hover {
             color: var(--primary);
-            background-color: rgba(74, 111, 165, 0.08);
+            background-color: var(--color-primary-soft);
         }
 
         .market-tab-btn.active {
             background-color: var(--primary);
-            color: #ffffff;
+            color: var(--color-surface);
             box-shadow: var(--card-shadow);
         }
 
@@ -1532,7 +1646,7 @@
         }
 
         #intro .intro-finance-table tbody tr:hover {
-            background: rgba(74, 111, 165, 0.08);
+            background: var(--color-primary-soft);
         }
 
         #intro .intro-highlight-row {
@@ -1616,13 +1730,38 @@
         </div>
         <div class="sidebar-nav">
             <!-- 7 個主要項目精簡呈現 -->
-            <a href="#home" onclick="toggleSidebar()"><span class="lang-zh">🏠 首頁</span><span class="lang-en">🏠 Home</span></a>
-            <a href="#intro" onclick="toggleSidebar()"><span class="lang-zh">🏢 公司介紹</span><span class="lang-en">🏢 Company Intro</span></a>
-            <a href="#market-analysis" onclick="toggleSidebar()"><span class="lang-zh">📊 市場分析</span><span class="lang-en">📊 Market Analysis</span></a>
-            <a href="#resource-evaluation" onclick="toggleSidebar()"><span class="lang-zh">💎 資源評價</span><span class="lang-en">💎 Resource Eval</span></a>
-            <a href="#delta-growth-strategy" onclick="toggleSidebar()"><span class="lang-zh">🚀 成長策略</span><span class="lang-en">🚀 Growth Strategy</span></a>
-            <a href="#interactive-learning" onclick="toggleSidebar()"><span class="lang-zh">🧠 互動學習</span><span class="lang-en">🧠 Interactive Learning</span></a>
-            <a href="#team" onclick="toggleSidebar()"><span class="lang-zh">👥 團隊專區</span><span class="lang-en">👥 Team Section</span></a>
+            <a href="#home" onclick="toggleSidebar()">
+                <span class="menu-title">🏠 首頁</span>
+                <span class="menu-subtitle">Home</span>
+            </a>
+            <a href="#intro" onclick="toggleSidebar()">
+                <span class="menu-title">🏢 公司介紹</span>
+                <span class="menu-subtitle">Company Intro</span>
+            </a>
+            <a href="#market-analysis" onclick="toggleSidebar()">
+                <span class="menu-title">📊 市場分析</span>
+                <span class="menu-subtitle">Market Analysis</span>
+            </a>
+            <a href="#resource-evaluation" onclick="toggleSidebar()">
+                <span class="menu-title">💎 資源評價</span>
+                <span class="menu-subtitle">Resource Evaluation</span>
+            </a>
+            <a href="#delta-growth-strategy" onclick="toggleSidebar()">
+                <span class="menu-title">🚀 成長策略</span>
+                <span class="menu-subtitle">Growth Strategy</span>
+            </a>
+            <a href="#careers" onclick="toggleSidebar()">
+                <span class="menu-title">💼 職缺資訊</span>
+                <span class="menu-subtitle">Career Opportunities</span>
+            </a>
+            <a href="#interactive-learning" onclick="toggleSidebar()">
+                <span class="menu-title">🧠 互動學習</span>
+                <span class="menu-subtitle">Interactive Learning</span>
+            </a>
+            <a href="#team" onclick="toggleSidebar()">
+                <span class="menu-title">👥 團隊專區</span>
+                <span class="menu-subtitle">Team Section</span>
+            </a>
         </div>
     </aside>
 
@@ -1642,11 +1781,14 @@
         <!-- 企業簡介 (錨點 #intro) -->
         <section id="intro">
     <div class="section-header">
-        <h2 class="section-title lang-zh">公司介紹與財務亮點</h2>
-        <h2 class="section-title lang-en">Company Intro & Financials</h2>
-        <button class="btn-voice" onclick="readAloud('intro')" title="語音導覽">🔊</button>
-    </div>
-
+            <div class="section-meta">
+                <p class="section-kicker">Company Overview</p>
+                <h2 class="section-title lang-zh">公司介紹與財務亮點</h2>
+                <h2 class="section-title lang-en">Company Intro & Financials</h2>
+                <p class="section-description"><span class="lang-zh">掌握台達電的核心定位、AI 與新能源雙引擎成長邏輯。</span><span class="lang-en">Understand Delta's positioning and its AI plus clean energy growth logic.</span></p>
+            </div>
+            <button class="btn-voice" onclick="readAloud('intro')" title="語音導覽">🔊</button>
+        </div>
     <!-- 公司定位與歷史轉型 -->
     <div class="intro-hero-card">
         <div class="intro-kicker lang-zh">Delta Electronics</div>
@@ -1684,6 +1826,8 @@
                     <h3 class="lang-en">Power Electronics</h3>
                     <p class="lang-zh text-muted">設備運作的節能心臟</p>
                     <p class="lang-en text-muted">The energy-saving heart of modern devices</p>
+                    <p class="flip-hint lang-zh">點擊翻轉</p>
+                    <p class="flip-hint lang-en">Click to flip</p>
                 </div>
                 <div class="flip-card-back">
                     <h4 class="lang-zh">電源、散熱與關鍵零組件</h4>
@@ -1703,6 +1847,8 @@
                     <h3 class="lang-en">Mobility</h3>
                     <p class="lang-zh text-muted">驅動電動車與低碳移動</p>
                     <p class="lang-en text-muted">Powering electric mobility and low-carbon transport</p>
+                    <p class="flip-hint lang-zh">點擊翻轉</p>
+                    <p class="flip-hint lang-en">Click to flip</p>
                 </div>
                 <div class="flip-card-back">
                     <h4 class="lang-zh">電動車動力系統</h4>
@@ -1722,6 +1868,8 @@
                     <h3 class="lang-en">Automation</h3>
                     <p class="lang-zh text-muted">讓工廠與建築更智慧</p>
                     <p class="lang-en text-muted">Making factories and buildings smarter</p>
+                    <p class="flip-hint lang-zh">點擊翻轉</p>
+                    <p class="flip-hint lang-en">Click to flip</p>
                 </div>
                 <div class="flip-card-back">
                     <h4 class="lang-zh">工業與樓宇自動化</h4>
@@ -1741,6 +1889,8 @@
                     <h3 class="lang-en">Infrastructure</h3>
                     <p class="lang-zh text-muted">支撐資料中心、能源與城市運作</p>
                     <p class="lang-en text-muted">Supporting data centers, energy systems, and smart cities</p>
+                    <p class="flip-hint lang-zh">點擊翻轉</p>
+                    <p class="flip-hint lang-en">Click to flip</p>
                 </div>
                 <div class="flip-card-back">
                     <h4 class="lang-zh">資通訊、能源與視訊系統</h4>
@@ -1937,8 +2087,12 @@
         <!-- 市場分析整合區塊 (錨點 #market-analysis) -->
         <section id="market-analysis">
             <div class="section-header">
-                <h2 class="section-title lang-zh">📈 市場分析：AI基礎設施黃金機遇</h2>
-                <h2 class="section-title lang-en">📈 Market Analysis: The Golden AI Era</h2>
+                <div class="section-meta">
+                    <p class="section-kicker">Market Analysis</p>
+                    <h2 class="section-title lang-zh">📈 市場分析：AI基礎設施黃金機遇</h2>
+                    <h2 class="section-title lang-en">📈 Market Analysis: The Golden AI Era</h2>
+                    <p class="section-description"><span class="lang-zh">從生成式 AI 到資料中心用電需求，解析台達電的市場機會與產業強弱勢。</span><span class="lang-en">From generative AI to data center power demand, analyze Delta's market opportunities and industry positioning.</span></p>
+                </div>
                 <button class="btn-voice" onclick="readAloud('text-delta-market')" title="語音導覽">🔊</button>
             </div>
             
@@ -2399,16 +2553,22 @@
     /* Style-neutral version:
        這份樣式盡量繼承原網站的顏色變數，避免資源評價區塊看起來像另一個網站。 */
     #resource-evaluation {
-      --resource-accent: var(--primary-color, var(--accent-color, var(--delta-blue, #2f78b7)));
-      --resource-accent-2: var(--secondary-color, var(--accent-2, var(--resource-accent)));
-      --resource-card: var(--card-bg, var(--surface-color, var(--section-card-bg, rgba(255, 255, 255, 0.72))));
-      --resource-card-strong: var(--card-bg, var(--surface-color, rgba(255, 255, 255, 0.86)));
-      --resource-text: var(--text-primary, var(--text-color, currentColor));
-      --resource-muted: var(--text-secondary, var(--muted-text, var(--text-muted, #64748b)));
-      --resource-border: var(--border-color, rgba(148, 163, 184, 0.28));
-      --resource-soft: var(--soft-bg, var(--accent-soft, rgba(47, 120, 183, 0.08)));
-      --resource-shadow: var(--card-shadow, 0 10px 28px rgba(15, 23, 42, 0.08));
-      --resource-good: var(--success-color, #0f766e);
+      --resource-accent: var(--color-primary);
+      --resource-accent-2: var(--color-primary-soft);
+      --resource-card: var(--color-surface);
+      --resource-card-strong: var(--color-surface);
+      --resource-text: var(--color-text);
+      --resource-muted: var(--color-muted);
+      --resource-border: var(--color-border);
+      --resource-soft: var(--color-primary-soft, rgba(169, 214, 229, 0.08));
+      --resource-shadow: var(--card-shadow);
+      --resource-good: var(--color-primary);
+      --vrio-content-card-bg: #F3FAFD;
+      --vrio-content-card-hover-bg: #EAF6FB;
+      --vrio-content-card-border: #DCEBF3;
+      --vrio-content-card-title: #1E293B;
+      --vrio-content-card-text: #64748B;
+      --vrio-badge-bg: #4A6FA5;
       color: var(--resource-text);
       background: transparent;
       padding: clamp(56px, 8vw, 92px) 20px;
@@ -2419,14 +2579,20 @@
     body[data-theme="dark"] #resource-evaluation,
     html.dark #resource-evaluation,
     .dark #resource-evaluation {
-      --resource-card: var(--card-bg, rgba(15, 23, 42, 0.72));
-      --resource-card-strong: var(--card-bg, rgba(15, 23, 42, 0.86));
-      --resource-text: var(--text-primary, var(--text-color, #e5edf7));
-      --resource-muted: var(--text-secondary, var(--muted-text, #a8b3c7));
-      --resource-border: var(--border-color, rgba(148, 163, 184, 0.26));
-      --resource-soft: var(--soft-bg, rgba(56, 189, 248, 0.10));
-      --resource-shadow: var(--card-shadow, 0 14px 34px rgba(0, 0, 0, 0.28));
-      --resource-good: var(--success-color, #5eead4);
+      --resource-card: var(--color-dark-card);
+      --resource-card-strong: var(--color-dark-card);
+      --resource-text: var(--color-dark-text);
+      --resource-muted: var(--color-dark-muted);
+      --resource-border: var(--color-dark-border);
+      --resource-soft: rgba(169, 214, 229, 0.1);
+      --resource-shadow: var(--card-shadow);
+      --resource-good: var(--color-dark-primary);
+      --vrio-content-card-bg: #1E293B;
+      --vrio-content-card-hover-bg: rgba(30, 41, 59, 0.9);
+      --vrio-content-card-border: #334155;
+      --vrio-content-card-title: #F8FAFC;
+      --vrio-content-card-text: #CBD5E1;
+      --vrio-badge-bg: #7BAFD4;
     }
 
     #resource-evaluation * { box-sizing: border-box; }
@@ -2540,6 +2706,44 @@
       color: var(--resource-muted);
       line-height: 1.7;
       font-size: 0.95rem;
+    }
+
+    #resource-evaluation .resource-tip {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.75rem;
+      align-items: start;
+      background: rgba(137, 194, 217, 0.14);
+      border: 1px solid rgba(137, 194, 217, 0.35);
+      color: var(--resource-muted);
+      border-radius: 18px;
+      padding: 14px 16px;
+      margin-bottom: 22px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    #resource-evaluation .resource-tip .tip-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      min-width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: rgba(74, 111, 165, 0.12);
+      font-size: 0.95rem;
+    }
+
+    #resource-evaluation .resource-tip .tip-label {
+      font-weight: 700;
+      color: var(--resource-text);
+      margin-right: 0.25rem;
+    }
+
+    #resource-evaluation .resource-tip span.lang-zh,
+    #resource-evaluation .resource-tip span.lang-en {
+      display: inline;
     }
 
     #resource-evaluation .resource-tabs {
@@ -2730,9 +2934,14 @@
     #resource-evaluation .resource-detail-card {
       border-radius: 22px;
       padding: 20px;
-      background: var(--resource-soft);
-      border: 1px solid var(--resource-border);
+      background: var(--vrio-content-card-bg);
+      border: 1px solid var(--vrio-content-card-border);
       min-height: 180px;
+      transition: background .2s ease, border-color .2s ease;
+    }
+
+    #resource-evaluation .resource-detail-card:hover {
+      background: var(--vrio-content-card-hover-bg);
     }
 
     #resource-evaluation .resource-detail-card h4 {
@@ -2740,7 +2949,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      color: var(--resource-text);
+      color: var(--vrio-content-card-title);
       font-size: 1rem;
     }
 
@@ -2752,12 +2961,12 @@
       font-size: 0.75rem;
       line-height: 1;
       color: #fff;
-      background: var(--resource-accent);
+      background: var(--vrio-badge-bg);
       font-weight: 900;
     }
 
     #resource-evaluation .resource-detail-card p {
-      color: var(--resource-muted);
+      color: var(--vrio-content-card-text);
       line-height: 1.8;
       font-size: 0.98rem;
     }
@@ -2766,18 +2975,23 @@
       margin-top: 18px;
       border-radius: 22px;
       padding: 18px 20px;
-      border: 1px solid var(--resource-border);
-      background: var(--resource-soft);
+      border: 1px solid var(--vrio-content-card-border);
+      background: var(--vrio-content-card-bg);
+      transition: background .2s ease, border-color .2s ease;
+    }
+
+    #resource-evaluation .resource-judgement:hover {
+      background: var(--vrio-content-card-hover-bg);
     }
 
     #resource-evaluation .resource-judgement strong {
       display: block;
-      color: var(--resource-text);
+      color: var(--vrio-content-card-title);
       margin-bottom: 8px;
     }
 
     #resource-evaluation .resource-judgement p {
-      color: var(--resource-muted);
+      color: var(--vrio-content-card-text);
       line-height: 1.75;
     }
 
@@ -2866,6 +3080,7 @@
   <div class="resource-wrap">
     <div class="resource-header">
       <div>
+        <p class="section-kicker">Resource Evaluation</p>
         <div class="resource-eyebrow">
           <span class="lang-zh">資源評價｜VRIO</span>
           <span class="lang-en">Resource Evaluation｜VRIO</span>
@@ -2902,6 +3117,14 @@
         </div>
         <div class="resource-confidence" id="resource-confidence"></div>
       </div>
+
+      <p class="resource-tip">
+        <span class="tip-icon" aria-hidden="true">ℹ️</span>
+        <span class="tip-label lang-zh">提示</span>
+        <span class="tip-label lang-en">Tip</span>
+        <span class="lang-zh">操作提示：先選擇上方資源卡片，再點選 V／R／I／O，查看該資源在價值、稀少性、難以模仿與組織支援上的分析。</span>
+        <span class="lang-en">Tip: First select a resource card above, then click V/R/I/O to view the analysis of that resource’s value, rarity, imitability, and organizational support.</span>
+      </p>
 
       <div class="resource-stepper-wrap">
         <div class="resource-step-line"></div>
@@ -3274,8 +3497,8 @@
   /* ===== Delta Growth Strategy｜Scoped Styles Only ===== */
   #delta-growth-strategy {
     padding: 3rem 1.5rem;
-    background-color: var(--bg-secondary, #FAFAF7);
-    color: var(--text-main, #2B2D42);
+    background-color: var(--bg-secondary);
+    color: var(--text-main);
     font-family: 'Poppins', 'Inter', 'Noto Sans TC', sans-serif;
   }
 
@@ -3319,7 +3542,7 @@
     gap: 1rem;
     margin-bottom: 2.25rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid var(--border-color, rgba(169, 214, 229, 0.4));
+    border-bottom: 2px solid var(--border-color);
   }
 
   #delta-growth-strategy .delta-section-title {
@@ -3357,7 +3580,7 @@
 
   #delta-growth-strategy .delta-intro {
     margin: 0 0 1.5rem;
-    color: var(--text-muted, #6B7280);
+    color: var(--text-muted);
     line-height: 1.75;
     font-size: 1.05rem;
   }
@@ -3374,16 +3597,16 @@
     overflow: hidden;
     min-height: 180px;
     padding: 1.4rem;
-    border-radius: var(--radius-md, 20px);
-    background: var(--bg-card, #FFFFFF);
-    border: 1px solid var(--border-color, rgba(169, 214, 229, 0.4));
-    box-shadow: var(--card-shadow, 0 12px 32px rgba(43, 45, 66, 0.05));
-    transition: var(--transition, all 0.5s cubic-bezier(0.16, 1, 0.3, 1));
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
   }
 
   #delta-growth-strategy .delta-metric-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--card-shadow-hover, 0 20px 40px rgba(43, 45, 66, 0.08));
+    box-shadow: var(--card-shadow-hover);
   }
 
   #delta-growth-strategy .delta-metric-value {
@@ -3398,7 +3621,7 @@
 
   #delta-growth-strategy .delta-metric-title {
     display: block;
-    color: var(--text-main, #2B2D42);
+    color: var(--text-main);
     font-weight: 700;
     font-size: 1.05rem;
     margin-bottom: 0.75rem;
@@ -3406,7 +3629,7 @@
 
   #delta-growth-strategy .delta-metric-card p {
     margin: 0;
-    color: var(--text-muted, #6B7280);
+    color: var(--text-muted);
     line-height: 1.65;
     font-size: 0.92rem;
   }
@@ -3420,16 +3643,16 @@
     border-radius: 999px;
     font-size: 0.78rem;
     font-weight: 700;
-    color: var(--primary, #4A6FA5);
+    color: var(--color-primary);
     background-color: rgba(169, 214, 229, 0.18);
-    border: 1px solid var(--border-color, rgba(169, 214, 229, 0.4));
+    border: 1px solid var(--border-color);
   }
 
   #delta-growth-strategy .delta-tab-menu {
     display: flex;
     gap: 0.85rem;
     margin-bottom: 2rem;
-    border-bottom: 2px solid var(--border-color, rgba(169, 214, 229, 0.4));
+    border-bottom: 2px solid var(--border-color);
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -3456,14 +3679,14 @@
   }
 
   #delta-growth-strategy .delta-tab-btn:hover {
-    color: var(--primary, #4A6FA5);
-    background-color: rgba(169, 214, 229, 0.1);
+    color: var(--primary);
+    background-color: var(--color-primary-soft);
     border-radius: 10px 10px 0 0;
   }
 
   #delta-growth-strategy .delta-tab-btn.is-active {
-    color: var(--primary, #4A6FA5);
-    border-bottom-color: var(--primary, #4A6FA5);
+    color: var(--primary);
+    border-bottom-color: var(--primary);
   }
 
   #delta-growth-strategy .delta-tab-panel {
@@ -4282,10 +4505,14 @@ body.dark-mode #interactive-learning .flip-card-back {
 
 <section id="delta-growth-strategy" aria-labelledby="delta-growth-title">
   <div class="delta-section-header">
-    <h2 id="delta-growth-title" class="delta-section-title">
-      <span class="lang-zh">台達電：成長策略與資源整合</span>
-      <span class="lang-en">Delta Electronics: Growth Strategy and Resource Integration</span>
-    </h2>
+    <div class="section-meta">
+      <p class="section-kicker">Growth Strategy</p>
+      <h2 id="delta-growth-title" class="delta-section-title">
+        <span class="lang-zh">台達電：成長策略與資源整合</span>
+        <span class="lang-en">Delta Electronics: Growth Strategy and Resource Integration</span>
+      </h2>
+      <p class="section-description"><span class="lang-zh">從 AI 資料中心到 EV 與綠能佈局，整理台達電成長策略與資源運用的核心脈絡。</span><span class="lang-en">From AI data centers to EV and green energy, this section outlines Delta's growth strategy and resource deployment.</span></p>
+    </div>
     <button class="delta-voice-btn" type="button" aria-label="語音導覽 / Voice guide" title="語音導覽 / Voice guide" data-delta-voice>🔊</button>
   </div>
 
@@ -4484,39 +4711,96 @@ body.dark-mode #interactive-learning .flip-card-back {
   })();
 </script>
 
-        <!-- 職缺資訊 (保留於畫面內，供加分參考) -->
-        <section id="jobs">
-            <div class="section-header">
-                <h2 class="section-title lang-zh">人才招募 (104人力銀行資料)</h2>
-                <h2 class="section-title lang-en">Careers (104 Job Bank)</h2>
-                <button class="btn-voice" onclick="readAloud('jobs')" title="語音導覽">🔊</button>
+        <section id="careers" class="content-section" aria-labelledby="careers-title">
+          <div class="section-header">
+            <div class="section-meta">
+              <p class="section-kicker">CAREER OPPORTUNITIES</p>
+              <h2 id="careers-title" class="section-title">
+                <span class="lang-zh">台達電職缺資訊與人才需求</span>
+                <span class="lang-en">Delta Careers and Talent Needs</span>
+              </h2>
+              <p class="section-description">
+                <span class="lang-zh">從台達電近期招募職缺觀察，AI 資料中心、能源管理、智慧製造與自動化等領域，正需要跨電力電子、系統整合、軟體與機構設計的人才支援。</span>
+                <span class="lang-en">From recent Delta recruitment postings, AI data centers, energy management, smart manufacturing, and automation are seeking talent across power electronics, systems integration, software, and mechanical design.</span>
+              </p>
             </div>
-            
-            <div class="card-grid">
-                <div class="card">
-                    <h3 class="lang-zh">AI 散熱研發工程師</h3>
-                    <h3 class="lang-en">AI Thermal R&D Engineer</h3>
-                    <p class="lang-zh"><strong>所需技能：</strong>熱傳學、流體力學、Flotherm / Icepak 模擬軟體。<br><strong>薪資福利：</strong>月薪 60,000 - 100,000 元，享優渥分紅與全球輪調機會。</p>
-                    <p class="lang-en"><strong>Skills:</strong> Heat transfer, fluid mechanics, Flotherm/Icepak.<br><strong>Salary:</strong> NT$60k - 100k/month, with competitive bonuses.</p>
-                </div>
-                <div class="card">
-                    <h3 class="lang-zh">全球策略採購管理師</h3>
-                    <h3 class="lang-en">Global Strategic Sourcing Spec.</h3>
-                    <p class="lang-zh"><strong>所需技能：</strong>供應鏈管理、跨國議價談判、流利外語能力。<br><strong>薪資福利：</strong>月薪 50,000 - 85,000 元，彈性工時與完善培訓。</p>
-                    <p class="lang-en"><strong>Skills:</strong> SCM, negotiation, fluent foreign languages.<br><strong>Salary:</strong> NT$50k - 85k/month, flexible hours.</p>
-                </div>
+            <button class="btn-voice" onclick="readAloud('careers')" title="語音導覽 / Voice guide">🔊</button>
+          </div>
+
+          <div class="card-grid careers-card-grid">
+            <article class="card">
+              <h3><span class="lang-zh">電子設計資深工程師_ICTBG 儲能產品新事業發展部</span><span class="lang-en">Senior Electronic Design Engineer_ICTBG Energy Storage New Business</span></h3>
+              <p class="job-meta"><strong><span class="lang-zh">對應方向：</span><span class="lang-en">Focus:</span></strong> <span class="lang-zh">能源基礎設施、儲能產品、新事業發展</span><span class="lang-en">Energy infrastructure, energy storage products, new business development</span></p>
+              <p class="job-meta"><strong><span class="lang-zh">需要能力：</span><span class="lang-en">Skills:</span></strong> <span class="lang-zh">電子設計、硬體研發、電源工程</span><span class="lang-en">Electronic design, hardware R&D, power engineering</span></p>
+              <p class="job-meta"><strong><span class="lang-zh">待遇資訊：</span><span class="lang-en">Salary:</span></strong> <span class="lang-zh">待遇面議，經常性薪資達 4 萬元或以上</span><span class="lang-en">Negotiable, monthly base pay around NT$40k+</span></p>
+              <a class="job-link-btn" href="https://www.104.com.tw/job/5nb7r" target="_blank" rel="noopener noreferrer">
+                <span class="lang-zh">查看招募連結 ↗</span>
+                <span class="lang-en">View Job Posting ↗</span>
+              </a>
+            </article>
+
+            <article class="card">
+              <h3><span class="lang-zh">系統設計資深工程師_通信基礎設施事業部</span><span class="lang-en">Senior System Design Engineer_Communications Infrastructure</span></h3>
+              <p class="job-meta"><strong><span class="lang-zh">對應方向：</span><span class="lang-en">Focus:</span></strong> <span class="lang-zh">資通訊基礎設施、資料中心、電源系統</span><span class="lang-en">ICT infrastructure, data centers, power systems</span></p>
+              <p class="job-meta"><strong><span class="lang-zh">需要能力：</span><span class="lang-en">Skills:</span></strong> <span class="lang-zh">系統設計、電源工程、硬體整合、跨部門協作</span><span class="lang-en">System design, power engineering, hardware integration, cross-functional collaboration</span></p>
+              <p class="job-meta"><strong><span class="lang-zh">待遇資訊：</span><span class="lang-en">Salary:</span></strong> <span class="lang-zh">待遇面議，經常性薪資達 4 萬元或以上</span><span class="lang-en">Negotiable, monthly base pay around NT$40k+</span></p>
+              <a class="job-link-btn" href="https://www.104.com.tw/job/8pjam" target="_blank" rel="noopener noreferrer">
+                <span class="lang-zh">查看招募連結 ↗</span>
+                <span class="lang-en">View Job Posting ↗</span>
+              </a>
+            </article>
+
+            <article class="card">
+              <h3><span class="lang-zh">機構設計資深工程師_智能製造平台新事業發展部</span><span class="lang-en">Senior Mechanical Design Engineer_Smart Manufacturing Platform</span></h3>
+              <p class="job-meta"><strong><span class="lang-zh">對應方向：</span><span class="lang-en">Focus:</span></strong> <span class="lang-zh">智慧製造、自動化設備、機電整合</span><span class="lang-en">Smart manufacturing, automation equipment, mechatronic integration</span></p>
+              <p class="job-meta"><strong><span class="lang-zh">需要能力：</span><span class="lang-en">Skills:</span></strong> <span class="lang-zh">3D CAD、FEA 結構分析、GD&amp;T、機構設計、BOM 與成本控管</span><span class="lang-en">3D CAD, FEA structural analysis, GD&amp;T, mechanical design, BOM and cost control</span></p>
+              <p class="job-meta"><strong><span class="lang-zh">待遇資訊：</span><span class="lang-en">Salary:</span></strong> <span class="lang-zh">待遇面議</span><span class="lang-en">Negotiable</span></p>
+              <a class="job-link-btn" href="https://www.104.com.tw/job/8l7xx" target="_blank" rel="noopener noreferrer">
+                <span class="lang-zh">查看招募連結 ↗</span>
+                <span class="lang-en">View Job Posting ↗</span>
+              </a>
+            </article>
+
+            <article class="card">
+              <h3><span class="lang-zh">2026 實習｜客服助理工程師_Data Center Platform Taiwan</span><span class="lang-en">2026 Intern | Customer Support Engineer_Data Center Platform Taiwan</span></h3>
+              <p class="job-meta"><strong><span class="lang-zh">對應方向：</span><span class="lang-en">Focus:</span></strong> <span class="lang-zh">資料中心平台、客戶服務、工程支援</span><span class="lang-en">Data center platform, customer service, engineering support</span></p>
+              <p class="job-meta"><strong><span class="lang-zh">需要能力：</span><span class="lang-en">Skills:</span></strong> <span class="lang-zh">工程支援、資料中心平台理解、跨部門溝通</span><span class="lang-en">Engineering support, data center platform knowledge, cross-team communication</span></p>
+              <p class="job-meta"><strong><span class="lang-zh">待遇資訊：</span><span class="lang-en">Salary:</span></strong> <span class="lang-zh">月薪 32,000 元以上</span><span class="lang-en">NT$32,000+ monthly</span></p>
+              <a class="job-link-btn" href="https://www.104.com.tw/job/8z1lg" target="_blank" rel="noopener noreferrer">
+                <span class="lang-zh">查看招募連結 ↗</span>
+                <span class="lang-en">View Job Posting ↗</span>
+              </a>
+            </article>
+          </div>
+
+          <div class="careers-footer">
+            <p class="careers-note">
+              <span class="lang-zh">註：職缺內容會依企業招募狀況變動，本區資料僅作為台達電人才需求與策略方向觀察，實際資訊以台達電官方網站與 104 人力銀行頁面為準。</span>
+              <span class="lang-en">Note: Job details may change with company recruitment needs. This section is intended for observing Delta’s talent demand and strategic direction only. Refer to Delta’s official website and the 104 job page for actual information.</span>
+            </p>
+            <div class="careers-link-row">
+              <a class="careers-link-btn" href="https://www.deltaww.com/zh-TW/careers" target="_blank" rel="noopener noreferrer">
+                <span class="lang-zh">台達電官方招募入口</span>
+                <span class="lang-en">Delta Official Careers</span>
+              </a>
+              <a class="careers-link-btn" href="https://www.104.com.tw/company/fn5mtmo" target="_blank" rel="noopener noreferrer">
+                <span class="lang-zh">104 台達電子公司頁</span>
+                <span class="lang-en">104 Delta Company Page</span>
+              </a>
             </div>
+          </div>
         </section>
 
         <!-- 互動學習 (錨點 #interactive-learning) -->
 <section id="interactive-learning" class="content-section">
   <div class="section-header">
-    <span class="section-tag">Interactive Learning</span>
-    <h2 class="section-title">
-      <span class="lang-zh">互動學習</span>
-      <span class="lang-en">Interactive Learning</span>
-    </h2>
-    <p class="section-description">
+    <div class="section-meta">
+      <p class="section-kicker">Interactive Learning</p>
+      <h2 class="section-title">
+        <span class="lang-zh">互動學習</span>
+        <span class="lang-en">Interactive Learning</span>
+      </h2>
+      <p class="section-description">
       <span class="lang-zh">透過翻轉字卡、常見問答與知識測驗，複習台達電策略分析重點。</span>
       <span class="lang-en">Review Delta's strategic analysis through flashcards, FAQs, and quizzes.</span>
     </p>
@@ -4982,8 +5266,12 @@ body.dark-mode #interactive-learning .flip-card-back {
         <section id="team">
             <div id="team-introduction">
                 <div class="section-header">
-                    <h2 class="section-title lang-zh">團隊資訊</h2>
-                    <h2 class="section-title lang-en">Team Information</h2>
+                    <div class="section-meta">
+                        <p class="section-kicker">Team Section</p>
+                        <h2 class="section-title lang-zh">團隊資訊</h2>
+                        <h2 class="section-title lang-en">Team Information</h2>
+                        <p class="section-description"><span class="lang-zh">介紹團隊角色、合作流程與 AI 使用揭露，維持排版整齊一致。</span><span class="lang-en">Present team roles, collaboration process, and AI disclosure with a clean structured layout.</span></p>
+                    </div>
                     <button class="btn-voice" onclick="readAloud('team')" title="語音導覽">🔊</button>
                 </div>
 
@@ -5456,6 +5744,22 @@ body.dark-mode #interactive-learning .flip-card-back {
                 themeBtn.innerText = '☀️';
             }
         }
+
+        // --- 側邊選單 active 狀態 ---
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+        function updateSidebarActive() {
+            const hash = window.location.hash || '#home';
+            sidebarLinks.forEach((link) => {
+                link.classList.toggle('active', link.getAttribute('href') === hash);
+            });
+        }
+        sidebarLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+                setTimeout(updateSidebarActive, 50);
+            });
+        });
+        window.addEventListener('hashchange', updateSidebarActive);
+        document.addEventListener('DOMContentLoaded', updateSidebarActive);
 
         // --- 語言切換 (ZH/EN) ---
         function toggleLanguage() {
