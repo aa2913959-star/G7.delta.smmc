@@ -304,7 +304,9 @@
             max-width: 72ch;
             font-size: 1rem;
         }
-        .section-title::after {
+        .section-title::after {.section-title {
+  color: var(--primary);
+}
             content: ''; display: block; width: 32px; height: 3px;
             background-color: var(--color-primary); margin: 16px auto 0; border-radius: 4px; opacity: 0.7;
         }
